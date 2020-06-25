@@ -1,0 +1,16 @@
+datasource DS {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = env("BINARY_TARGET")
+}
+
+// Models
+
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+}
