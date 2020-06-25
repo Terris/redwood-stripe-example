@@ -1,6 +1,6 @@
 import GoTrue from 'gotrue-js'
 
 export const goTrue = new GoTrue({
-  APIUrl: 'https://redwood-gotrue-example.netlify.app/.netlify/identity',
+  APIUrl: 'https://redwood-stripe-example.netlify.app/.netlify/identity',
   setCookie: true,
 })

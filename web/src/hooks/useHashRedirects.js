@@ -2,10 +2,10 @@ import { useEffect } from 'react'
 import { routes, navigate, useLocation } from '@redwoodjs/router'
 
 const HASH_REDIRECTS = [
-  // {
-  //   hash: 'recovery_token',
-  //   route: (token) => routes.resetPassword({ token: token }),
-  // },
+  {
+    hash: 'recovery_token',
+    route: (token) => routes.resetPassword({ token: token }),
+  },
 ]
 
 export const useHashRedirects = () => {
