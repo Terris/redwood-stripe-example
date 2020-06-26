@@ -25,7 +25,8 @@ button:focus { outline:none }
 .header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
-.header nav { display:flex}
+.header nav { display:flex }
 .header nav a,
 .header nav button { padding: 1rem }

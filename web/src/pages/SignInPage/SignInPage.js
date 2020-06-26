@@ -79,6 +79,12 @@ const SignInPage = () => {
       <p>
         <Link to={routes.forgotPassword()}>Forgot password?</Link>
       </p>
+      <h4 style={{ paddingBottom: 0 }}>Demo Credentials:</h4>
+      <p>
+        <strong>email:</strong> admin@example.com
+        <br />
+        <strong>pass:</strong> password
+      </p>
     </GlobalLayout>
   )
 }
