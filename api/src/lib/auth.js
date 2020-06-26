@@ -15,7 +15,18 @@ export const getCurrentUser = async (jwt) => {
 // optionally raise an error if they're not.
 
 export const requireAuth = () => {
-  if (!context.currentUser) {
+  const user = context.currentUser
+  console.log(user)
+  if (!user) {
+    throw new AuthenticationError("You don't have permission to do that.")
+  }
+}
+
+export const requirePermission = (role) => {
+  const user = context.currentUser
+  const permitted =
+    user && user.app_metadata.roles && user.app_metadata.roles.includes(role)
+  if (!permitted) {
     throw new AuthenticationError("You don't have permission to do that.")
   }
 }

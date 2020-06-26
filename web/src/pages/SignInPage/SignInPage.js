@@ -34,7 +34,7 @@ const SignInPage = () => {
     <GlobalLayout>
       <h1>Sign In</h1>
       <Form onSubmit={onSubmit} validation={{ mode: 'onBlur' }}>
-        {formError && <div className="form-error">{formError}</div>}
+        {formError && <p className="form-error">{formError}</p>}
 
         <div className="field">
           <Label name="email" errorClassName="label-error">
