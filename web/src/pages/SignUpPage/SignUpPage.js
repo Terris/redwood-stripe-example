@@ -4,14 +4,24 @@ import { useAuth } from '@redwoodjs/auth'
 import { routes, navigate } from '@redwoodjs/router'
 import {
   Form,
+  FormError,
   Label,
   TextField,
   PasswordField,
   FieldError,
   Submit,
+  useMutation,
 } from '@redwoodjs/web'
 
 import { GlobalLayout } from 'src/layouts'
+
+const CREATE_USER_MUTATION = gql`
+  mutation CreateUserMutation($input: CreateUserInput!) {
+    createUser(input: $input) {
+      id
+    }
+  }
+`
 
 const SignUpPage = () => {
   const formMethods = useForm({ mode: 'onBlur' })
@@ -20,10 +30,21 @@ const SignUpPage = () => {
   const [formError, setFormError] = useState(null)
   const [formLoading, setFormLoading] = useState(false)
 
+  const [createUser, { loading, error }] = useMutation(CREATE_USER_MUTATION, {
+    onCompleted: () => {
+      navigate(routes.confirmEmail())
+    },
+  })
+
   const signup = (data) => {
     client
       .signup(data.email, data.password)
-      .then(() => navigate(routes.confirmEmail()))
+      .then((res) => {
+        // create db user
+        createUser({
+          variables: { input: { email: data.email, authId: res.id } },
+        })
+      })
       .catch((error) => {
         setFormError(error.message)
         setFormLoading(false)
@@ -41,6 +62,12 @@ const SignUpPage = () => {
       <h1>Sign Up</h1>
       <Form formMethods={formMethods} onSubmit={onSubmit}>
         {formError && <p className="form-error">{formError}</p>}
+        <FormError
+          error={error}
+          wrapperClassName="form-error-wrapper"
+          titleClassName="form-error-title"
+          listClassName="form-error-list"
+        />
         <div className="field">
           <Label name="email" errorClassName="label-error">
             Email
@@ -91,7 +118,7 @@ const SignUpPage = () => {
           <FieldError name="passwordConfirmation" className="field-error" />
         </div>
         <div className="field">
-          <Submit className="btn" disabled={formLoading}>
+          <Submit className="btn" disabled={formLoading || loading}>
             Sign Up
           </Submit>
         </div>

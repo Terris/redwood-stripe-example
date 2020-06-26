@@ -7,11 +7,30 @@
 // 'src/pages/HomePage/HomePage.js'         -> HomePage
 // 'src/pages/Admin/BooksPage/BooksPage.js' -> AdminBooksPage
 
-import { Router, Route } from '@redwoodjs/router'
+import { Router, Route, Private } from '@redwoodjs/router'
 
 const Routes = () => {
   return (
     <Router>
+      <Private unauthenticated="signIn">
+        <Route path="/admin" page={AdminPage} name="admin" />
+        <Route
+          path="/admin/users/new"
+          page={AdminNewUserPage}
+          name="adminNewUser"
+        />
+        <Route
+          path="/admin/users/{id:Int}/edit"
+          page={AdminEditUserPage}
+          name="adminEditUser"
+        />
+        <Route
+          path="/admin/users/{id:Int}"
+          page={AdminUserPage}
+          name="adminUser"
+        />
+        <Route path="/admin/users" page={AdminUsersPage} name="adminUsers" />
+      </Private>
       <Route
         path="/confirm-email"
         page={ConfirmEmailPage}
@@ -29,22 +48,7 @@ const Routes = () => {
       />
       <Route path="/signup" page={SignUpPage} name="signUp" />
       <Route path="/signin" page={SignInPage} name="signIn" />
-      <Route
-        path="/admin/users/new"
-        page={AdminNewUserPage}
-        name="adminNewUser"
-      />
-      <Route
-        path="/admin/users/{id:Int}/edit"
-        page={AdminEditUserPage}
-        name="adminEditUser"
-      />
-      <Route
-        path="/admin/users/{id:Int}"
-        page={AdminUserPage}
-        name="adminUser"
-      />
-      <Route path="/admin/users" page={AdminUsersPage} name="adminUsers" />
+
       <Route path="/" page={HomePage} name="home" />
       <Route notfound page={NotFoundPage} />
     </Router>

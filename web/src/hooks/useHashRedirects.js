@@ -3,8 +3,12 @@ import { routes, navigate, useLocation } from '@redwoodjs/router'
 
 const HASH_REDIRECTS = [
   {
+    hash: 'confirmation_token',
+    route: (token) => routes.confirmEmail({ token }),
+  },
+  {
     hash: 'recovery_token',
-    route: (token) => routes.resetPassword({ token: token }),
+    route: (token) => routes.resetPassword({ token }),
   },
 ]
 

@@ -1,2 +1,4 @@
 import { useHashRedirects } from './useHashRedirects'
-export { useHashRedirects }
+import { usePermission } from './usePermission'
+
+export { useHashRedirects, usePermission }
