@@ -118,7 +118,7 @@ const SignUpPage = () => {
           <FieldError name="passwordConfirmation" className="field-error" />
         </div>
         <div className="field">
-          <Submit className="btn" disabled={formLoading || loading}>
+          <Submit className="btn" disabled={(formLoading || loading) && !error}>
             Sign Up
           </Submit>
         </div>

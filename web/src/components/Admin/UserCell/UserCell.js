@@ -5,6 +5,8 @@ export const QUERY = gql`
     user: user(id: $id) {
       id
       email
+      authId
+      customerId
     }
   }
 `

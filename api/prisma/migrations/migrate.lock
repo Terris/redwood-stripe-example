@@ -3,3 +3,6 @@
 20200625121527-add-users
 20200625213156-add-auth-id-to-user
 20200625213328-user-auth-id-is-not-requred
+20200626093148-add-stripe-customer-to-users
+20200626094556-auth-id-and-stripe-customer-are-required
+20200626104956-rename-customer-id

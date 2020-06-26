@@ -4,6 +4,9 @@ export const schema = gql`
   type User {
     id: Int!
     email: String!
+    authId: String!
+    customerId: String!
+    customer: Customer
   }
 
   type Query {
@@ -13,7 +16,8 @@ export const schema = gql`
 
   input CreateUserInput {
     email: String!
-    authId: String
+    authId: String!
+    customerId: String
   }
 
   input UpdateUserInput {

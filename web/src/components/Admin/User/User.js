@@ -42,6 +42,14 @@ const User = ({ user }) => {
               <th>email</th>
               <td>{user.email}</td>
             </tr>
+            <tr>
+              <th>auth id</th>
+              <td>{user.authId}</td>
+            </tr>
+            <tr>
+              <th>stripe customer</th>
+              <td>{user.customerId}</td>
+            </tr>
           </tbody>
         </table>
       </div>

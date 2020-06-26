@@ -1,0 +1,17 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "UpdateField",
+      "model": "User",
+      "field": "authId",
+      "arity": "Required"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "User",
+      "field": "stripeCustomer",
+      "arity": "Required"
+    }
+  ]
+}

@@ -1,5 +1,4 @@
 import { Link, routes } from '@redwoodjs/router'
-
 import Users from 'src/components/Admin/Users'
 
 export const QUERY = gql`
@@ -7,6 +6,8 @@ export const QUERY = gql`
     users {
       id
       email
+      authId
+      customerId
     }
   }
 `
