@@ -32,13 +32,13 @@ const AuthNav = ({ isAuthenticated, logOut }) => {
 }
 
 const Header = () => {
-  const { isAuthenticated, logOut } = useAuth()
+  const { isAuthenticated, logOut, loading } = useAuth()
   const { permitted } = usePermission('admin')
 
   return (
     <header className="header">
       <PrimaryNav />
-      {permitted ? <AdminNav /> : null}
+      {!loading && permitted ? <AdminNav /> : null}
       <AuthNav isAuthenticated={isAuthenticated} logOut={logOut} />
     </header>
   )

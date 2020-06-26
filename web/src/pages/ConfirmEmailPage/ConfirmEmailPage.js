@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useAuth } from '@redwoodjs/auth'
 import { useParams, Link, routes } from '@redwoodjs/router'
+
 import { GlobalLayout } from 'src/layouts'
 
 const ConfirmEmailPage = () => {

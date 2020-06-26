@@ -5,11 +5,15 @@ import { useAuth } from '@redwoodjs/auth'
 export const usePermission = (role) => {
   const { pathname } = useLocation()
   const { loading, currentUser } = useAuth()
-  const [permitted, setPermitted] = useState(true)
+  const [permitted, setPermitted] = useState(false)
 
   useEffect(() => {
     // set permitted
-    setPermitted(currentUser.app_metadata.roles.includes(role))
+    setPermitted(
+      currentUser &&
+        currentUser.app_metadata.roles &&
+        currentUser.app_metadata.roles.includes(role)
+    )
   }, [pathname, currentUser, role])
 
   return { loading, permitted }

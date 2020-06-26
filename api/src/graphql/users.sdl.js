@@ -13,6 +13,7 @@ export const schema = gql`
 
   input CreateUserInput {
     email: String!
+    authId: String
   }
 
   input UpdateUserInput {
