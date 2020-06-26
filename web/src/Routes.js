@@ -30,6 +30,26 @@ const Routes = () => {
           name="adminUser"
         />
         <Route path="/admin/users" page={AdminUsersPage} name="adminUsers" />
+        <Route
+          path="/admin/products/new"
+          page={AdminNewProductPage}
+          name="adminNewProduct"
+        />
+        <Route
+          path="/admin/products/{id}/edit"
+          page={AdminEditProductPage}
+          name="adminEditProduct"
+        />
+        <Route
+          path="/admin/product/{id}"
+          page={AdminProductPage}
+          name="adminProduct"
+        />
+        <Route
+          path="/admin/products"
+          page={AdminProductsPage}
+          name="adminProducts"
+        />
       </Private>
       <Route
         path="/confirm-email"
