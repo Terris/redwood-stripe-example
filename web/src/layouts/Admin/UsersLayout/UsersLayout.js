@@ -7,7 +7,7 @@ const UsersLayout = (props) => {
   return (
     <AdminLayout>
       <div className="rw-scaffold">
-        <Flash timeout={1000} />
+        <Flash timeout={3000} />
         <header className="rw-header">
           <h1 className="rw-heading rw-heading-primary">
             <Link to={routes.adminUsers()} className="rw-link">
