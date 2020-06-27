@@ -4,7 +4,6 @@ import {
   FieldError,
   Label,
   TextField,
-  SelectField,
   Submit,
 } from '@redwoodjs/web'
 
@@ -54,26 +53,6 @@ const ProductForm = (props) => {
           validation={{ required: true }}
         />
         <FieldError name="description" className="rw-field-error" />
-
-        <Label
-          name="type"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Name
-        </Label>
-        <SelectField
-          name="type"
-          defaultValue={props.product?.type}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-          disabled={props.action === 'EDIT' ? 'disabled' : ''}
-        >
-          <option value="good">Good</option>
-          <option value="service">Service</option>
-        </SelectField>
-        <FieldError name="type" className="rw-field-error" />
 
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">

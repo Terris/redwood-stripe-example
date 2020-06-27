@@ -7,7 +7,6 @@ export const QUERY = gql`
       id
       name
       description
-      type
     }
   }
 `

@@ -41,7 +41,6 @@ const ProductsList = ({ products }) => {
             <th>id</th>
             <th>name</th>
             <th>description</th>
-            <th>type</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
@@ -51,7 +50,6 @@ const ProductsList = ({ products }) => {
               <td>{truncate(product.id)}</td>
               <td>{truncate(product.name)}</td>
               <td>{truncate(product.description)}</td>
-              <td>{truncate(product.type)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link

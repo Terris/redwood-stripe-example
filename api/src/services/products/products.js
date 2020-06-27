@@ -16,7 +16,7 @@ export const createProduct = async ({ input }) => {
   const product = await stripe.products.create({
     name: input.name,
     description: input.description,
-    type: input.type,
+    type: 'good',
   })
   return product
 }

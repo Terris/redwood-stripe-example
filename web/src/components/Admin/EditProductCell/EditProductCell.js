@@ -8,7 +8,6 @@ export const QUERY = gql`
       id
       name
       description
-      type
     }
   }
 `
@@ -51,7 +50,6 @@ export const Success = ({ product }) => {
           onSave={onSave}
           error={error}
           loading={loading}
-          action="EDIT"
         />
       </div>
     </div>
