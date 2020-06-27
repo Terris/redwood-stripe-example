@@ -46,6 +46,10 @@ const Product = ({ product }) => {
               <th>description</th>
               <td>{product.description}</td>
             </tr>
+            <tr>
+              <th>Unit Amount</th>
+              <td>{product.unitAmount}</td>
+            </tr>
           </tbody>
         </table>
       </div>

@@ -5,6 +5,7 @@ export const schema = gql`
     id: String!
     name: String!
     description: String
+    unitAmount: Int!
   }
 
   type Query {
@@ -15,11 +16,13 @@ export const schema = gql`
   input CreateProductInput {
     name: String!
     description: String
+    unitAmount: Int!
   }
 
   input UpdateProductInput {
     name: String!
     description: String
+    unitAmount: Int
   }
 
   type Mutation {
