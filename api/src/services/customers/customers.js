@@ -8,7 +8,7 @@ export const customers = async () => {
 }
 
 export const customer = async ({ id }) => {
-  // requirePermission('admin')
+  requirePermission('admin')
   const customer = await stripe.customers.retrieve(id)
   return customer
 }

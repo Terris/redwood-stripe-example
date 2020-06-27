@@ -13,6 +13,7 @@ const AdminNav = () => (
   <nav className="nav-admin">
     <Link to={routes.admin()}>Admin</Link>
     <Link to={routes.adminUsers()}>Users</Link>
+    <Link to={routes.adminProducts()}>Products</Link>
   </nav>
 )
 
