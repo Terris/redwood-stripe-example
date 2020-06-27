@@ -3,12 +3,22 @@ import { requirePermission } from 'src/lib/auth'
 
 export const products = async () => {
   const products = await stripe.products.list()
-  return products.data
+  const productsWithPrices = products.data.map((product) => {
+    return {
+      price: product.metadata.price,
+      ...product,
+    }
+  })
+  return productsWithPrices
 }
 
 export const product = async ({ id }) => {
   const product = await stripe.products.retrieve(id)
-  return product
+  const productWithPrice = {
+    price: product.metadata.price,
+    ...product,
+  }
+  return productWithPrice
 }
 
 export const createProduct = async ({ input }) => {
@@ -18,7 +28,16 @@ export const createProduct = async ({ input }) => {
     description: input.description,
     type: 'good',
   })
-  return product
+  const price = await stripe.prices.create({
+    unit_amount: input.price,
+    currency: 'usd',
+    product: product.id,
+  })
+  const productWithPrice = await updateProductPrice({
+    id: product.id,
+    price: price,
+  })
+  return productWithPrice
 }
 
 export const updateProduct = async ({ id, input }) => {
@@ -26,6 +45,24 @@ export const updateProduct = async ({ id, input }) => {
   const product = await stripe.products.update(id, {
     name: input.name,
     description: input.description,
+  })
+  const price = await stripe.prices.update(product.metadata.price, {
+    unit_amount: input.price,
+  })
+  const productWithPrice = await updateProductPrice({
+    id: product.id,
+    price: price.unit_amount,
+  })
+  return productWithPrice
+}
+
+export const updateProductPrice = async ({ id, price }) => {
+  requirePermission('admin')
+  const product = await stripe.products.update(id, {
+    metadata: {
+      price_id: price.id,
+      price: price.unit_amount,
+    },
   })
   return product
 }

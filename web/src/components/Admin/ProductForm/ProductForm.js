@@ -4,12 +4,17 @@ import {
   FieldError,
   Label,
   TextField,
+  NumberField,
   Submit,
 } from '@redwoodjs/web'
 
 const ProductForm = (props) => {
   const onSubmit = (data) => {
-    props.onSave(data, props?.product?.id)
+    const coercedData = {
+      ...data,
+      price: parseInt(data.price),
+    }
+    props.onSave(coercedData, props?.product?.id)
   }
 
   return (
@@ -53,6 +58,23 @@ const ProductForm = (props) => {
           validation={{ required: true }}
         />
         <FieldError name="description" className="rw-field-error" />
+
+        <Label
+          name="price"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Price
+        </Label>
+        <p style={{ padding: 0 }}>in cents (1099 - $10.99)</p>
+        <NumberField
+          name="price"
+          defaultValue={props.product?.price}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+        <FieldError name="price" className="rw-field-error" />
 
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">
