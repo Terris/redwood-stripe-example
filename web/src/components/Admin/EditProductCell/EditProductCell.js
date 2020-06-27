@@ -8,7 +8,7 @@ export const QUERY = gql`
       id
       name
       description
-      price
+      unitAmount
     }
   }
 `

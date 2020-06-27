@@ -3,22 +3,22 @@ import { requirePermission } from 'src/lib/auth'
 
 export const products = async () => {
   const products = await stripe.products.list()
-  const productsWithPrices = products.data.map((product) => {
+  const productsWithUnitAmount = products.data.map((product) => {
     return {
-      price: product.metadata.price,
+      unitAmount: product.metadata.unit_amount,
       ...product,
     }
   })
-  return productsWithPrices
+  return productsWithUnitAmount
 }
 
 export const product = async ({ id }) => {
   const product = await stripe.products.retrieve(id)
-  const productWithPrice = {
-    price: product.metadata.price,
+  const productWithUnitAmount = {
+    unitAmount: product.metadata.unit_amount,
     ...product,
   }
-  return productWithPrice
+  return productWithUnitAmount
 }
 
 export const createProduct = async ({ input }) => {
@@ -27,17 +27,19 @@ export const createProduct = async ({ input }) => {
     name: input.name,
     description: input.description,
     type: 'good',
+    metadata: {
+      unit_amount: input.unitAmount,
+    },
   })
-  const price = await stripe.prices.create({
-    unit_amount: input.price,
-    currency: 'usd',
-    product: product.id,
+  const price = await createPrice({
+    productId: product.id,
+    unitAmount: input.unitAmount,
   })
-  const productWithPrice = await updateProductPrice({
-    id: product.id,
-    price: price,
-  })
-  return productWithPrice
+  const productWithUnitAmount = {
+    unitAmount: price.unit_amount,
+    ...product,
+  }
+  return productWithUnitAmount
 }
 
 export const updateProduct = async ({ id, input }) => {
@@ -46,29 +48,60 @@ export const updateProduct = async ({ id, input }) => {
     name: input.name,
     description: input.description,
   })
-  const price = await stripe.prices.update(product.metadata.price, {
-    unit_amount: input.price,
-  })
-  const productWithPrice = await updateProductPrice({
-    id: product.id,
-    price: price.unit_amount,
-  })
-  return productWithPrice
+  if (shouldUpdatePrice({ productId: id, unitAmount: input.unitAmount })) {
+    return updateProductPrice({ productId: id, unitAmount: input.unitAmount })
+  }
+  const productWithUnitAmount = {
+    unitAmount: product.metadata.unit_amount,
+    ...product,
+  }
+  return productWithUnitAmount
 }
 
-export const updateProductPrice = async ({ id, price }) => {
-  requirePermission('admin')
-  const product = await stripe.products.update(id, {
-    metadata: {
-      price_id: price.id,
-      price: price.unit_amount,
-    },
-  })
-  return product
-}
-
+// TODO
+// products can't be deleted
+// they must be archived
 export const deleteProduct = async ({ id }) => {
   requirePermission('admin')
   const product = await stripe.products.del(id)
   return product
+}
+
+// PRIVATE
+
+const createPrice = async ({ productId, unitAmount }) => {
+  const price = await stripe.prices.create({
+    unit_amount: unitAmount,
+    currency: 'usd',
+    product: productId,
+    lookup_key: productId,
+    transfer_lookup_key: true,
+  })
+  return price
+}
+
+const shouldUpdatePrice = async ({ productId, unitAmount }) => {
+  const product = await product({ productId })
+  return product.metadata.unit_amount !== unitAmount
+}
+
+const updateProductPrice = async ({ productId, unitAmount }) => {
+  requirePermission('admin')
+  // update the product meta data
+  // where we "cache" unitAmount
+  const product = await stripe.products.update(productId, {
+    metadata: {
+      unit_amount: unitAmount,
+    },
+  })
+  // Stripe Price unit_amount can't be updated
+  // so we create a new Price
+  // and transfer the lookup_key (productId)
+  const price = await createPrice({ productId, unitAmount })
+
+  const productWithUnitAmount = {
+    unitAmount: price.unit_amount,
+    ...product,
+  }
+  return productWithUnitAmount
 }

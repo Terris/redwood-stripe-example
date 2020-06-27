@@ -12,7 +12,7 @@ const ProductForm = (props) => {
   const onSubmit = (data) => {
     const coercedData = {
       ...data,
-      price: parseInt(data.price),
+      unitAmount: parseInt(data.unitAmount),
     }
     props.onSave(coercedData, props?.product?.id)
   }
@@ -60,21 +60,21 @@ const ProductForm = (props) => {
         <FieldError name="description" className="rw-field-error" />
 
         <Label
-          name="price"
+          name="unitAmount"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Price
+          Unit Amount
         </Label>
-        <p style={{ padding: 0 }}>in cents (1099 - $10.99)</p>
+        <p style={{ padding: 0 }}>Enter in cents, e.g. 1099 = 10.99</p>
         <NumberField
-          name="price"
-          defaultValue={props.product?.price}
+          name="unitAmount"
+          defaultValue={props.product?.unitAmount}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
         />
-        <FieldError name="price" className="rw-field-error" />
+        <FieldError name="unitAmount" className="rw-field-error" />
 
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">
