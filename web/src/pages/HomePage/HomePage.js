@@ -3,7 +3,6 @@ import { useHashRedirects } from 'src/hooks'
 
 const HomePage = () => {
   useHashRedirects()
-
   return (
     <GlobalLayout>
       <h1>HomePage</h1>

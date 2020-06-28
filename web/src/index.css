@@ -30,3 +30,7 @@ button:focus { outline:none }
 .header nav { display:flex }
 .header nav a,
 .header nav button { padding: 1rem }
+
+.cart-item { display: flex; margin: 2px 1rem; padding: 1rem; justify-content: space-between; background: #f0f7f6; }
+.cart-item-product { display: flex; }
+.cart-item-product div { padding-right: 1rem; }

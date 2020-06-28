@@ -8,13 +8,27 @@ import {
   Submit,
 } from '@redwoodjs/web'
 
+import ProductImageField from './ProductImageField'
+
+const MAX_PRODUCT_IMAGES = 8
+
 const ProductForm = (props) => {
+  const [productImages, setProductImages] = React.useState(
+    props.product?.images || []
+  )
   const onSubmit = (data) => {
     const coercedData = {
       ...data,
-      unitAmount: parseInt(data.unitAmount),
+      unitAmount: parseInt(data.unitAmount), // convert string to integer
+      images: data.images?.filter(Boolean), // remove falsy values
     }
     props.onSave(coercedData, props?.product?.id)
+  }
+
+  const addBlankImage = () => {
+    setProductImages((imgs) => {
+      return [...imgs, '']
+    })
   }
 
   return (
@@ -75,6 +89,21 @@ const ProductForm = (props) => {
           validation={{ required: true }}
         />
         <FieldError name="unitAmount" className="rw-field-error" />
+
+        {productImages.map((img, index) => (
+          <ProductImageField key={`img_${index}`} image={img} imageId={index} />
+        ))}
+
+        <p style={{ paddingLeft: 0, paddingRight: 0 }}>
+          <button
+            className="rw-button"
+            disabled={productImages.length === MAX_PRODUCT_IMAGES}
+            onClick={() => addBlankImage()}
+            type="button"
+          >
+            <div className="rw-button-icon">+</div> product image
+          </button>
+        </p>
 
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">

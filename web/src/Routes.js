@@ -68,8 +68,8 @@ const Routes = () => {
       />
       <Route path="/signup" page={SignUpPage} name="signUp" />
       <Route path="/signin" page={SignInPage} name="signIn" />
-
       <Route path="/" page={HomePage} name="home" />
+      <Route path="/cart" page={CartPage} name="cart" />
       <Route notfound page={NotFoundPage} />
     </Router>
   )
