@@ -7,6 +7,7 @@ export const QUERY = gql`
       name
       description
       unitAmount
+      images
     }
   }
 `

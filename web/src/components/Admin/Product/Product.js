@@ -47,8 +47,22 @@ const Product = ({ product }) => {
               <td>{product.description}</td>
             </tr>
             <tr>
-              <th>Unit Amount</th>
+              <th>unit amount</th>
               <td>{product.unitAmount}</td>
+            </tr>
+            <tr>
+              <th>images</th>
+              <td>
+                {product.images &&
+                  product.images.map((img, index) => (
+                    <img
+                      key={`img_${index}`}
+                      src={img}
+                      alt={product.name}
+                      style={{ width: '100px', marginRight: '10px' }}
+                    />
+                  ))}
+              </td>
             </tr>
           </tbody>
         </table>

@@ -27,6 +27,7 @@ export const createProduct = async ({ input }) => {
     name: input.name,
     description: input.description,
     type: 'good',
+    images: input.images,
     metadata: {
       unit_amount: input.unitAmount,
     },
@@ -47,8 +48,10 @@ export const updateProduct = async ({ id, input }) => {
   const product = await stripe.products.update(id, {
     name: input.name,
     description: input.description,
+    images: input.images && input.images[0] ? input.images : null,
   })
-  if (shouldUpdatePrice({ productId: id, unitAmount: input.unitAmount })) {
+  // if unitAmount has changed update Price
+  if (parseInt(product.metadata.unit_amount) !== input.unitAmount) {
     return updateProductPrice({ productId: id, unitAmount: input.unitAmount })
   }
   const productWithUnitAmount = {
@@ -78,11 +81,6 @@ const createPrice = async ({ productId, unitAmount }) => {
     transfer_lookup_key: true,
   })
   return price
-}
-
-const shouldUpdatePrice = async ({ productId, unitAmount }) => {
-  const product = await product({ productId })
-  return product.metadata.unit_amount !== unitAmount
 }
 
 const updateProductPrice = async ({ productId, unitAmount }) => {

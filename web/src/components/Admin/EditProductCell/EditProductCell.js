@@ -9,9 +9,11 @@ export const QUERY = gql`
       name
       description
       unitAmount
+      images
     }
   }
 `
+
 const UPDATE_PRODUCT_MUTATION = gql`
   mutation UpdateProductMutation($id: String!, $input: UpdateProductInput!) {
     updateProduct(id: $id, input: $input) {
@@ -19,6 +21,10 @@ const UPDATE_PRODUCT_MUTATION = gql`
     }
   }
 `
+
+export const beforeQuery = (props) => {
+  return { variables: props, fetchPolicy: 'network-only' }
+}
 
 export const Loading = () => <div>Loading...</div>
 
