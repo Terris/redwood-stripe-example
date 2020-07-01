@@ -6,12 +6,12 @@ import { usePermission } from 'src/hooks'
 const PrimaryNav = () => (
   <nav>
     <Link to={routes.home()}>Home</Link>
+    <Link to={routes.cart()}>Cart</Link>
   </nav>
 )
 
 const AdminNav = () => (
   <nav className="nav-admin">
-    <Link to={routes.admin()}>Admin</Link>
     <Link to={routes.adminUsers()}>Users</Link>
     <Link to={routes.adminProducts()}>Products</Link>
   </nav>

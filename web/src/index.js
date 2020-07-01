@@ -4,6 +4,7 @@ import { RedwoodProvider, FatalErrorBoundary } from '@redwoodjs/web'
 import FatalErrorPage from 'src/pages/FatalErrorPage'
 
 import { goTrue } from 'src/lib'
+import { CartProvider } from 'src/components/Cart'
 import Routes from 'src/Routes'
 
 import './scaffold.css'
@@ -13,7 +14,9 @@ ReactDOM.render(
   <FatalErrorBoundary page={FatalErrorPage}>
     <AuthProvider client={goTrue} type="goTrue">
       <RedwoodProvider>
-        <Routes />
+        <CartProvider>
+          <Routes />
+        </CartProvider>
       </RedwoodProvider>
     </AuthProvider>
   </FatalErrorBoundary>,
