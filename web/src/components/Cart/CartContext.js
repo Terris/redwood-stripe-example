@@ -23,31 +23,31 @@ export const CartProvider = ({ children }) => {
     dispatch({
       type: 'ADD_ITEM',
       payload: { item },
+      storage: setStorage,
     })
-    setStorage(state)
   }
   // update item quantity
-  const updateItemQty = ({ item, qty }) => {
+  const updateItemQty = ({ id, qty }) => {
     dispatch({
       type: 'UPDATE_ITEM_QTY',
-      payload: { item, qty },
+      payload: { id, qty },
+      storage: setStorage,
     })
-    setStorage(state)
   }
   // delete item
   const deleteItem = ({ id }) => {
     dispatch({
       type: 'DELETE_ITEM',
-      payload: id,
+      payload: { id },
+      storage: setStorage,
     })
-    setStorage(state)
   }
   // clear cart
   const clearCart = () => {
     dispatch({
       type: 'CLEAR_CART',
+      storage: setStorage,
     })
-    clearStorage()
   }
 
   // Provider Component

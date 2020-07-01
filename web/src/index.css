@@ -15,13 +15,16 @@ table { border-spacing: 0;}
 a,
 nav button { text-decoration: none; color: #5cb9b1; border: none; background: transparent; }
 a:hover,
-nav button:hover { text-decoration: underline }
-input { display: block; width: 100%; padding: 0.5rem; border: 1px solid #000; }
-button { padding: 0.5rem; cursor:pointer; border: none; }
+nav button:hover { text-decoration: underline; background: transparent }
+input { display: block; width: 100%; padding: 0.5rem; border: 1px solid #c3c3c3; border-radius: 3px; }
+button { padding: 0.5rem 1rem; cursor:pointer; border: none; background: #5ba59e; color: #fff; border-radius: 3px; }
+button:hover { background: #71d0c7; }
 button:focus { outline:none }
 
 .input-error { border-color: red; }
+.field-error { font-size: 0.8rem; }
 .form-error,.label-error,.field-error { color: red; }
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -31,6 +34,10 @@ button:focus { outline:none }
 .header nav a,
 .header nav button { padding: 1rem }
 
-.cart-item { display: flex; margin: 2px 1rem; padding: 1rem; justify-content: space-between; background: #f0f7f6; }
+.cart-item { display: flex; margin: 0 1rem; padding: 1rem 0; justify-content: space-between; align-items: center; border-bottom: 1px solid #e5f3f2; }
+.cart-item button { font-size: 0.8rem; }
+.cart-item-tools,
+.cart-item-qty { display: flex; align-items: center; }
+.cart-item-qty-field { width: 60px; margin: 0 1rem; }
 .cart-item-product { display: flex; }
 .cart-item-product div { padding-right: 1rem; }
