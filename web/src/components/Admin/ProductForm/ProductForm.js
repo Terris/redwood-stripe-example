@@ -96,7 +96,7 @@ const ProductForm = (props) => {
 
         <p style={{ paddingLeft: 0, paddingRight: 0 }}>
           <button
-            className="rw-button"
+            className="rw-button rw-button-green"
             disabled={productImages.length === MAX_PRODUCT_IMAGES}
             onClick={() => addBlankImage()}
             type="button"

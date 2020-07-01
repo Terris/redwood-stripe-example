@@ -1,12 +1,12 @@
 import { GlobalLayout } from 'src/layouts'
 import { useHashRedirects } from 'src/hooks'
+import ProductListCell from 'src/components/ProductList/ProductListCell'
 
 const HomePage = () => {
   useHashRedirects()
   return (
     <GlobalLayout>
-      <h1>HomePage</h1>
-      <p>Find me in ./web/src/pages/HomePage/HomePage.js</p>
+      <ProductListCell />
     </GlobalLayout>
   )
 }

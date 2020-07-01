@@ -1,25 +1,32 @@
 import { useAuth } from '@redwoodjs/auth'
 import { Link, routes } from '@redwoodjs/router'
 
+import { useCart } from 'src/components/Cart'
 import { usePermission } from 'src/hooks'
 
 const PrimaryNav = () => (
   <nav>
-    <Link to={routes.home()}>Home</Link>
-    <Link to={routes.cart()}>Cart</Link>
+    <Link to={routes.home()} className="logo">
+      BodaciousBots
+    </Link>
   </nav>
 )
 
 const AdminNav = () => (
   <nav className="nav-admin">
-    <Link to={routes.adminUsers()}>Users</Link>
-    <Link to={routes.adminProducts()}>Products</Link>
+    <Link to={routes.adminUsers()}>Admin Users</Link>
+    <Link to={routes.adminProducts()}>Admin Products</Link>
   </nav>
 )
 
-const AuthNav = ({ isAuthenticated, logOut }) => {
+const SecondaryNav = ({ isAuthenticated, logOut }) => {
+  const { cart } = useCart()
   return (
     <nav>
+      <Link to={routes.cart()}>
+        Cart
+        {cart.length > 0 ? ` (${cart.length})` : null}
+      </Link>
       {isAuthenticated ? (
         <button onClick={() => logOut()}>Sign Out</button>
       ) : (
@@ -40,7 +47,7 @@ const Header = () => {
     <header className="header">
       <PrimaryNav />
       {!loading && permitted ? <AdminNav /> : null}
-      <AuthNav isAuthenticated={isAuthenticated} logOut={logOut} />
+      <SecondaryNav isAuthenticated={isAuthenticated} logOut={logOut} />
     </header>
   )
 }
