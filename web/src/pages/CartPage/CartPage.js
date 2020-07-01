@@ -1,7 +1,6 @@
 import { GlobalLayout } from 'src/layouts'
 import { Cart } from 'src/components/Cart'
 import { useCart } from 'src/components/Cart'
-import { currency, total } from 'src/utils'
 const CartPage = () => {
   const { cart, clearCart } = useCart()
   return (
