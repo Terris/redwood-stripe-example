@@ -4,7 +4,7 @@ import { currency } from 'src/utils'
 
 import { useCart } from './CartContext'
 
-export const CartItemProduct = ({ product }) => {
+export const CartProduct = ({ product }) => {
   const { logItemUnitAmount } = useCart()
 
   useEffect(() => {
@@ -13,12 +13,10 @@ export const CartItemProduct = ({ product }) => {
   }, [product])
 
   return (
-    <div className="cart-item-product">
-      <div className="cart-item-product-name">{product.name}</div>
-      <div className="cart-item-product-description">{product.description}</div>
-      <div className="cart-item-product-price">
-        {currency(product.unitAmount)}
-      </div>
+    <div className="cart-product">
+      <div className="cart-product-name">{product.name}</div>
+      <div className="cart-product-description">{product.description}</div>
+      <div className="cart-product-price">{currency(product.unitAmount)}</div>
     </div>
   )
 }

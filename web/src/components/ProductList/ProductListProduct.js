@@ -1,9 +1,17 @@
+import { useState } from 'react'
+
 import { useCart } from 'src/components/Cart'
 import { currency } from 'src/utils'
 
 export const ProductListProduct = ({ product }) => {
   const { addItem } = useCart()
+  const [carting, setCarting] = useState(false)
 
+  const onClick = () => {
+    setCarting(true)
+    setTimeout(() => setCarting(false), 1000)
+    addItem({ item: { id: product.id } })
+  }
   return (
     <div className="product-list-product">
       <h2>{product.name}</h2>
@@ -18,7 +26,11 @@ export const ProductListProduct = ({ product }) => {
       </div>
       <hr />
       <p style={{ textAlign: 'right' }}>
-        <button onClick={() => addItem({ item: { id: product.id } })}>
+        <button
+          onClick={() => onClick()}
+          className={`${carting ? 'btn-feedback' : ''}`}
+          disabled={carting}
+        >
           Add to cart
         </button>
       </p>

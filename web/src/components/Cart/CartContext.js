@@ -57,6 +57,15 @@ export const CartProvider = ({ children }) => {
     })
   }
 
+  // set payment intent id
+  const setPaymentIntent = ({ id }) => {
+    dispatch({
+      type: 'SET_PAYMENT_INTENT',
+      payload: { id },
+      storage: setStorage,
+    })
+  }
+
   // Provider Component
   return (
     <CartContext.Provider
@@ -68,6 +77,7 @@ export const CartProvider = ({ children }) => {
         deleteItem,
         clearCart,
         logItemUnitAmount,
+        setPaymentIntent,
       }}
     >
       {children}

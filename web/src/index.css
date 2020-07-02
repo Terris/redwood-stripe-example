@@ -22,6 +22,7 @@ button { padding: 0.5rem 1rem; cursor:pointer; border: none; background: #5ba59e
 button:hover { background: #71d0c7; }
 button:focus { outline:none }
 .btn-red { background: #ff6c6c; }
+.btn-feedback { animation: pulse 1s 1; cursor: wait; }
 .input-error { border-color: red; }
 .field-error { font-size: 0.8rem; }
 .form-error,.label-error,.field-error { color: red; }
@@ -34,19 +35,23 @@ button:focus { outline:none }
 .header nav a,
 .header nav button { padding: 1rem }
 .header .logo { font-weight: 700; }
-
 .cart-item { display: flex; padding: 1rem; justify-content: space-between; align-items: center; border-bottom: 1px solid #e5f3f2; }
 .cart-item-tools,
 .cart-item-qty { display: flex; align-items: center; }
 .cart-item-qty-field { width: 60px; margin: 0 1rem; }
-.cart-item-product { display: flex; justify-content: space-between; width: 75%; }
-.cart-item-product div { padding-right: 1rem; }
-.cart-item-product-name { width: 12.5%; font-weight: 700; }
-.cart-item-product-description { width: 50%;}
-.cart-item-product-price { text-align: right; }
+.cart-product { display: flex; justify-content: space-between; }
+.cart-product div { padding-right: 1rem; }
+.cart-product-name { width: 12.5%; font-weight: 700; }
+.cart-product-description { width: 50%;}
+.cart-product-price { text-align: right; }
+.cart-total-label { padding-right: 1rem; }
+.cart-total-total {font-weight: 700; }
 .cart-footer {display: flex; justify-content: space-between; align-items: center; padding: 1rem;}
-.cart-footer-total { text-align: right; font-size: 1.25rem; width: 75%; }
-
+.cart-footer .cart-total { padding: 0 1rem; text-align: right; font-size: 1.25rem; width: 75%; }
+.cart-item .cart-product { width: 75%; }
+.cart-summary { margin: 1rem; background: #f9f9f9; }
+.cart-summary .cart-product { padding: 1rem; border-bottom: 1px solid #e5f3f2; }
+.cart-summary .cart-total { padding: 1rem 2rem; text-align: right; }
 .product-list { display: flex; flex-direction: column;  }
 .product-list-product { max-width: 800px; }
 .product-list-product hr { margin: 0.5rem 1rem; }
@@ -54,4 +59,19 @@ button:focus { outline:none }
 .product-list-product-footer { display: flex; justify-content: space-between;}
 @media screen and (min-width: 800px) {
 	.product-list { flex-direction: row; justify-content: space-between;}
+}
+
+.checkout-page { display: flex; justify-content: space-between;}
+.checkout-page .cart-summary { width: 33.333333%; font-size: 0.9rem; }
+
+@keyframes pulse {
+  0% {
+    background: #71d0c7;
+  }
+  50% {
+    background: #62d671;
+  }
+  100% {
+    background: #5ba59e;
+  }
 }

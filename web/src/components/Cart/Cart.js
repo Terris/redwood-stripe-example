@@ -1,21 +1,9 @@
-import { useEffect, useState } from 'react'
+import { navigate, routes } from '@redwoodjs/router'
 
-import { currency } from 'src/utils'
-
-import { useCart } from './CartContext'
-import { CartItem } from './CartItem'
+import { useCart, CartItem, CartTotal } from 'src/components/Cart'
 
 export const Cart = () => {
-  const { cart, depPoll } = useCart()
-  const [total, setTotal] = useState(0)
-
-  useEffect(() => {
-    const cartReducer = cart.reduce(
-      (acc, item) => acc + item.qty * item.unitAmount,
-      0
-    )
-    setTotal(cartReducer)
-  }, [cart, depPoll])
+  const { cart, clearCart } = useCart()
 
   if (!cart.length) {
     return <p>Your cart is empty.</p>
@@ -25,11 +13,9 @@ export const Cart = () => {
     <>
       {cart && cart.map((item) => <CartItem key={item.id} item={item} />)}
       <div className="cart-footer">
-        <div className="cart-footer-total">
-          <p>Subtotal: {currency(total)}</p>
-        </div>
+        <CartTotal label="Subtotal:" />
         <div className="cart-footer-actions">
-          <button>Checkout</button>{' '}
+          <button onClick={() => navigate(routes.checkout())}>Checkout</button>{' '}
           <button onClick={() => clearCart()} className="btn-red">
             Clear Cart
           </button>
