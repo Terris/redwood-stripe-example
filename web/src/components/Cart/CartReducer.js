@@ -11,10 +11,10 @@ export const CartReducer = (state, action) => {
       return { ...state }
     }
     case 'UPDATE_ITEM_QTY': {
-      const { id, qty } = action.payload
-      const cartItem = state.cart.find((i) => i.id === id)
-      cartItem.qty = qty
+      const cartItem = state.cart.find((item) => item.id === action.payload.id)
+      cartItem.qty = action.payload.qty
       action.storage({ ...state })
+      state.depPoll = state.depPoll + 1
       return { ...state }
     }
     case 'DELETE_ITEM': {
@@ -26,6 +26,13 @@ export const CartReducer = (state, action) => {
       const cart = []
       action.storage({ ...state, cart })
       return { ...state, cart }
+    }
+    case 'LOG_ITEM_UNIT_AMOUNT': {
+      const cartItem = state.cart.find((item) => item.id === action.payload.id)
+      cartItem.unitAmount = action.payload.unitAmount
+      action.storage({ ...state })
+      state.depPoll = state.depPoll + 1
+      return { ...state }
     }
     default:
       return state

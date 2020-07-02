@@ -6,9 +6,8 @@ import { CartReducer } from './CartReducer'
 const setStorage = (state) =>
   localStorage.setItem('cart', JSON.stringify(state))
 const getStorage = () => JSON.parse(localStorage.getItem('cart'))
-const clearStorage = () => localStorage.removeItem('cart')
 
-const initialState = getStorage() || { cart: [] }
+const initialState = getStorage() || { cart: [], depPoll: 0 }
 
 export const CartContext = createContext(initialState)
 
@@ -49,16 +48,26 @@ export const CartProvider = ({ children }) => {
       storage: setStorage,
     })
   }
+  // log unit amount
+  const logItemUnitAmount = ({ id, unitAmount }) => {
+    dispatch({
+      type: 'LOG_ITEM_UNIT_AMOUNT',
+      payload: { id, unitAmount },
+      storage: setStorage,
+    })
+  }
 
   // Provider Component
   return (
     <CartContext.Provider
       value={{
         cart: state.cart,
+        depPoll: state.depPoll,
         addItem,
         updateItemQty,
         deleteItem,
         clearCart,
+        logItemUnitAmount,
       }}
     >
       {children}
