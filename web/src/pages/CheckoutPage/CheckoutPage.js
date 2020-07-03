@@ -10,18 +10,6 @@ const CheckoutPage = () => {
         <Checkout />
         <CartSummary />
       </div>
-      <ul>
-        <li>Check for payment intent</li>
-        <li>If no, create payment intent</li>
-        <li>If yes, check step</li>
-        <li>Sign in or out</li>
-        <li>Card Details</li>
-        <li>
-          States: requires_payment_method, requires_confirmation,
-          requires_action, processing, [succeeded, requires_payment_method],
-          canceled
-        </li>
-      </ul>
     </GlobalLayout>
   )
 }

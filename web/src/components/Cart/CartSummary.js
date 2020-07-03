@@ -7,7 +7,12 @@ export const CartSummary = () => {
     <div className="cart-summary">
       <h3>Cart Summary</h3>
       {cart &&
-        cart.map((item) => <CartProductCell key={item.id} id={item.id} />)}
+        cart.map((item) => (
+          <div key={item.id} className="cart-summary-item">
+            <div className="cart-summary-item-qty">{item.qty} x</div>
+            <CartProductCell id={item.id} item={item} />
+          </div>
+        ))}
       <CartTotal label="Total:" />
     </div>
   )

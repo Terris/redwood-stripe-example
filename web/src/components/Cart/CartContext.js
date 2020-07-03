@@ -7,7 +7,7 @@ const setStorage = (state) =>
   localStorage.setItem('cart', JSON.stringify(state))
 const getStorage = () => JSON.parse(localStorage.getItem('cart'))
 
-const initialState = getStorage() || { cart: [], depPoll: 0 }
+const initialState = getStorage() || { cart: [], depPoll: 0, invoiceId: null }
 
 export const CartContext = createContext(initialState)
 
