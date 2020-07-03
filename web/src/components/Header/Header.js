@@ -25,7 +25,7 @@ const SecondaryNav = ({ isAuthenticated, logOut }) => {
     <nav>
       <Link to={routes.cart()}>
         Cart
-        {cart.length > 0 ? ` (${cart.length})` : null}
+        {cart.cartItems.length > 0 ? ` (${cart.cartItems.length})` : null}
       </Link>
       {isAuthenticated ? (
         <button onClick={() => logOut()}>Sign Out</button>

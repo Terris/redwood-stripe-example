@@ -3,19 +3,21 @@ import gql from 'graphql-tag'
 export const schema = gql`
   type Invoice {
     id: String!
+    customer: String!
+    description: String
   }
 
   type Query {
-    invoice: [Invoice!]!
+    invoices: [Invoice!]!
     invoice(id: String!): Invoice!
   }
 
   input CreateInvoiceInput {
-    email: String!
+    customer: String!
   }
 
   input UpdateInvoiceInput {
-    email: String
+    description: String
   }
 
   type Mutation {

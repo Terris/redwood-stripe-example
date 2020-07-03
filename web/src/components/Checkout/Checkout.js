@@ -1,24 +1,15 @@
-import { useAuth } from '@redwoodjs/auth'
-
-import { useCart } from 'src/components/Cart'
+import { useCheckout } from './hooks'
 
 export const Checkout = () => {
-  const { invoiceId } = useCart()
+  const { checkout } = useCheckout()
 
-  const doCheckout = async () => {
-    if (invoiceId) {
-      // check cart sync
-    } else {
-      // create cart
-    }
+  if (!checkout) {
+    return <p>Loading...</p>
   }
 
   return (
     <div className="checkout">
       <h2>Checkout stuff</h2>
-      <p>
-        <button onClick={() => doCheckout()}>DO CHECKOUT</button>
-      </p>
     </div>
   )
 }

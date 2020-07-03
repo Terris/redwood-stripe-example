@@ -3,26 +3,26 @@ import { createContext, useReducer, useContext } from 'react'
 import { CartReducer } from './CartReducer'
 
 // localStorage functions
-const setStorage = (state) =>
-  localStorage.setItem('cart', JSON.stringify(state))
 const getStorage = () => JSON.parse(localStorage.getItem('cart'))
 
-const initialState = getStorage() || { cart: [], depPoll: 0, invoiceId: null }
+// Context Config
+export const initialStateStructure = { cartItems: [] }
+const initialState = getStorage() || initialStateStructure
+const CartContext = createContext(initialState)
 
-export const CartContext = createContext(initialState)
-
+// useCart Hook
 export const useCart = () => useContext(CartContext)
 
+// Provider Component
 export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(CartReducer, initialState)
 
-  // CART ACTIONS
+  // ACTIONS
   // add item
   const addItem = ({ item }) => {
     dispatch({
       type: 'ADD_ITEM',
       payload: { item },
-      storage: setStorage,
     })
   }
   // update item quantity
@@ -30,7 +30,6 @@ export const CartProvider = ({ children }) => {
     dispatch({
       type: 'UPDATE_ITEM_QTY',
       payload: { id, qty },
-      storage: setStorage,
     })
   }
   // delete item
@@ -38,14 +37,18 @@ export const CartProvider = ({ children }) => {
     dispatch({
       type: 'DELETE_ITEM',
       payload: { id },
-      storage: setStorage,
+    })
+  }
+  // clear cart items
+  const clearCartItems = () => {
+    dispatch({
+      type: 'CLEAR_CART_ITEMS',
     })
   }
   // clear cart
   const clearCart = () => {
     dispatch({
       type: 'CLEAR_CART',
-      storage: setStorage,
     })
   }
   // log unit amount
@@ -53,16 +56,14 @@ export const CartProvider = ({ children }) => {
     dispatch({
       type: 'LOG_ITEM_UNIT_AMOUNT',
       payload: { id, unitAmount },
-      storage: setStorage,
     })
   }
 
-  // set payment intent id
-  const setPaymentIntent = ({ id }) => {
+  // set invoiceId
+  const setInvoiceId = ({ id }) => {
     dispatch({
-      type: 'SET_PAYMENT_INTENT',
+      type: 'SET_INVOICE_ID',
       payload: { id },
-      storage: setStorage,
     })
   }
 
@@ -70,14 +71,14 @@ export const CartProvider = ({ children }) => {
   return (
     <CartContext.Provider
       value={{
-        cart: state.cart,
-        depPoll: state.depPoll,
+        cart: state,
         addItem,
         updateItemQty,
         deleteItem,
+        clearCartItems,
         clearCart,
         logItemUnitAmount,
-        setPaymentIntent,
+        setInvoiceId,
       }}
     >
       {children}

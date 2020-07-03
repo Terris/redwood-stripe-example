@@ -6,26 +6,25 @@
 //   }
 
 import { AuthenticationError } from '@redwoodjs/api'
+import { context } from '@redwoodjs/api/dist/globalContext'
 
 export const getCurrentUser = async (jwt) => {
   return jwt
 }
 
-// Use this function in your services to check that a user is logged in, and
-// optionally raise an error if they're not.
+export const currentUser = () => context.currentUser
 
 export const requireAuth = () => {
-  const user = context.currentUser
-  console.log(user)
-  if (!user) {
+  if (!currentUser) {
     throw new AuthenticationError("You don't have permission to do that.")
   }
 }
 
 export const requirePermission = (role) => {
-  const user = context.currentUser
   const permitted =
-    user && user.app_metadata.roles && user.app_metadata.roles.includes(role)
+    currentUser &&
+    currentUser.app_metadata.roles &&
+    currentUser.app_metadata.roles.includes(role)
   if (!permitted) {
     throw new AuthenticationError("You don't have permission to do that.")
   }

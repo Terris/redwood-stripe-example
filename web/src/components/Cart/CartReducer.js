@@ -1,39 +1,77 @@
+import { initialStateStructure } from 'src/components/Cart/CartContext'
+// localStorage functions
+const setStorage = (state) =>
+  localStorage.setItem('cart', JSON.stringify(state))
+const clearStorage = () => localStorage.removeItem('cart')
+
 export const CartReducer = (state, action) => {
   switch (action.type) {
     case 'ADD_ITEM': {
-      const item = action.payload.item
-      const cartItem = state.cart.find((i) => i.id === item.id)
-      // if item already in cart, qty++, else, add item
-      cartItem
-        ? cartItem.qty++
-        : (state.cart = [{ id: item.id, qty: 1 }, ...state.cart])
-      action.storage({ ...state })
-      return { ...state }
+      let cartItems
+      // if payload.item exists, update quantity
+      // else, add payload.item
+      if (state.cartItems.find((i) => i.id === action.payload.item.id)) {
+        cartItems = state.cartItems.map((i) => {
+          // return item or update qty
+          return i.id !== action.payload.item.id ? i : { ...i, qty: i.qty + 1 }
+        })
+      } else {
+        // add item
+        cartItems = [{ id: action.payload.item.id, qty: 1 }, ...state.cartItems]
+      }
+      const newState = { ...state, cartItems }
+      setStorage(newState)
+      return newState
     }
+
     case 'UPDATE_ITEM_QTY': {
-      const cartItem = state.cart.find((item) => item.id === action.payload.id)
-      cartItem.qty = action.payload.qty
-      action.storage({ ...state })
-      state.depPoll = state.depPoll + 1
-      return { ...state }
+      const cartItems = state.cartItems.map((i) => {
+        return i.id !== action.payload.id
+          ? i
+          : { ...i, qty: action.payload.qty }
+      })
+      const newState = { ...state, cartItems }
+      setStorage(newState)
+      return newState
     }
+
     case 'DELETE_ITEM': {
-      const cart = state.cart.filter((item) => item.id !== action.payload.id)
-      action.storage({ ...state, cart })
-      return { ...state, cart }
+      const cartItems = state.cartItems.filter(
+        (item) => item.id !== action.payload.id
+      )
+      const newState = { ...state, cartItems }
+      setStorage(newState)
+      return newState
     }
+
+    case 'CLEAR_CART_ITEMS': {
+      const newState = { ...state, cartItems: [] }
+      setStorage(newState)
+      return newState
+    }
+
     case 'CLEAR_CART': {
-      const cart = []
-      action.storage({ ...state, cart })
-      return { ...state, cart }
+      clearStorage()
+      return initialStateStructure
     }
+
     case 'LOG_ITEM_UNIT_AMOUNT': {
-      const cartItem = state.cart.find((item) => item.id === action.payload.id)
-      cartItem.unitAmount = action.payload.unitAmount
-      action.storage({ ...state })
-      state.depPoll = state.depPoll + 1
-      return { ...state }
+      const cartItems = state.cartItems.map((i) => {
+        return i.id !== action.payload.id
+          ? i
+          : { ...i, unitAmount: action.payload.unitAmount }
+      })
+      const newState = { ...state, cartItems }
+      setStorage(newState)
+      return newState
     }
+
+    case 'SET_INVOICE_ID': {
+      const newState = { ...state, invoiceId: action.payload.id }
+      setStorage(newState)
+      return newState
+    }
+
     default:
       return state
   }
