@@ -17,7 +17,7 @@ export const CartReducer = (state, action) => {
         })
       } else {
         // add item
-        cartItems = [{ id: action.payload.item.id, qty: 1 }, ...state.cartItems]
+        cartItems = [{ ...action.payload.item, qty: 1 }, ...state.cartItems]
       }
       const newState = { ...state, cartItems }
       setStorage(newState)

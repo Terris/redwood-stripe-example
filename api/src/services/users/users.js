@@ -21,15 +21,21 @@ export const users = async () => {
 }
 
 export const user = async ({ id }) => {
-  // requirePermission('admin')
   const user = await db.user.findOne({
     where: { id },
   })
   const userWithCustomer = {
-    customer: customer({ id: user.customerId }),
+    customer: await customer({ id: user.customerId }),
     ...user,
   }
   return userWithCustomer
+}
+
+export const userByAuthId = async ({ id }) => {
+  const user = await db.user.findOne({
+    where: { authId: id },
+  })
+  return user
 }
 
 export const createUser = async ({ input }) => {

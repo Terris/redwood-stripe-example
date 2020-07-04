@@ -1,24 +1,46 @@
-import { currentUser } from 'src/lib/auth'
-import { invoice as getInvoice } from 'src/services/invoices/invoices'
+import { context } from '@redwoodjs/api/dist/globalContext'
+
+import { userByAuthId } from 'src/services/users/users'
+import { createCustomer } from 'src/services/customers/customers'
+import {
+  invoice as getInvoice,
+  createInvoiceWithItems,
+} from 'src/services/invoices/invoices'
 import { createAnonCustomer } from 'src/services/customers/customers'
 
-export const checkout = async ({ id }) => {
-  console.log('id ', id)
-  let invoice, customer
-  if (id) {
-    invoice = await getInvoice({ id })
-    customer = invoice.customer
+export const checkout = async ({ input }) => {
+  let invoice, customerId
+  if (input.invoiceId) {
+    invoice = await getInvoice({ id: input.invoiceId })
+    customerId = invoice.customer
   } else {
-    console.log('user: ', currentUser)
-    // get customer
-    // -- if there is no currentUser.customerId
-    // -- create anon customer
-    // create invoice
+    customerId = await setCustomerId()
+    invoice = await createInvoiceWithItems({
+      input: { cartItems: input.cartItems, customerId },
+    })
   }
-
-  return { id: id || 'test', invoice, customer }
+  return { invoiceId: invoice.id, invoice, customerId }
 }
 
-export const createCheckout = () => true
+// PRIVATE
 
-export const updateCheckout = () => true
+const setCustomerId = async () => {
+  let customer
+  const authUser = context.currentUser
+  // if there is a current user
+  if (authUser) {
+    const dbUser = await userByAuthId({ id: authUser.sub })
+    // if the current user has a stripe customer id
+    if (dbUser.customerId) {
+      customer = dbUser.customerId
+    } else {
+      // create a new stripe customer
+      customer = await createCustomer({ input: { email: dbUser.email } }).id
+    }
+    // if there is a customer with currentUser.email
+  } else {
+    // create an anonymous customer
+    customer = await createAnonCustomer({ input: { cartToken: 'test' } }).id
+  }
+  return customer
+}

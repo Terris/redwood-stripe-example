@@ -1,26 +1,25 @@
 import gql from 'graphql-tag'
 
 export const schema = gql`
-  type CartItems {
+  type Checkout {
+    invoiceId: String!
+    customerId: String!
+    invoice: Invoice
+  }
+
+  input CartItemInput {
     id: String!
     qty: Int!
     unitAmount: Int!
   }
 
-  type Cart {
-    id: String!
-    cartItems: [CartItem!]
+  input CartInput {
+    cartItems: [CartItemInput!]
     status: String
     invoiceId: String
   }
 
-  type Checkout {
-    id: String!
-    customer: Customer
-    invoice: Invoice
-  }
-
   type Query {
-    checkout(cart: Cart!): Checkout!
+    checkout(input: CartInput!): Checkout!
   }
 `

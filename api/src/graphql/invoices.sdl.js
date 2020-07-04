@@ -4,7 +4,17 @@ export const schema = gql`
   type Invoice {
     id: String!
     customer: String!
-    description: String
+    amount_due: Int
+    status: String
+    lines: Lines
+  }
+
+  type Lines {
+    data: [LineItems!]
+  }
+
+  type LineItems {
+    id: String
   }
 
   type Query {
@@ -17,7 +27,7 @@ export const schema = gql`
   }
 
   input UpdateInvoiceInput {
-    description: String
+    status: String
   }
 
   type Mutation {

@@ -6,6 +6,7 @@ export const schema = gql`
     name: String!
     description: String
     unitAmount: Int!
+    priceId: String!
     images: [String!]
   }
 
