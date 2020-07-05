@@ -4,6 +4,7 @@ export const schema = gql`
   type Customer {
     id: String!
     email: String
+    cartToken: String
   }
 
   type Query {
@@ -15,12 +16,17 @@ export const schema = gql`
     email: String!
   }
 
+  input CreateAnonCustomerInput {
+    cartToken: String!
+  }
+
   input UpdateCustomerInput {
     email: String
   }
 
   type Mutation {
     createCustomer(input: CreateCustomerInput!): Customer!
+    createAnonCustomer(input: CreateAnonCustomerInput!): Customer!
     updateCustomer(id: String!, input: UpdateCustomerInput!): Customer!
     deleteCustomer(id: String!): Customer!
   }

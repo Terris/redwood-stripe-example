@@ -10,6 +10,7 @@ export const customers = async () => {
 export const customer = async ({ id }) => {
   requirePermission('admin')
   const customer = await stripe.customers.retrieve(id)
+  customer.cartToken = customer.metadata.cartToken || null
   return customer
 }
 
@@ -17,6 +18,11 @@ export const createCustomer = async ({ input }) => {
   const customer = await stripe.customers.create({
     email: input.email,
   })
+  return customer
+}
+
+export const createAnonCustomer = async () => {
+  const customer = await stripe.customers.create()
   return customer
 }
 

@@ -6,8 +6,8 @@ export const CartSummary = () => {
   return (
     <div className="cart-summary">
       <h3>Cart Summary</h3>
-      {cart &&
-        cart.map((item) => (
+      {cart.cartItems &&
+        cart.cartItems.map((item) => (
           <div key={item.id} className="cart-summary-item">
             <div className="cart-summary-item-qty">{item.qty} x</div>
             <CartProductCell id={item.id} item={item} />
