@@ -22,6 +22,7 @@ export const schema = gql`
 
   input UpdateUserInput {
     email: String
+    customerId: String
   }
 
   type Mutation {

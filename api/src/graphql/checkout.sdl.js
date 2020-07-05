@@ -3,7 +3,7 @@ import gql from 'graphql-tag'
 export const schema = gql`
   type Checkout {
     invoiceId: String!
-    customerId: String!
+    syncToken: String!
     invoice: Invoice
   }
 
@@ -15,8 +15,8 @@ export const schema = gql`
 
   input CartInput {
     cartItems: [CartItemInput!]
-    status: String
     invoiceId: String
+    syncToken: String!
   }
 
   type Query {

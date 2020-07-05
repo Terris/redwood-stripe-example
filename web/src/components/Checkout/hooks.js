@@ -6,10 +6,10 @@ const QUERY = gql`
   query RESOLVE_CHECKOUT($input: CartInput!) {
     checkout: checkout(input: $input) {
       invoiceId
-      customerId
       invoice {
         id
         amount_due
+        customer
         lines {
           data {
             id

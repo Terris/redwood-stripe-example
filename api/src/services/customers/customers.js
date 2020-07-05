@@ -21,12 +21,8 @@ export const createCustomer = async ({ input }) => {
   return customer
 }
 
-export const createAnonCustomer = async ({ input }) => {
-  const customer = await stripe.customers.create({
-    metadata: {
-      token: input.cartToken,
-    },
-  })
+export const createAnonCustomer = async () => {
+  const customer = await stripe.customers.create()
   return customer
 }
 

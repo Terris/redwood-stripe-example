@@ -35,7 +35,6 @@ export const createProduct = async ({ input }) => {
     productId: product.id,
     unitAmount: input.unitAmount,
   })
-  console.log(productWithPrice)
   return productWithPrice
 }
 

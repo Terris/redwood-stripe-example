@@ -5,8 +5,8 @@ export const CartItem = ({ item }) => {
 
   const onChange = (e) => {
     const qty = parseInt(e)
-    if (qty < 0) {
-      updateItemQty({ id: item.id, qty: 0 })
+    if (qty < 1) {
+      updateItemQty({ id: item.id, qty: 1 })
     } else {
       updateItemQty({ id: item.id, qty: qty })
     }
@@ -22,7 +22,7 @@ export const CartItem = ({ item }) => {
             name="qty"
             type="number"
             min="0"
-            value={item.qty || ''}
+            value={item.qty || 1}
             className="cart-item-qty-field"
             onChange={(e) => onChange(e.currentTarget.value)}
           />

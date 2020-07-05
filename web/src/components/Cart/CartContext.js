@@ -6,7 +6,7 @@ import { CartReducer } from './CartReducer'
 const getStorage = () => JSON.parse(localStorage.getItem('cart'))
 
 // Context Config
-export const initialStateStructure = { cartItems: [] }
+export const initialStateStructure = { cartItems: [], syncToken: '' }
 const initialState = getStorage() || initialStateStructure
 const CartContext = createContext(initialState)
 
