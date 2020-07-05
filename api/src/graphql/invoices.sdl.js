@@ -6,15 +6,14 @@ export const schema = gql`
     customer: String!
     amount_due: Int
     status: String
-    lines: Lines
+    lines: [LineItem!]
   }
 
-  type Lines {
-    data: [LineItems!]
-  }
-
-  type LineItems {
-    id: String
+  type LineItem {
+    id: String!
+    amount: Int!
+    product: String!
+    qty: Int!
   }
 
   type Query {

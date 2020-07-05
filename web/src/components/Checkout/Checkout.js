@@ -14,7 +14,14 @@ export const Checkout = () => {
   return (
     <div className="checkout">
       <h2>Checkout stuff</h2>
-      {checkout && <p>{JSON.stringify(checkout)}</p>}
+      {checkout && <>{console.log(checkout)}</>}
+      {checkout &&
+        checkout.invoice.lines.map((item) => (
+          <div key={item.id}>
+            <h3>{item.id}</h3>
+            <hr />
+          </div>
+        ))}
     </div>
   )
 }

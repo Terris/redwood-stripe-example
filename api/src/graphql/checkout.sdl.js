@@ -2,8 +2,6 @@ import gql from 'graphql-tag'
 
 export const schema = gql`
   type Checkout {
-    invoiceId: String!
-    syncToken: String!
     invoice: Invoice
   }
 

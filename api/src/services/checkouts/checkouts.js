@@ -9,15 +9,15 @@ import {
 import { createAnonCustomer } from 'src/services/customers/customers'
 
 export const checkout = async ({ input }) => {
-  let invoice
-  if (input.invoiceId) {
-    invoice = await getInvoice({ id: input.invoiceId })
-  } else {
-    invoice = await createInvoiceWithItems({
-      input: { cartItems: input.cartItems, customerId: await setCustomerId() },
-    })
-  }
-  return { invoiceId: invoice.id, invoice }
+  const invoice = input.invoiceId
+    ? await getInvoice({ id: input.invoiceId })
+    : await createInvoiceWithItems({
+        input: {
+          cartItems: input.cartItems,
+          customerId: await setCustomerId(),
+        },
+      })
+  return { invoice }
 }
 
 // PRIVATE
@@ -27,7 +27,7 @@ const setCustomerId = async () => {
   // if there is a current user
   if (authUser) {
     const dbUser = await userByAuthId({ id: authUser.sub })
-    // if the current user has a stripe customer id
+    // if the db user has a customer id
     if (dbUser.customerId) {
       return dbUser.customerId
     } else {
@@ -41,7 +41,6 @@ const setCustomerId = async () => {
       })
       return user.customerId
     }
-    // if there is a customer with currentUser.email
   } else {
     // create an anonymous customer
     const anonCustomer = await createAnonCustomer()

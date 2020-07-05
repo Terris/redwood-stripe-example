@@ -5,15 +5,14 @@ import { useCart } from 'src/components/Cart'
 const QUERY = gql`
   query RESOLVE_CHECKOUT($input: CartInput!) {
     checkout: checkout(input: $input) {
-      invoiceId
       invoice {
         id
         amount_due
-        customer
         lines {
-          data {
-            id
-          }
+          id
+          amount
+          product
+          qty
         }
       }
     }
@@ -24,18 +23,18 @@ export const useCheckout = () => {
   const { cart, setInvoiceId } = useCart()
 
   // get checkout
-  const { loading, error, data: checkout } = useQuery(QUERY, {
+  const { loading, error, data } = useQuery(QUERY, {
     variables: { input: { ...cart } },
     onCompleted: (res) => {
-      if (cart.invoiceId !== res.checkout.invoiceId) {
-        setInvoiceId({ id: res.checkout.invoiceId })
+      if (cart.invoiceId !== res.checkout.invoice.id) {
+        setInvoiceId({ id: res.checkout.invoice.id })
       }
     },
   })
 
   return {
-    checkout,
-    loading,
+    checkout: data?.checkout,
+    loading: !cart.invoiceId ? true : loading,
     error,
   }
 }
