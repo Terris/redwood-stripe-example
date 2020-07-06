@@ -7,12 +7,13 @@ export const schema = gql`
     amount_due: Int
     status: String
     lines: [LineItem!]
+    syncToken: String!
   }
 
   type LineItem {
     id: String!
     amount: Int!
-    product: String!
+    productId: String!
     qty: Int!
   }
 

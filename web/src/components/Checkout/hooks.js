@@ -11,7 +11,7 @@ const QUERY = gql`
         lines {
           id
           amount
-          product
+          productId
           qty
         }
       }
