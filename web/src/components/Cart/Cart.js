@@ -1,4 +1,4 @@
-import { navigate, routes } from '@redwoodjs/router'
+import { navigate, routes, Link } from '@redwoodjs/router'
 
 import { useCart, CartItem, CartTotal } from 'src/components/Cart'
 
@@ -6,7 +6,11 @@ export const Cart = () => {
   const { cart, clearCartItems } = useCart()
 
   if (!cart.cartItems.length) {
-    return <p>Your cart is empty.</p>
+    return (
+      <p>
+        Your cart is empty. <Link to={routes.home()}>Continue shopping.</Link>
+      </p>
+    )
   }
 
   return (

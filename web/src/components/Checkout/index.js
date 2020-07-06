@@ -1,2 +1,3 @@
 import { Checkout } from './Checkout'
-export { Checkout }
+import { CheckoutSummary } from './CheckoutSummary'
+export { Checkout, CheckoutSummary }

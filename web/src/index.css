@@ -6,7 +6,7 @@
   box-sizing: border-box;
   -webkit-overflow-scrolling: touch;
 }
-html, input, textarea, button { -webkit-font-smoothing: antialiased; font-family: sans-serif; font-size: 16px; }
+html, input, textarea, button { -webkit-font-smoothing: antialiased; font-family: sans-serif; font-size: 16px; color: #444 }
 body { margin: 0; padding: 0.5rem 1rem; text-rendering: optimizeLegibility; }
 img  { width: 100% }
 svg  { max-height: 100% }
@@ -14,19 +14,21 @@ h1,h2,h3,h4,p,ul,ol,figure,.field {padding: 1rem;}
 hr { margin: 1rem; padding: 0; border:none; border-bottom: 1px solid #ccc;}
 table { border-spacing: 0;}
 a,
-nav button { text-decoration: none; color: #5cb9b1; border: none; background: transparent; }
+nav button { text-decoration: none; color: #5b68a5; border: none; background: transparent; }
 a:hover,
 nav button:hover { text-decoration: underline; background: transparent }
 input { display: block; width: 100%; padding: 0.5rem; border: 1px solid #c3c3c3; border-radius: 3px; }
-button { padding: 0.5rem 1rem; cursor:pointer; border: none; background: #5ba59e; color: #fff; border-radius: 3px; }
-button:hover { background: #71d0c7; }
+input:focus { outline-color: #5b68a5; }
+button { padding: 0.5rem 1rem; cursor:pointer; border: none; background: #5b68a5; color: #fff; border-radius: 3px; }
+button:hover { background: #7e92ef; }
 button:focus { outline:none }
-.btn-red { background: #ff6c6c; }
+.btn-red { background: #a55b5b; }
+.btn-red:hover { background: #da6969; }
 .btn-feedback { animation: pulse 1s 1; cursor: wait; }
 .input-error { border-color: red; }
 .field-error { font-size: 0.8rem; }
 .form-error,.label-error,.field-error,.text-error { color: red; }
-.ui-loader { position: fixed; top:0; right: 0; bottom: 0; left:0; display: flex; justify-content: center; align-items: center; background: #fff; }
+.ui-loader { position: fixed; top:0; right: 0; bottom: 0; left:0; display: flex; flex-direction: column; justify-content: center; align-items: center; flex-wrap: wrap; background: #fff; }
 .ui-loader.ui-loader-inline { position: relative; }
 .ui-loader-spinner {
   display: flex;
@@ -35,10 +37,15 @@ button:focus { outline:none }
   width: 60px;
   height: 60px;
   border: 6px solid #e0e0e0;
-  border-top: 6px solid #8aa4a1;
+  border-top: 6px solid #7e92ef;
   border-radius: 100%;
   animation: spin 1s infinite;
-
+}
+.ui-loader.ui-loader-inline .ui-loader-spinner { width: 30px; height: 30px; border-width: 3px;}
+.ui-loader-message {
+  padding: 2rem 0;
+  font-size: 1.25rem;
+  color: #616161;
 }
 .header {
   display: flex;
@@ -63,7 +70,7 @@ button:focus { outline:none }
 .cart-footer {display: flex; justify-content: space-between; align-items: center; padding: 1rem;}
 .cart-footer .cart-total { padding: 0 1rem; text-align: right; font-size: 1.25rem; width: 75%; }
 .cart-item .cart-product { width: 75%; }
-.checkout-summary { margin: 1rem; background: #f9f9f9; }
+.checkout-summary { margin: 1rem; background: #f9f9f9; border-radius: 6px; padding: 1rem 0; }
 .checkout-summary .checkout-summary-title { padding: 1rem 2rem; }
 .checkout-summary .checkout-summary-item { display: flex; justify-content: space-between; flex-wrap: wrap; padding: 1rem; border-bottom: 1px solid #e5f3f2; }
 .checkout-summary .checkout-summary-item div { padding: 0 1rem; }
@@ -77,10 +84,10 @@ button:focus { outline:none }
   .checkout-summary { width: 33.333333% }
 }
 .product-list { display: flex; flex-direction: column; flex-wrap: wrap;  }
-.product-list-product { width: 33.333333%; max-width: 800px; }
+.product-list-product { display: flex; flex-direction: column; justify-content: space-between; width: 33.333333%; max-width: 800px; }
 .product-list-product hr { margin: 0.5rem 1rem; }
 .product-list-product-img { padding-top: 0; padding-bottom: 0; }
-.product-list-product-footer { display: flex; justify-content: space-between;}
+.product-list-product-footer { display: flex; justify-content: space-between; margin-bottom: auto;}
 @media screen and (min-width: 800px) {
 	.product-list { flex-direction: row; justify-content: space-between;}
 }
@@ -91,13 +98,13 @@ button:focus { outline:none }
 
 @keyframes pulse {
   0% {
-    background: #71d0c7;
+    background: #5b68a5;
   }
   50% {
-    background: #62d671;
+    background:#4cdc9b;
   }
   100% {
-    background: #5ba59e;
+    background: #4cdc9b;
   }
 }
 @keyframes spin {

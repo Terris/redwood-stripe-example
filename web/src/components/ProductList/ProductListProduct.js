@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import { useCart } from 'src/components/Cart'
 import { currency } from 'src/utils'
@@ -7,11 +7,18 @@ export const ProductListProduct = ({ product }) => {
   const { addItem } = useCart()
   const [carting, setCarting] = useState(false)
 
+  let cartingTimer
+
   const onClick = () => {
     setCarting(true)
-    setTimeout(() => setCarting(false), 1000)
+    cartingTimer = setTimeout(() => setCarting(false), 1000)
     addItem({ item: { id: product.id } })
   }
+
+  useEffect(() => {
+    return () => clearTimeout(cartingTimer)
+  })
+
   return (
     <div className="product-list-product">
       <h2>{product.name}</h2>
