@@ -9,6 +9,8 @@ import {
 } from 'src/services/invoices/invoices'
 import { createAnonCustomer } from 'src/services/customers/customers'
 
+import { product } from '../products/products'
+
 export const checkout = async ({ input }) => {
   const invoice = input.invoiceId
     ? await getInvoice({ id: input.invoiceId })
@@ -24,7 +26,11 @@ export const checkout = async ({ input }) => {
     invoice,
     syncToken: input.syncToken,
   })
-  return { invoice: syncedInvoice }
+  // merge line item products
+  const invoiceWithLineProducts = await mergeLineProducts({
+    invoice: syncedInvoice,
+  })
+  return { invoice: invoiceWithLineProducts }
 }
 
 // PRIVATE
@@ -59,4 +65,15 @@ const setCustomerId = async () => {
     const anonCustomer = await createAnonCustomer()
     return anonCustomer.id
   }
+}
+
+const mergeLineProducts = async ({ invoice }) => {
+  const linesWithProducts = []
+  for (let item of invoice.lines) {
+    linesWithProducts.push({
+      ...item,
+      product: await product({ id: item.productId }),
+    })
+  }
+  return { ...invoice, lines: linesWithProducts }
 }

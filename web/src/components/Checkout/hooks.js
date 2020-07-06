@@ -13,6 +13,10 @@ const QUERY = gql`
           amount
           productId
           qty
+          product {
+            name
+            description
+          }
         }
       }
     }

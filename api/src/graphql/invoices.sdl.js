@@ -14,6 +14,7 @@ export const schema = gql`
     id: String!
     amount: Int!
     productId: String!
+    product: Product
     qty: Int!
   }
 

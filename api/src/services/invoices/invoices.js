@@ -42,13 +42,12 @@ export const syncInvoice = async ({ cartItems, invoice, syncToken }) => {
       await deleteInvoiceItem(invoiceItem.id)
     }
   }
-  // update invoice with new syncToken
-  return coercedInvoice(
-    await updateInvoice({
-      id: invoice.id,
-      input: { syncToken },
-    })
-  )
+  // set invoice as synced
+  const syncedInvoice = await updateInvoice({
+    id: invoice.id,
+    input: { syncToken },
+  })
+  return coercedInvoice(syncedInvoice)
 }
 
 // PRIVATE

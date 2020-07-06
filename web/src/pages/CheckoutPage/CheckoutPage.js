@@ -6,10 +6,7 @@ const CheckoutPage = () => {
   return (
     <GlobalLayout>
       <h1>Checkout</h1>
-      <div className="checkout-page">
-        <Checkout />
-        <CartSummary />
-      </div>
+      <Checkout />
     </GlobalLayout>
   )
 }
