@@ -68,7 +68,7 @@ export const updateUser = async ({ id, input }) => {
 }
 
 export const deleteUser = async ({ id }) => {
-  requirePermission('admin')
+  requirePermission('Gandalf')
   return db.user.delete({
     where: { id },
   })

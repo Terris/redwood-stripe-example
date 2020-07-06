@@ -1,29 +1,6 @@
-import { useMutation, useFlash } from '@redwoodjs/web'
 import { Link, routes, navigate } from '@redwoodjs/router'
 
-const DELETE_USER_MUTATION = gql`
-  mutation DeleteUserMutation($id: Int!) {
-    deleteUser(id: $id) {
-      id
-    }
-  }
-`
-
 const User = ({ user }) => {
-  const { addMessage } = useFlash()
-  const [deleteUser] = useMutation(DELETE_USER_MUTATION, {
-    onCompleted: () => {
-      navigate(routes.adminUsers())
-      addMessage('User deleted.', { classes: 'rw-flash-success' })
-    },
-  })
-
-  const onDeleteClick = (id) => {
-    if (confirm('Are you sure you want to delete user ' + id + '?')) {
-      deleteUser({ variables: { id } })
-    }
-  }
-
   return (
     <>
       <div className="rw-segment">
@@ -60,13 +37,6 @@ const User = ({ user }) => {
         >
           Edit
         </Link>
-        <a
-          href="#"
-          className="rw-button rw-button-red"
-          onClick={() => onDeleteClick(user.id)}
-        >
-          Delete
-        </a>
       </nav>
     </>
   )

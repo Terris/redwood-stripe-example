@@ -1,5 +1,7 @@
 import User from 'src/components/Admin/User'
 
+import { Loader } from 'src/components/UI'
+
 export const QUERY = gql`
   query FIND_USER_BY_ID($id: Int!) {
     user: user(id: $id) {
@@ -11,7 +13,7 @@ export const QUERY = gql`
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () => <Loader />
 
 export const Empty = () => <div>User not found</div>
 

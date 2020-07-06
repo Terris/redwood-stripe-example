@@ -1,10 +1,12 @@
+import { Loader } from 'src/components/UI'
+
 import { useCheckout } from './hooks'
 
 export const Checkout = () => {
   const { checkout, loading, error } = useCheckout()
 
   if (loading) {
-    return <p>Loading...</p>
+    return <Loader />
   }
 
   if (error) {

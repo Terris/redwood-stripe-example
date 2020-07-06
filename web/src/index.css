@@ -26,6 +26,20 @@ button:focus { outline:none }
 .input-error { border-color: red; }
 .field-error { font-size: 0.8rem; }
 .form-error,.label-error,.field-error,.text-error { color: red; }
+.ui-loader { position: fixed; top:0; right: 0; bottom: 0; left:0; display: flex; justify-content: center; align-items: center; background: #fff; }
+.ui-loader.ui-loader-inline { position: relative; }
+.ui-loader-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border: 6px solid #e0e0e0;
+  border-top: 6px solid #8aa4a1;
+  border-radius: 100%;
+  animation: spin 1s infinite;
+
+}
 .header {
   display: flex;
   justify-content: space-between;
@@ -65,6 +79,7 @@ button:focus { outline:none }
 .checkout-page .cart-summary { width: 33.333333%; font-size: 0.9rem; }
 .checkout-page .checkout { width: 66.666666% }
 
+
 @keyframes pulse {
   0% {
     background: #71d0c7;
@@ -74,5 +89,13 @@ button:focus { outline:none }
   }
   100% {
     background: #5ba59e;
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

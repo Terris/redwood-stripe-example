@@ -2,6 +2,8 @@ import { useMutation, useFlash } from '@redwoodjs/web'
 import { navigate, routes } from '@redwoodjs/router'
 import ProductForm from 'src/components/Admin/ProductForm'
 
+import { Loader } from 'src/components/UI'
+
 export const QUERY = gql`
   query FIND_PRODUCT_BY_ID($id: String!) {
     product: product(id: $id) {
@@ -26,7 +28,7 @@ export const beforeQuery = (props) => {
   return { variables: props, fetchPolicy: 'network-only' }
 }
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () => <Loader />
 
 export const Success = ({ product }) => {
   const { addMessage } = useFlash()
@@ -42,6 +44,10 @@ export const Success = ({ product }) => {
 
   const onSave = (input, id) => {
     updateProduct({ variables: { id, input } })
+  }
+
+  if (loading) {
+    return <Loader />
   }
 
   return (

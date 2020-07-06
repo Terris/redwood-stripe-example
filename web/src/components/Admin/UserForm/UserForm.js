@@ -7,16 +7,22 @@ import {
   Submit,
 } from '@redwoodjs/web'
 
-const UserForm = (props) => {
+import { Loader } from 'src/components/UI'
+
+const UserForm = ({ loading, error, user, onSave }) => {
   const onSubmit = (data) => {
-    props.onSave(data, props?.user?.id)
+    onSave(data, user?.id)
+  }
+
+  if (loading) {
+    return <Loader />
   }
 
   return (
     <div className="rw-form-wrapper">
-      <Form onSubmit={onSubmit} error={props.error}>
+      <Form onSubmit={onSubmit} error={error}>
         <FormError
-          error={props.error}
+          error={error}
           wrapperClassName="rw-form-error-wrapper"
           titleClassName="rw-form-error-title"
           listClassName="rw-form-error-list"
@@ -31,7 +37,7 @@ const UserForm = (props) => {
         </Label>
         <TextField
           name="email"
-          defaultValue={props.user?.email}
+          defaultValue={user?.email}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
@@ -39,7 +45,7 @@ const UserForm = (props) => {
         <FieldError name="email" className="rw-field-error" />
 
         <div className="rw-button-group">
-          <Submit disabled={props.loading} className="rw-button rw-button-blue">
+          <Submit disabled={loading} className="rw-button rw-button-blue">
             Save
           </Submit>
         </div>

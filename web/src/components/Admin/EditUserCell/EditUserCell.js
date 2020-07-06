@@ -2,6 +2,8 @@ import { useMutation, useFlash } from '@redwoodjs/web'
 import { navigate, routes } from '@redwoodjs/router'
 import UserForm from 'src/components/Admin/UserForm'
 
+import { Loader } from 'src/components/UI'
+
 export const QUERY = gql`
   query FIND_USER_BY_ID($id: Int!) {
     user: user(id: $id) {
@@ -18,7 +20,7 @@ const UPDATE_USER_MUTATION = gql`
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () => <Loader />
 
 export const Success = ({ user }) => {
   const { addMessage } = useFlash()
@@ -31,6 +33,10 @@ export const Success = ({ user }) => {
 
   const onSave = (input, id) => {
     updateUser({ variables: { id, input } })
+  }
+
+  if (loading) {
+    return <Loader />
   }
 
   return (

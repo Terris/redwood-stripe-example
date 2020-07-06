@@ -1,3 +1,5 @@
+import { Loader } from '../UI'
+
 import { CartProduct } from './CartProduct'
 
 export const QUERY = gql`
@@ -12,7 +14,7 @@ export const QUERY = gql`
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () => <Loader inline={true} />
 
 export const Empty = () => <div>Product not found</div>
 

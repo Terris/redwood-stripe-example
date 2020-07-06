@@ -2,6 +2,8 @@ import { useMutation, useFlash } from '@redwoodjs/web'
 import { navigate, routes } from '@redwoodjs/router'
 import ProductForm from 'src/components/Admin/ProductForm'
 
+import { Loader } from 'src/components/UI'
+
 const CREATE_PRODUCT_MUTATION = gql`
   mutation CreateProductMutation($input: CreateProductInput!) {
     createProduct(input: $input) {
@@ -24,6 +26,10 @@ const NewProduct = () => {
 
   const onSave = (input) => {
     createProduct({ variables: { input } })
+  }
+
+  if (loading) {
+    return <Loader />
   }
 
   return (

@@ -16,11 +16,6 @@ const Routes = () => {
       <Private unauthenticated="signIn">
         <Route path="/admin" page={AdminPage} name="admin" />
         <Route
-          path="/admin/users/new"
-          page={AdminNewUserPage}
-          name="adminNewUser"
-        />
-        <Route
           path="/admin/users/{id:Int}/edit"
           page={AdminEditUserPage}
           name="adminEditUser"

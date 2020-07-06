@@ -1,6 +1,8 @@
 import { Link, routes } from '@redwoodjs/router'
 import Products from 'src/components/Admin/Products'
 
+import { Loader } from 'src/components/UI'
+
 export const QUERY = gql`
   query PRODUCTS {
     products {
@@ -16,7 +18,7 @@ export const beforeQuery = (props) => {
   return { variables: props, fetchPolicy: 'network-only' }
 }
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () => <Loader />
 
 export const Empty = () => {
   return (
