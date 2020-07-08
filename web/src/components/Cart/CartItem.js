@@ -1,4 +1,4 @@
-import { useCart, CartProductCell } from 'src/components/Cart'
+import { useCart, CartProduct } from 'src/components/Cart'
 
 export const CartItem = ({ item }) => {
   const { updateItemQty, deleteItem } = useCart()
@@ -14,7 +14,7 @@ export const CartItem = ({ item }) => {
 
   return (
     <div className="cart-item">
-      <CartProductCell id={item.id} />
+      <CartProduct product={item} />
       <div className="cart-item-tools">
         <div className="cart-item-qty">
           Quantity:

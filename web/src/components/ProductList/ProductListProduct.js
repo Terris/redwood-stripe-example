@@ -12,7 +12,7 @@ export const ProductListProduct = ({ product }) => {
   const onClick = () => {
     setCarting(true)
     cartingTimer = setTimeout(() => setCarting(false), 1000)
-    addItem({ item: { id: product.id } })
+    addItem({ item: { ...product } })
   }
 
   useEffect(() => {

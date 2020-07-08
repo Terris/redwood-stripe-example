@@ -33,6 +33,11 @@ export const checkout = async ({ input }) => {
   return { invoice: invoiceWithLineProducts }
 }
 
+export const setCustomer = async ({ input }) => {
+  console.log('SDL')
+  return true
+}
+
 // PRIVATE
 
 const setSyncedInvoice = async ({ cartItems, invoice, syncToken }) => {

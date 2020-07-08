@@ -6,7 +6,7 @@ import { CartReducer } from './CartReducer'
 const getStorage = () => JSON.parse(localStorage.getItem('cart'))
 
 // Context Config
-export const initialStateStructure = { cartItems: [], syncToken: '' }
+export const initialStateStructure = { cartItems: [], cartTotal: 0 }
 const initialState = getStorage() || initialStateStructure
 const CartContext = createContext(initialState)
 
@@ -51,21 +51,6 @@ export const CartProvider = ({ children }) => {
       type: 'CLEAR_CART',
     })
   }
-  // log unit amount
-  const logItemUnitAmount = ({ id, unitAmount }) => {
-    dispatch({
-      type: 'LOG_ITEM_UNIT_AMOUNT',
-      payload: { id, unitAmount },
-    })
-  }
-
-  // set invoiceId
-  const setInvoiceId = ({ id }) => {
-    dispatch({
-      type: 'SET_INVOICE_ID',
-      payload: { id },
-    })
-  }
 
   // Provider Component
   return (
@@ -77,8 +62,6 @@ export const CartProvider = ({ children }) => {
         deleteItem,
         clearCartItems,
         clearCart,
-        logItemUnitAmount,
-        setInvoiceId,
       }}
     >
       {children}

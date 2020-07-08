@@ -1,12 +1,13 @@
 import { GlobalLayout } from 'src/layouts'
-import { Checkout } from 'src/components/Checkout'
-import { CartSummary } from 'src/components/Cart'
+import { CheckoutProvider, Checkout } from 'src/components/Checkout'
 
 const CheckoutPage = () => {
   return (
     <GlobalLayout>
       <h1>Checkout</h1>
-      <Checkout />
+      <CheckoutProvider>
+        <Checkout />
+      </CheckoutProvider>
     </GlobalLayout>
   )
 }

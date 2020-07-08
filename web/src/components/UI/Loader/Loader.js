@@ -1,6 +1,10 @@
-export const Loader = ({ message, inline }) => {
+export const Loader = ({ message, inline, type }) => {
+  const typeClasses = {
+    INLINE: 'ui-loader-inline',
+    BLOCK: 'ui-loader-block',
+  }
   return (
-    <div className={`ui-loader ${inline ? 'ui-loader-inline' : ''}`}>
+    <div className={`ui-loader ${typeClasses[type]}`}>
       <div className="ui-loader-spinner"></div>
       {message && <div className="ui-loader-message">{message}</div>}
     </div>
