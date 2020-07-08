@@ -57,7 +57,19 @@ export const CheckoutProvider = ({ children }) => {
     const res = await customer.set({ variables: { input: { customerSource } } })
     dispatch({
       type: 'SET_CUSTOMER',
-      payload: res.data.setCheckoutCustomer.customer,
+      payload: res.data.setCustomer.customer,
+    })
+  }
+
+  // set customer shipping
+  const setShipping = async ({ input }) => {
+    setLoading(true)
+    const res = await customer.setShipping({
+      variables: { id: state.customer.id, input },
+    })
+    dispatch({
+      type: 'SET_SHIPPING',
+      payload: res,
     })
   }
 
@@ -67,6 +79,7 @@ export const CheckoutProvider = ({ children }) => {
         checkout: state,
         initCheckout,
         setCustomer,
+        setShipping,
       }}
     >
       {children}

@@ -21,7 +21,7 @@ export const checkout = async ({ input }) => {
   }
 }
 
-export const setCheckoutCustomer = async ({ input }) => {
+export const setCustomer = async ({ input }) => {
   const customer =
     input.customerSource === 'ANON'
       ? await createAnonCustomer()

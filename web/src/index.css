@@ -35,7 +35,8 @@ button:focus { outline:none }
 .field-group { display: flex; justify-content: space-between; }
 .ui-loader { position: fixed; top:0; right: 0; bottom: 0; left:0; display: flex; flex-direction: column; justify-content: center; align-items: center; flex-wrap: wrap; background: #fff; }
 .ui-loader.ui-loader-inline { position: relative; }
-.ui-loader.ui-loader-block { position: relative; margin: 0 auto; min-height: 300px; }
+.ui-loader.ui-loader-block { position: absolute; margin: 0 auto; min-height: 300px; }
+.has-block-loader { position: relative;}
 .ui-loader-spinner {
   display: flex;
   justify-content: center;
@@ -98,8 +99,6 @@ button:focus { outline:none }
 .checkout-summary .checkout-summary-item .checkout-summary-item-description { padding-top: 0.5rem; width: 100%; }
 .checkout-summary .checkout-summary-total { padding: 1rem 1.5rem; text-align: right; }
 .checkout-summary .checkout-summary-total-currency { display: inline-block; font-weight: 700; padding-left: 1rem; }
-
-.checkout-flow .payment-method {}
 .set-customer {width: 100%; }
 .set-customer-options { display: flex; justify-content: space-between; align-items: top; padding: 1rem 0; }
 .set-customer-options .options-item { width: 50% }

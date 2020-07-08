@@ -26,6 +26,22 @@ export const createAnonCustomer = async () => {
   return customer
 }
 
+export const setShipping = async ({ id, input }) => {
+  const customer = await stripe.customers.update(id, {
+    shipping: {
+      name: input.name,
+      address: {
+        line1: input.line1,
+        line2: input.line2,
+        city: input.city,
+        state: input.state,
+        postal_code: input.postalCode,
+      },
+    },
+  })
+  return customer
+}
+
 export const updateCustomer = async ({ id, input }) => {
   requirePermission('admin')
   const customer = await stripe.customers.update(id, {

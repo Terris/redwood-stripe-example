@@ -14,6 +14,14 @@ export const CheckoutReducer = (state, action) => {
         loading: false,
       }
     }
+    case 'SET_SHIPPING': {
+      return {
+        ...state,
+        customer: { ...action.payload },
+        phase: PHASE.SET_PAYMENT,
+        loading: false,
+      }
+    }
     case 'RESET_CHECKOUT': {
       return initialState
     }

@@ -19,11 +19,11 @@ export const schema = gql`
     syncToken: String!
   }
 
-  input SetCheckoutCustomerInput {
+  input SetCustomerInput {
     customerSource: String!
   }
 
   type Mutation {
-    setCheckoutCustomer(input: SetCheckoutCustomerInput!): Checkout!
+    setCustomer(input: SetCustomerInput!): Checkout!
   }
 `
