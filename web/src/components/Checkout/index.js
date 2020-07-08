@@ -5,8 +5,9 @@ import { Checkout } from './Checkout'
 import { CheckoutFlow } from './CheckoutFlow'
 import { CheckoutSummary } from './CheckoutSummary'
 import { SetCustomer } from './SetCustomer'
-import { SetPaymentMethod } from './SetPaymentMethod'
-import { CheckoutForm } from './CheckoutForm'
+import { SetShipping } from './SetShipping'
+import { SetPayment } from './SetPayment'
+import { PaymentForm } from './PaymentForm'
 
 export {
   CheckoutAPI,
@@ -18,6 +19,7 @@ export {
   CheckoutFlow,
   CheckoutSummary,
   SetCustomer,
-  SetPaymentMethod,
-  CheckoutForm,
+  SetShipping,
+  SetPayment,
+  PaymentForm,
 }

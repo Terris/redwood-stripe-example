@@ -10,7 +10,7 @@ export const CheckoutReducer = (state, action) => {
       return {
         ...state,
         customer: { ...action.payload },
-        phase: PHASE.SET_PAYMENT_METHOD,
+        phase: PHASE.SET_SHIPPING,
         loading: false,
       }
     }

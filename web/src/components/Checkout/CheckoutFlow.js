@@ -5,7 +5,8 @@ import {
   useCheckout,
   PHASE,
   SetCustomer,
-  SetPaymentMethod,
+  SetShipping,
+  SetPayment,
 } from 'src/components/Checkout'
 
 import { Loader } from '../UI'
@@ -17,19 +18,21 @@ export const CheckoutFlow = () => {
     initCheckout()
   }, [])
 
-  if (checkout.loading) {
-    return <Loader type="BLOCK" />
-  }
-
-  if (checkout.phase === PHASE.SET_CUSTOMER) {
-    return <SetCustomer />
-  }
-
-  if (checkout.phase === PHASE.SET_PAYMENT_METHOD) {
-    return <SetPaymentMethod />
-  }
-
-  return <Default />
+  return (
+    <div className="checkout-flow">
+      {checkout.loading ? (
+        <Loader type="BLOCK" />
+      ) : checkout.phase === PHASE.SET_CUSTOMER ? (
+        <SetCustomer />
+      ) : checkout.phase === PHASE.SET_SHIPPING ? (
+        <SetShipping />
+      ) : checkout.phase === PHASE.SET_PAYMENT ? (
+        <SetPayment />
+      ) : (
+        <Default />
+      )}
+    </div>
+  )
 }
 
 const Default = () => (

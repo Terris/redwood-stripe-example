@@ -7,7 +7,7 @@ import { CheckoutReducer, CheckoutAPI } from 'src/components/Checkout'
 export const PHASE = {
   SET_CUSTOMER: 'SET_CUSTOMER',
   SET_SHIPPING: 'SET_SHIPPING',
-  SET_PAYMENT_METHOD: 'SET_PAYMENT_METHOD',
+  SET_PAYMENT_METHOD: 'SET_PAYMENT',
 }
 
 // Initial State

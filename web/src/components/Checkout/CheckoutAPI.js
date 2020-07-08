@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/react-hooks'
 
-// QUERIES
+// MUTATIONS
 const SET_CHECKOUT_CUSTOMER = gql`
   mutation setCheckoutCustomer($input: SetCheckoutCustomerInput!) {
     setCheckoutCustomer(input: $input) {
@@ -11,12 +11,8 @@ const SET_CHECKOUT_CUSTOMER = gql`
   }
 `
 
-// MUTATIONS
-
 // API
 export const CheckoutAPI = () => {
-  const [setCustomer, { error, loading, data }] = useMutation(
-    SET_CHECKOUT_CUSTOMER
-  )
-  return { customer: { set: setCustomer, data, loading, error } }
+  const [setCustomer] = useMutation(SET_CHECKOUT_CUSTOMER)
+  return { customer: { set: setCustomer } }
 }
