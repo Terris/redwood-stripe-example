@@ -2,7 +2,7 @@ import gql from 'graphql-tag'
 
 export const schema = gql`
   type Checkout {
-    customer: Customer!
+    customer: Customer
     invoice: Invoice
     customerSource: String
   }
@@ -19,11 +19,11 @@ export const schema = gql`
     syncToken: String!
   }
 
-  input SetCustomerInput {
+  input SetCheckoutCustomerInput {
     customerSource: String!
   }
 
   type Mutation {
-    setCheckoutCustomer(input: SetCustomerInput!): Checkout!
+    setCheckoutCustomer(input: SetCheckoutCustomerInput!): Checkout!
   }
 `

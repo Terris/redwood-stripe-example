@@ -2,9 +2,11 @@ import { useMutation } from '@apollo/react-hooks'
 
 // QUERIES
 const SET_CHECKOUT_CUSTOMER = gql`
-  mutation SET_CHECKOUT_CUSTOMER($input: SetCustomerInput!) {
-    checkout: setCheckoutCustomer(input: $input) {
-      via
+  mutation setCheckoutCustomer($input: SetCheckoutCustomerInput!) {
+    setCheckoutCustomer(input: $input) {
+      customer {
+        id
+      }
     }
   }
 `

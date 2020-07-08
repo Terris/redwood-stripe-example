@@ -2,10 +2,17 @@ import { useCheckout } from 'src/components/Checkout'
 
 import { SignInForm } from '../SignIn/SignInForm'
 import { useSignIn } from '../SignIn/hooks'
+import { Loader } from '../UI'
 
 export const SetCustomer = () => {
-  const { checkout } = useCheckout()
-  const { onSubmit, loading, error } = useSignIn()
+  const { setCustomer } = useCheckout()
+  const { onSubmit, loading, error } = useSignIn({
+    onComplete: () => setCustomer({ customerSource: 'AUTH' }),
+  })
+
+  if (loading) {
+    return <Loader type="BLOCK" />
+  }
 
   return (
     <div className="set-customer">

@@ -1,7 +1,7 @@
 import { createContext, useContext, useReducer } from 'react'
 import { useAuth } from '@redwoodjs/auth'
 
-import { CheckoutReducer, CheckoutAPI as API } from 'src/components/Checkout'
+import { CheckoutReducer, CheckoutAPI } from 'src/components/Checkout'
 
 // The Checkout Phases
 export const PHASE = {
@@ -11,7 +11,7 @@ export const PHASE = {
 }
 
 // Initial State
-const initialState = {
+export const initialState = {
   phase: PHASE.SET_CUSTOMER,
   customer: null,
   shipping: null,
@@ -31,7 +31,7 @@ export const useCheckout = () => useContext(CheckoutContext)
 export const CheckoutProvider = ({ children }) => {
   const [state, dispatch] = useReducer(CheckoutReducer, initialState)
   const { currentUser } = useAuth()
-  const { customer } = API()
+  const { customer } = CheckoutAPI()
 
   // ACTIONS
   // set loading
@@ -43,18 +43,21 @@ export const CheckoutProvider = ({ children }) => {
   }
 
   const initCheckout = () => {
+    setLoading(true)
     if (currentUser) {
-      setCustomer({ source: 'AUTH' })
+      setCustomer({ customerSource: 'AUTH' })
+    } else {
+      setLoading(false)
     }
   }
 
   // set auth customer
-  const setCustomer = async ({ source }) => {
+  const setCustomer = async ({ customerSource }) => {
     setLoading(true)
-    customer.set({ variables: { input: { customerSource: source } } })
+    const res = await customer.set({ variables: { input: { customerSource } } })
     dispatch({
       type: 'SET_CUSTOMER',
-      payload: 'pop',
+      payload: res.data.setCheckoutCustomer.customer,
     })
   }
 

@@ -8,20 +8,28 @@ import {
   SetPaymentMethod,
 } from 'src/components/Checkout'
 
+import { Loader } from '../UI'
+
 export const CheckoutFlow = () => {
   const { checkout, initCheckout } = useCheckout()
+
   useEffect(() => {
     initCheckout()
   }, [])
 
-  switch (checkout.phase) {
-    case PHASE.SET_CUSTOMER:
-      return <SetCustomer />
-    case PHASE.SET_PAYMENT_METHOD:
-      return <SetPaymentMethod />
-    default:
-      return <Default />
+  if (checkout.loading) {
+    return <Loader type="BLOCK" />
   }
+
+  if (checkout.phase === PHASE.SET_CUSTOMER) {
+    return <SetCustomer />
+  }
+
+  if (checkout.phase === PHASE.SET_PAYMENT_METHOD) {
+    return <SetPaymentMethod />
+  }
+
+  return <Default />
 }
 
 const Default = () => (

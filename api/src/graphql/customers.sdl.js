@@ -4,7 +4,6 @@ export const schema = gql`
   type Customer {
     id: String!
     email: String
-    cartToken: String
   }
 
   type Query {
@@ -17,7 +16,7 @@ export const schema = gql`
   }
 
   input CreateAnonCustomerInput {
-    cartToken: String!
+    id: String
   }
 
   input UpdateCustomerInput {
