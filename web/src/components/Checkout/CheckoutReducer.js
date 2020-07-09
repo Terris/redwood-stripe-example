@@ -26,8 +26,16 @@ export const CheckoutReducer = (state, action) => {
       }
     }
 
+    case 'SET_PAYMENT': {
+      return {
+        ...state,
+        paymentIntent: { ...action.payload },
+        phase: PHASE.CONFIRM_ORDER,
+        loading: false,
+      }
+    }
+
     case 'SET_PHASE': {
-      console.log('REDUCER: ', action.payload)
       return { ...state, phase: action.payload, loading: false }
     }
 

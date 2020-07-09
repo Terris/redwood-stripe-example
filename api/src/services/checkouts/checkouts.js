@@ -1,5 +1,6 @@
 import { context } from '@redwoodjs/api/dist/globalContext'
 
+import { stripe } from 'src/lib/stripe'
 import { userByAuthId, reconcileUsersCustomer } from 'src/services/users/users'
 import {
   invoice as getInvoice,
@@ -26,7 +27,23 @@ export const setCustomer = async ({ input }) => {
     input.customerSource === 'ANON'
       ? await createAnonCustomer()
       : await setCustomerViaAuth()
+  console.log(customer)
   return { customer }
+}
+
+export const setPayment = async ({ input }) => {
+  const intent = await stripe.setupIntents.create({
+    confirm: true,
+    customer: input.customerId,
+    payment_method: input.paymentMethodId,
+    usage: 'on_session',
+  })
+  return {
+    paymentIntent: {
+      clientSecret: intent.client_secret,
+      status: intent.status,
+    },
+  }
 }
 
 // PRIVATE

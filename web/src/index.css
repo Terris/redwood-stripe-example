@@ -33,7 +33,20 @@ button:focus { outline:none }
 .field-error { font-size: 0.8rem; }
 .form-error,.label-error,.field-error,.text-error { color: red; }
 .field-group { display: flex; justify-content: space-between; }
-.ui-loader { position: fixed; top:0; right: 0; bottom: 0; left:0; display: flex; flex-direction: column; justify-content: center; align-items: center; flex-wrap: wrap; background: #fff; }
+.ui-loader {
+  position: fixed;
+  z-index: 9999;
+  top:0;
+  right: 0;
+  bottom: 0;
+  left:0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  background: #fff;
+}
 .ui-loader.ui-loader-inline { position: relative; }
 .ui-loader.ui-loader-block { position: absolute; margin: 0 auto; min-height: 300px; }
 .has-block-loader { position: relative;}

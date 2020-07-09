@@ -74,10 +74,10 @@ export const deleteUser = async ({ id }) => {
   })
 }
 
-export const reconcileUsersCustomer = async ({ userId }) => {
+export const reconcileUsersCustomer = async ({ id }) => {
   // create a new stripe customer
   // and save the customerId to the db user
-  const dbUser = await userByAuthId({ id: authUser.sub })
+  const dbUser = await userByAuthId({ id })
   const customer = await createCustomer({ input: { email: dbUser.email } })
   const user = await updateUser({
     id: dbUser.id,

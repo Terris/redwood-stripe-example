@@ -8,6 +8,7 @@ export const PHASE = {
   SET_CUSTOMER: 'SET_CUSTOMER',
   SET_SHIPPING: 'SET_SHIPPING',
   SET_PAYMENT_METHOD: 'SET_PAYMENT',
+  CONFIRM_ORDER: 'CONFIRM_ORDER',
 }
 
 // Initial State
@@ -15,7 +16,7 @@ export const initialState = {
   phase: PHASE.SET_CUSTOMER,
   customer: null,
   shipping: null,
-  intent: null,
+  paymentIntent: null,
   invoice: null,
   loading: false,
   error: null,
@@ -51,7 +52,6 @@ export const CheckoutProvider = ({ children }) => {
     }
   }
 
-  // set auth customer
   const setCustomer = async ({ customerSource }) => {
     setLoading(true)
     const res = await customer.set({ variables: { input: { customerSource } } })
@@ -61,21 +61,34 @@ export const CheckoutProvider = ({ children }) => {
     })
   }
 
-  // set customer shipping
   const setShipping = async ({ input }) => {
     setLoading(true)
     const res = await customer.setShipping({
       variables: { id: state.customer.id, input },
     })
-    console.log(res)
     dispatch({
       type: 'SET_SHIPPING',
       payload: res.data.setShipping.shipping,
     })
   }
 
+  const setPayment = async ({ paymentMethodId }) => {
+    setLoading(true)
+    const res = await customer.setPayment({
+      variables: {
+        input: {
+          customerId: state.customer.id,
+          paymentMethodId,
+        },
+      },
+    })
+    dispatch({
+      type: 'SET_PAYMENT',
+      payload: res.data.setPayment.paymentIntent,
+    })
+  }
+
   const setPhase = (phase) => {
-    console.log(phase)
     dispatch({
       type: 'SET_PHASE',
       payload: phase,
@@ -89,6 +102,7 @@ export const CheckoutProvider = ({ children }) => {
         initCheckout,
         setCustomer,
         setShipping,
+        setPayment,
         setPhase,
       }}
     >

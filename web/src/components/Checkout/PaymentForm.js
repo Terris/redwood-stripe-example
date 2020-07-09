@@ -34,13 +34,7 @@ export const PaymentForm = () => {
     if (error) {
       setState({ ...state, error: error.message, loading: false })
     } else {
-      setPayment({
-        variables: {
-          input: {
-            paymentMethodId: paymentMethod.id,
-          },
-        },
-      })
+      setPayment({ paymentMethodId: paymentMethod.id })
       setState({ ...state, loading: false })
     }
   }
@@ -55,7 +49,7 @@ export const PaymentForm = () => {
       </div>
       <div className="field">
         <button
-          className="btn"
+          className="btn btn-red"
           type="button"
           style={{ marginRight: '1rem' }}
           onClick={() => setPhase(PHASE.SET_SHIPPING)}
@@ -63,7 +57,7 @@ export const PaymentForm = () => {
           Back to Shipping
         </button>
         <Submit className="btn" disabled={state.loading}>
-          Submit
+          Next: Confirm Order
         </Submit>
       </div>
     </Form>

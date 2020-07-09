@@ -40,14 +40,27 @@ const SET_SHIPPING = gql`
   }
 `
 
+const SET_PAYMENT = gql`
+  mutation setPaymentMutation($input: SetPaymentInput!) {
+    setPayment(input: $input) {
+      paymentIntent {
+        clientSecret
+        status
+      }
+    }
+  }
+`
+
 // API
 export const CheckoutAPI = () => {
   const [setCustomer] = useMutation(SET_CUSTOMER)
   const [setShipping] = useMutation(SET_SHIPPING)
+  const [setPayment] = useMutation(SET_PAYMENT)
   return {
     customer: {
       set: setCustomer,
       setShipping,
+      setPayment,
     },
   }
 }

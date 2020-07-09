@@ -19,5 +19,4 @@ export const CARD_ELEMENT_OPTIONS = {
       iconColor: '#fa755a',
     },
   },
-  hideIcon: true,
 }
