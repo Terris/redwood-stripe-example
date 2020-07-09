@@ -67,9 +67,18 @@ export const CheckoutProvider = ({ children }) => {
     const res = await customer.setShipping({
       variables: { id: state.customer.id, input },
     })
+    console.log(res)
     dispatch({
       type: 'SET_SHIPPING',
-      payload: res,
+      payload: res.data.setShipping.shipping,
+    })
+  }
+
+  const setPhase = (phase) => {
+    console.log(phase)
+    dispatch({
+      type: 'SET_PHASE',
+      payload: phase,
     })
   }
 
@@ -80,6 +89,7 @@ export const CheckoutProvider = ({ children }) => {
         initCheckout,
         setCustomer,
         setShipping,
+        setPhase,
       }}
     >
       {children}

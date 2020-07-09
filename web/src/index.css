@@ -6,7 +6,7 @@
   box-sizing: border-box;
   -webkit-overflow-scrolling: touch;
 }
-html, input, textarea, button { -webkit-font-smoothing: antialiased; font-family: sans-serif; font-size: 16px; color: #444 }
+html, input, textarea, button { -webkit-font-smoothing: antialiased; font-family: sans-serif; font-size: 16px; line-height: 1.4; color: #444 }
 body { margin: 0; padding: 0.5rem 1rem; text-rendering: optimizeLegibility; max-width: 1440px; margin: 0 auto; }
 img  { width: 100% }
 svg  { max-height: 100% }
@@ -90,9 +90,8 @@ button:focus { outline:none }
   .checkout-flow { width: 66.666666%; }
   .checkout-summary { width: 33.333333% }
 }
-.checkout-summary { align-self: flex-start; margin: 1rem; background: #f5f5f7; border-radius: 6px; padding: 0.25rem 0; }
-.checkout-summary .checkout-summary-title { padding: 1rem 1.5rem; }
-.checkout-summary .checkout-summary-item { display: flex; justify-content: space-between; flex-wrap: wrap; padding: 1rem 0.5rem; }
+.checkout-summary { align-self: flex-start; margin: 1rem; background: #f5f5f7; border-radius: 6px; padding: 0.25rem 0.5rem; }
+.checkout-summary .checkout-summary-item { display: flex; justify-content: space-between; flex-wrap: wrap; padding: 1rem 0; }
 .checkout-summary .checkout-summary-item div { padding: 0 1rem; }
 .checkout-summary .checkout-summary-item .checkout-summary-item-qty { font-weight: 700; padding-right: 0.5rem; }
 .checkout-summary .checkout-summary-item .checkout-summary-item-name { margin-right: auto; padding-left: 0; font-weight: 700; }

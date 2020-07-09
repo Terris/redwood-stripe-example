@@ -1,4 +1,5 @@
 import { useCart } from 'src/components/Cart'
+import { useCheckout } from 'src/components/Checkout'
 import { currency } from 'src/utils'
 
 const CheckoutSummaryItem = ({ item }) => (
@@ -12,10 +13,10 @@ const CheckoutSummaryItem = ({ item }) => (
   </div>
 )
 
-export const CheckoutSummary = () => {
+const CartSummary = () => {
   const { cart } = useCart()
   return (
-    <div className="checkout-summary">
+    <>
       <h3 className="checkout-summary-title">Cart Summary</h3>
       {cart &&
         cart.cartItems.map((item) => (
@@ -27,6 +28,45 @@ export const CheckoutSummary = () => {
           {currency(cart.cartTotal)}
         </div>
       </div>
+    </>
+  )
+}
+
+const ShippingSummary = ({ shipping }) => {
+  return (
+    <>
+      <h3 className="checkout-summary-title">Ship To</h3>
+      <p>
+        {shipping?.name}
+        <br />
+        {shipping?.address.line1}
+        <br />
+        {shipping?.address.line2 && (
+          <>
+            {shipping?.address.line2}
+            <br />
+          </>
+        )}
+        {shipping?.address.city}, {shipping?.address.state}
+        {'  '}
+        {shipping?.address.postalCode}
+      </p>
+    </>
+  )
+}
+
+const PaymentSummary = () => <h3>Payment Method</h3>
+
+export const CheckoutSummary = () => {
+  const { checkout } = useCheckout()
+
+  return (
+    <div className="checkout-summary">
+      <CartSummary />
+      {checkout?.customer?.shipping ? (
+        <ShippingSummary shipping={checkout?.customer?.shipping} />
+      ) : null}
+      {checkout?.payment ? <PaymentSummary /> : null}
     </div>
   )
 }

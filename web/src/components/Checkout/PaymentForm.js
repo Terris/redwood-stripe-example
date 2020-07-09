@@ -3,12 +3,12 @@ import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js'
 import { Form, Label, Submit } from '@redwoodjs/web'
 
 import { CARD_ELEMENT_OPTIONS } from 'src/lib/stripe'
-import { useCheckout } from 'src/components/Checkout'
+import { useCheckout, PHASE } from 'src/components/Checkout'
 
 export const PaymentForm = () => {
   const stripe = useStripe()
   const elements = useElements()
-  const { setPayment } = useCheckout()
+  const { setPayment, setPhase } = useCheckout()
   const [state, setState] = useState({
     loading: false,
     error: null,
@@ -54,6 +54,14 @@ export const PaymentForm = () => {
         <CardElement options={CARD_ELEMENT_OPTIONS} />
       </div>
       <div className="field">
+        <button
+          className="btn"
+          type="button"
+          style={{ marginRight: '1rem' }}
+          onClick={() => setPhase(PHASE.SET_SHIPPING)}
+        >
+          Back to Shipping
+        </button>
         <Submit className="btn" disabled={state.loading}>
           Submit
         </Submit>

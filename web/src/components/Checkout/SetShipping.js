@@ -4,7 +4,7 @@ import { Form, Label, TextField, FieldError, Submit } from '@redwoodjs/web'
 import { useCheckout } from 'src/components/Checkout'
 
 export const SetShipping = () => {
-  const { setShipping } = useCheckout()
+  const { checkout, setShipping } = useCheckout()
   const [state, setState] = useState({
     loading: false,
     error: null,
@@ -28,6 +28,7 @@ export const SetShipping = () => {
         <TextField
           name="name"
           placeholder="Bender Bending Rodriguez"
+          defaultValue={checkout.customer.shipping.name}
           validation={{
             required: 'Name is required',
           }}
@@ -43,6 +44,7 @@ export const SetShipping = () => {
         <TextField
           name="line1"
           placeholder="123 Short Circuit Drive"
+          defaultValue={checkout.customer.shipping.address.line1}
           validation={{
             required: 'Street address is required',
           }}
@@ -52,7 +54,12 @@ export const SetShipping = () => {
       </div>
 
       <div className="field" style={{ paddingTop: '0' }}>
-        <TextField name="line2" placeholder="#5" errorClassName="input-error" />
+        <TextField
+          name="line2"
+          defaultValue={checkout.customer.shipping.address.line2}
+          placeholder="#5"
+          errorClassName="input-error"
+        />
       </div>
       <div className="field-group">
         <div className="field" style={{ width: '66.666666%' }}>
@@ -62,6 +69,7 @@ export const SetShipping = () => {
           <TextField
             name="city"
             placeholder="Bishop"
+            defaultValue={checkout.customer.shipping.address.city}
             validation={{
               required: 'City is required.',
             }}
@@ -77,6 +85,7 @@ export const SetShipping = () => {
           <TextField
             name="state"
             placeholder="AI"
+            defaultValue={checkout.customer.shipping.address.state}
             validation={{
               required: 'State is required.',
             }}
@@ -92,6 +101,7 @@ export const SetShipping = () => {
           <TextField
             name="postalCode"
             placeholder="W9 1ER"
+            defaultValue={checkout.customer.shipping.address.postalCode}
             validation={{
               required: 'Postal Code is required.',
             }}
@@ -103,7 +113,7 @@ export const SetShipping = () => {
 
       <div className="field">
         <Submit className="btn" disabled={state.loading}>
-          Submit
+          Next: Payment Method
         </Submit>
       </div>
     </Form>

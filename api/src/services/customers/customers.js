@@ -4,26 +4,25 @@ import { requirePermission } from 'src/lib/auth'
 export const customers = async () => {
   requirePermission('admin')
   const customers = stripe.customers.list()
-  return customers
+  return castCustomer(customers)
 }
 
 export const customer = async ({ id }) => {
-  requirePermission('admin')
   const customer = await stripe.customers.retrieve(id)
   customer.cartToken = customer.metadata.cartToken || null
-  return customer
+  return castCustomer(customer)
 }
 
 export const createCustomer = async ({ input }) => {
   const customer = await stripe.customers.create({
     email: input.email,
   })
-  return customer
+  return castCustomer(customer)
 }
 
 export const createAnonCustomer = async () => {
   const customer = await stripe.customers.create()
-  return customer
+  return castCustomer(customer)
 }
 
 export const setShipping = async ({ id, input }) => {
@@ -39,7 +38,7 @@ export const setShipping = async ({ id, input }) => {
       },
     },
   })
-  return customer
+  return castCustomer(customer)
 }
 
 export const updateCustomer = async ({ id, input }) => {
@@ -47,11 +46,18 @@ export const updateCustomer = async ({ id, input }) => {
   const customer = await stripe.customers.update(id, {
     email: input.email,
   })
-  return customer
+  return castCustomer(customer)
 }
 
 export const deleteCustomer = async ({ id }) => {
   requirePermission('admin')
   const customer = await stripe.customers.del(id)
+  return castCustomer(customer)
+}
+
+// PRIVATE
+
+const castCustomer = (customer) => {
+  customer.shipping.address.postalCode = customer.shipping.address.postal_code
   return customer
 }

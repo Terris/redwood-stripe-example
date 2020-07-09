@@ -4,7 +4,12 @@ export const schema = gql`
   type Customer {
     id: String!
     email: String
-    shipping: Address
+    shipping: Shipping
+  }
+
+  type Shipping {
+    name: String
+    address: Address
   }
 
   type Address {
