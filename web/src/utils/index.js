@@ -10,10 +10,12 @@ export const token = (length) =>
 
 // recursive function to delete
 export const siftObject = (obj, key) => {
-  delete obj[key]
-  for (let item in obj) {
-    if (typeof obj[item] === 'object') {
-      siftObject(obj[item], key)
+  if (obj) {
+    delete obj[key]
+    for (let item in obj) {
+      if (typeof obj[item] === 'object') {
+        siftObject(obj[item], key)
+      }
     }
   }
   return obj
