@@ -88,7 +88,8 @@ export const CheckoutProvider = ({ children }) => {
         },
       },
     })
-    console.log(res)
+    // if succeeded
+    // else
     dispatch({
       type: 'FINALIZE_WITH_PAYMENT',
       payload: {

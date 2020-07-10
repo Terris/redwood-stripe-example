@@ -57,6 +57,8 @@ export const deleteCustomer = async ({ id }) => {
 // PRIVATE
 
 const castCustomer = (customer) => {
-  customer.shipping.address.postalCode = customer.shipping.address.postal_code
+  if (customer.shipping) {
+    customer.shipping.address.postalCode = customer.shipping.address.postal_code
+  }
   return customer
 }

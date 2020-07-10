@@ -3,7 +3,7 @@ import { product } from 'src/services/products/products'
 
 export const invoice = async ({ id }) => {
   const invoice = await stripe.invoices.retrieve(id)
-  return coercedInvoice(invoice)
+  return castInvoice(invoice)
 }
 
 // creates invoice items first then an invoice (per stripe policy)
@@ -13,7 +13,7 @@ export const createInvoiceWithItems = async ({ cartItems, customerId }) => {
     customerId,
   })
   const invoice = await createInvoice({ customerId, invoiceItems })
-  return coercedInvoice(invoice)
+  return castInvoice(invoice)
 }
 
 export const finalizeInvoice = async ({ invoiceId }) => {
@@ -28,7 +28,7 @@ export const payInvoice = async ({ invoiceId, paymentMethodId }) => {
 
 // PRIVATE
 
-const coercedInvoice = (invoice) => ({
+const castInvoice = (invoice) => ({
   ...invoice,
   lines: invoice.lines.data.map((line) => ({
     id: line.id,
