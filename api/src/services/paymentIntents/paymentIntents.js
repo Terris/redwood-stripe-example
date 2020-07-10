@@ -1,18 +1,11 @@
 import { stripe } from 'src/lib/stripe'
-import { requirePermission } from 'src/lib/auth'
 
-export const paymentIntent = async ({ id }) => {
-  return true
-}
-
-export const createPaymentIntent = async ({ input }) => {
-  return true
-}
-
-export const updatePaymentIntent = async ({ id, input }) => {
-  return true
-}
-
-export const deletePaymentIntent = async ({ id }) => {
-  return true
+export const createSetupIntent = async ({ input }) => {
+  const intent = await stripe.setupIntents.create({
+    confirm: true,
+    customer: input.customerId,
+    payment_method: input.paymentMethodId,
+    usage: 'on_session',
+  })
+  return intent
 }

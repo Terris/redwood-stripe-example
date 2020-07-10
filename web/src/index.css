@@ -77,12 +77,13 @@ button:focus { outline:none }
 .header nav button { padding: 1rem }
 .header .logo { font-weight: 700; }
 .product-list { display: flex; flex-direction: column; flex-wrap: wrap;  }
-.product-list-product { display: flex; flex-direction: column; justify-content: space-between; width: 33.333333%; max-width: 800px; }
+.product-list-product { display: flex; flex-direction: column; justify-content: space-between; max-width: 800px; }
 .product-list-product hr { margin: 0.5rem 1rem; }
 .product-list-product-img { padding-top: 0; padding-bottom: 0; }
 .product-list-product-footer { display: flex; justify-content: space-between; margin-bottom: auto;}
 @media screen and (min-width: 800px) {
-	.product-list { flex-direction: row; justify-content: space-between;}
+  .product-list { flex-direction: row; justify-content: space-between;}
+  .product-list-product { width: 33.333333%; }
 }
 .cart-item { display: flex; padding: 1rem; justify-content: space-between; align-items: center; }
 .cart-item-tools,

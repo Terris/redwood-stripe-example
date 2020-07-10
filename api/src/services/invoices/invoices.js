@@ -7,54 +7,29 @@ export const invoice = async ({ id }) => {
 }
 
 // creates invoice items first then an invoice (per stripe policy)
-export const createInvoiceWithItems = async ({ input }) => {
+export const createInvoiceWithItems = async ({ cartItems, customerId }) => {
   const invoiceItems = await createInvoiceItems({
-    items: input.cartItems,
-    customerId: input.customerId,
+    items: cartItems,
+    customerId,
   })
-  const invoice = await createInvoice({ input, invoiceItems })
+  const invoice = await createInvoice({ customerId, invoiceItems })
   return coercedInvoice(invoice)
 }
 
-export const syncInvoice = async ({ cartItems, invoice, syncToken }) => {
-  const invoiceId = invoice.id
-  const invoiceItems = invoice.lines
-  const memoizedLineItems = []
-  // sync existing items (qty) or add new
-  for (let cartItem of cartItems) {
-    const invoiceItem = invoiceItems.find(
-      (invoiceItem) => invoiceItem.productId === cartItem.id
-    )
-    if (invoiceItem) {
-      memoizedLineItems.push(invoiceItem.productId)
-      await syncInvoiceItemProps({ cartItem, invoiceItem })
-    } else {
-      await createInvoiceItem({
-        item: cartItem,
-        customerId: invoice.customer,
-        invoiceId,
-      })
-    }
-  }
-  // remove invoice items not in cart
-  for (let invoiceItem of invoiceItems) {
-    if (memoizedLineItems.indexOf(invoiceItem.productId) === -1) {
-      await deleteInvoiceItem(invoiceItem.id)
-    }
-  }
-  // set invoice as synced
-  const syncedInvoice = await updateInvoice({
-    id: invoice.id,
-    input: { syncToken },
+export const finalizeInvoice = async ({ invoiceId }) => {
+  return await stripe.invoices.finalizeInvoice(invoiceId)
+}
+
+export const payInvoice = async ({ invoiceId, paymentMethodId }) => {
+  return await stripe.invoices.pay(invoiceId, {
+    payment_method: paymentMethodId,
   })
-  return coercedInvoice(syncedInvoice)
 }
 
 // PRIVATE
 
 const coercedInvoice = (invoice) => ({
   ...invoice,
-  syncToken: invoice.metadata.syncToken,
   lines: invoice.lines.data.map((line) => ({
     id: line.id,
     amount: line.amount,
@@ -63,21 +38,12 @@ const coercedInvoice = (invoice) => ({
   })),
 })
 
-const createInvoice = async ({ input }) => {
+const createInvoice = async ({ customerId }) => {
   const invoice = await stripe.invoices.create({
-    customer: input.customerId,
+    customer: customerId,
     auto_advance: false,
-    metadata: {
-      syncToken: input.syncToken,
-    },
   })
   return invoice
-}
-
-const updateInvoice = async ({ id, input }) => {
-  return stripe.invoices.update(id, {
-    metadata: { syncToken: input.syncToken },
-  })
 }
 
 const createInvoiceItems = async ({ items, customerId }) => {
@@ -97,17 +63,3 @@ const createInvoiceItem = async ({ item, customerId, invoiceId }) => {
   })
   return invoiceItem
 }
-
-const updateInvoiceItem = async ({ id, input }) =>
-  stripe.invoiceItems.update(id, { quantity: input.quantity })
-
-const syncInvoiceItemProps = async ({ cartItem, invoiceItem }) => {
-  return cartItem.qty === invoiceItem.qty
-    ? true
-    : await updateInvoiceItem({
-        id: invoiceItem.id,
-        input: { quantity: cartItem.qty },
-      })
-}
-
-const deleteInvoiceItem = async (id) => await stripe.invoiceItems.del(id)

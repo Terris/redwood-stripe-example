@@ -1,6 +1,7 @@
 import { createContext, useContext, useReducer } from 'react'
 import { useAuth } from '@redwoodjs/auth'
 
+import { useCart } from 'src/components/Cart'
 import { CheckoutReducer, CheckoutAPI } from 'src/components/Checkout'
 
 // The Checkout Phases
@@ -16,6 +17,7 @@ export const initialState = {
   phase: PHASE.SET_CUSTOMER,
   customer: null,
   shipping: null,
+  paymentMethod: null,
   paymentIntent: null,
   invoice: null,
   loading: false,
@@ -32,7 +34,8 @@ export const useCheckout = () => useContext(CheckoutContext)
 export const CheckoutProvider = ({ children }) => {
   const [state, dispatch] = useReducer(CheckoutReducer, initialState)
   const { currentUser } = useAuth()
-  const { customer } = CheckoutAPI()
+  const { cart } = useCart()
+  const API = CheckoutAPI()
 
   // ACTIONS
   // set loading
@@ -54,7 +57,9 @@ export const CheckoutProvider = ({ children }) => {
 
   const setCustomer = async ({ customerSource }) => {
     setLoading(true)
-    const res = await customer.set({ variables: { input: { customerSource } } })
+    const res = await API.setCustomer({
+      variables: { input: { customerSource } },
+    })
     dispatch({
       type: 'SET_CUSTOMER',
       payload: res.data.setCustomer.customer,
@@ -63,7 +68,7 @@ export const CheckoutProvider = ({ children }) => {
 
   const setShipping = async ({ input }) => {
     setLoading(true)
-    const res = await customer.setShipping({
+    const res = await API.setShipping({
       variables: { id: state.customer.id, input },
     })
     dispatch({
@@ -72,19 +77,23 @@ export const CheckoutProvider = ({ children }) => {
     })
   }
 
-  const setPayment = async ({ paymentMethodId }) => {
+  const finalizeWithPayment = async ({ paymentMethodId }) => {
     setLoading(true)
-    const res = await customer.setPayment({
+    const res = await API.finalizeWithPayment({
       variables: {
         input: {
           customerId: state.customer.id,
           paymentMethodId,
+          cart,
         },
       },
     })
+    console.log(res)
     dispatch({
-      type: 'SET_PAYMENT',
-      payload: res.data.setPayment.paymentIntent,
+      type: 'FINALIZE_WITH_PAYMENT',
+      payload: {
+        paymentMethodId,
+      },
     })
   }
 
@@ -102,7 +111,7 @@ export const CheckoutProvider = ({ children }) => {
         initCheckout,
         setCustomer,
         setShipping,
-        setPayment,
+        finalizeWithPayment,
         setPhase,
       }}
     >

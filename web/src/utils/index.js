@@ -7,3 +7,14 @@ export const currency = (amount) => {
 // returns a random string of length
 export const token = (length) =>
   [...Array(length)].map(() => (~~(Math.random() * 36)).toString(36)).join('')
+
+// recursive function to delete
+export const siftObject = (obj, key) => {
+  delete obj[key]
+  for (let item in obj) {
+    if (typeof obj[item] === 'object') {
+      siftObject(obj[item], key)
+    }
+  }
+  return obj
+}

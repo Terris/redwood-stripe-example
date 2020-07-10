@@ -1,4 +1,5 @@
 import { initialState, PHASE } from 'src/components/Checkout/CheckoutContext'
+import { siftObject } from 'src/utils'
 
 // CHECKOUT REDUCER
 export const CheckoutReducer = (state, action) => {
@@ -7,9 +8,10 @@ export const CheckoutReducer = (state, action) => {
       return { ...state, loading: action.payload }
     }
     case 'SET_CUSTOMER': {
+      const customer = siftObject(action.payload, '__typename')
       return {
         ...state,
-        customer: { ...action.payload },
+        customer,
         phase: PHASE.SET_SHIPPING,
         loading: false,
       }
@@ -26,13 +28,14 @@ export const CheckoutReducer = (state, action) => {
       }
     }
 
-    case 'SET_PAYMENT': {
-      return {
+    case 'FINALIZE_WITH_PAYMENT': {
+      const newState = {
         ...state,
-        paymentIntent: { ...action.payload },
+        paymentMethod: { ...action.payload.paymentMethod },
         phase: PHASE.CONFIRM_ORDER,
         loading: false,
       }
+      return newState
     }
 
     case 'SET_PHASE': {

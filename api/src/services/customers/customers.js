@@ -9,7 +9,6 @@ export const customers = async () => {
 
 export const customer = async ({ id }) => {
   const customer = await stripe.customers.retrieve(id)
-  customer.cartToken = customer.metadata.cartToken || null
   return castCustomer(customer)
 }
 

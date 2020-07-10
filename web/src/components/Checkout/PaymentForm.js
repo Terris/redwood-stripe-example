@@ -8,7 +8,7 @@ import { useCheckout, PHASE } from 'src/components/Checkout'
 export const PaymentForm = () => {
   const stripe = useStripe()
   const elements = useElements()
-  const { setPayment, setPhase } = useCheckout()
+  const { finalizeWithPayment, setPhase } = useCheckout()
   const [state, setState] = useState({
     loading: false,
     error: null,
@@ -23,10 +23,9 @@ export const PaymentForm = () => {
       })
       return
     }
-    const cardElement = elements.getElement(CardElement)
     setState({ ...state, error: null, loading: true })
+    const cardElement = elements.getElement(CardElement)
     // create stripe payment method
-
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: 'card',
       card: cardElement,
@@ -34,7 +33,7 @@ export const PaymentForm = () => {
     if (error) {
       setState({ ...state, error: error.message, loading: false })
     } else {
-      setPayment({ paymentMethodId: paymentMethod.id })
+      finalizeWithPayment({ paymentMethodId: paymentMethod.id })
       setState({ ...state, loading: false })
     }
   }
@@ -54,10 +53,10 @@ export const PaymentForm = () => {
           style={{ marginRight: '1rem' }}
           onClick={() => setPhase(PHASE.SET_SHIPPING)}
         >
-          Back to Shipping
+          Back to Shipping Method
         </button>
         <Submit className="btn" disabled={state.loading}>
-          Next: Confirm Order
+          Confirm Order and Pay
         </Submit>
       </div>
     </Form>

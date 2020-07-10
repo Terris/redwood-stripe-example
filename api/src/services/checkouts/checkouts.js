@@ -1,10 +1,12 @@
 import { context } from '@redwoodjs/api/dist/globalContext'
 
-import { stripe } from 'src/lib/stripe'
+import { createSetupIntent } from 'src/services/paymentIntents/paymentIntents'
 import { userByAuthId, reconcileUsersCustomer } from 'src/services/users/users'
 import {
   invoice as getInvoice,
   createInvoiceWithItems,
+  finalizeInvoice,
+  payInvoice,
 } from 'src/services/invoices/invoices'
 import { customer, createAnonCustomer } from 'src/services/customers/customers'
 
@@ -27,23 +29,29 @@ export const setCustomer = async ({ input }) => {
     input.customerSource === 'ANON'
       ? await createAnonCustomer()
       : await setCustomerViaAuth()
-  console.log(customer)
   return { customer }
 }
 
-export const setPayment = async ({ input }) => {
-  const intent = await stripe.setupIntents.create({
-    confirm: true,
-    customer: input.customerId,
-    payment_method: input.paymentMethodId,
-    usage: 'on_session',
+export const finalizeWithPayment = async ({ input }) => {
+  // setup intent
+  const setupIntent = await createSetupIntent({ input })
+  // create invoice with items
+  const invoice = await createInvoiceWithItems({
+    cartItems: input.cart.cartItems,
+    customerId: input.customerId,
+    setupIntent,
   })
-  return {
-    paymentIntent: {
-      clientSecret: intent.client_secret,
-      status: intent.status,
-    },
+  // finalize invoice
+  const finalizedInvoice = await finalizeInvoice({ invoiceId: invoice.id })
+  // pay invoice
+  const paidInvoice = await payInvoice({
+    invoiceId: finalizedInvoice.id,
+    paymentMethodId: input.paymentMethodId,
+  })
+  const checkout = {
+    invoice: paidInvoice,
   }
+  return checkout
 }
 
 // PRIVATE

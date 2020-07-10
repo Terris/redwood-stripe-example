@@ -1,4 +1,5 @@
 import { initialStateStructure } from 'src/components/Cart/CartContext'
+import { siftObject } from 'src/utils'
 
 // localStorage functions
 const setStorage = (state) =>
@@ -27,7 +28,8 @@ export const CartReducer = (state, action) => {
         })
       } else {
         // add item
-        cartItems = [{ ...action.payload.item, qty: 1 }, ...state.cartItems]
+        const newItem = siftObject(action.payload.item, '__typename')
+        cartItems = [{ ...newItem, qty: 1 }, ...state.cartItems]
       }
       const newState = {
         ...state,

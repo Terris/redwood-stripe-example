@@ -8,34 +8,33 @@ export const schema = gql`
     customerSource: String
   }
 
-  type PaymentIntent {
-    clientSecret: String!
-    status: String!
-  }
-
-  input CartItemInput {
-    id: String!
-    qty: Int!
-    unitAmount: Int!
-  }
-
-  input CartInput {
-    cartItems: [CartItemInput!]
-    invoiceId: String
-    syncToken: String!
-  }
-
   input SetCustomerInput {
     customerSource: String!
   }
 
-  input SetPaymentInput {
+  input FinalizeWithPaymentInput {
     customerId: String!
     paymentMethodId: String!
+    cart: CartInput!
+  }
+
+  input CartInput {
+    cartTotal: Int!
+    cartItems: [CartItemInput!]
+  }
+
+  input CartItemInput {
+    id: String!
+    name: String
+    description: String
+    qty: Int!
+    priceId: String!
+    unitAmount: Int!
+    images: [String!]
   }
 
   type Mutation {
     setCustomer(input: SetCustomerInput!): Checkout!
-    setPayment(input: SetPaymentInput!): Checkout!
+    finalizeWithPayment(input: FinalizeWithPaymentInput!): Checkout!
   }
 `

@@ -7,7 +7,7 @@ export const schema = gql`
     amount_due: Int
     status: String
     lines: [LineItem!]
-    syncToken: String!
+    paymentIntent: PaymentIntent
   }
 
   type LineItem {

@@ -40,11 +40,11 @@ const SET_SHIPPING = gql`
   }
 `
 
-const SET_PAYMENT = gql`
-  mutation setPaymentMutation($input: SetPaymentInput!) {
-    setPayment(input: $input) {
-      paymentIntent {
-        clientSecret
+const FINALIZE_WITH_PAYMENT = gql`
+  mutation finalizeWithPaymentMutation($input: FinalizeWithPaymentInput!) {
+    finalizeWithPayment(input: $input) {
+      invoice {
+        id
         status
       }
     }
@@ -55,12 +55,11 @@ const SET_PAYMENT = gql`
 export const CheckoutAPI = () => {
   const [setCustomer] = useMutation(SET_CUSTOMER)
   const [setShipping] = useMutation(SET_SHIPPING)
-  const [setPayment] = useMutation(SET_PAYMENT)
+  const [finalizeWithPayment] = useMutation(FINALIZE_WITH_PAYMENT)
+
   return {
-    customer: {
-      set: setCustomer,
-      setShipping,
-      setPayment,
-    },
+    setCustomer,
+    setShipping,
+    finalizeWithPayment,
   }
 }

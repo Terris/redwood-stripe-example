@@ -17,7 +17,7 @@ export const ProductListProduct = ({ product }) => {
 
   useEffect(() => {
     return () => clearTimeout(cartingTimer)
-  })
+  }, [cartingTimer])
 
   return (
     <div className="product-list-product">
