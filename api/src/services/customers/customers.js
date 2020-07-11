@@ -24,7 +24,7 @@ export const createAnonCustomer = async () => {
   return castCustomer(customer)
 }
 
-export const setShipping = async ({ id, input }) => {
+export const setCustomerShipping = async ({ id, input }) => {
   const customer = await stripe.customers.update(id, {
     shipping: {
       name: input.name,
@@ -48,17 +48,17 @@ export const updateCustomer = async ({ id, input }) => {
   return castCustomer(customer)
 }
 
-export const deleteCustomer = async ({ id }) => {
-  requirePermission('admin')
-  const customer = await stripe.customers.del(id)
-  return castCustomer(customer)
-}
-
 // PRIVATE
 
 const castCustomer = (customer) => {
   if (customer.shipping) {
     customer.shipping.address.postalCode = customer.shipping.address.postal_code
+  }
+  if (customer.invoice_settings) {
+    customer.invoiceSettings = {
+      ...customer.invoice_settings,
+      defaultPaymentMethod: customer.invoice_settings.default_payment_method,
+    }
   }
   return customer
 }

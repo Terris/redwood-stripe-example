@@ -8,7 +8,7 @@ import { SetCustomer } from './SetCustomer'
 import { SetShipping } from './SetShipping'
 import { SetPayment } from './SetPayment'
 import { PaymentForm } from './PaymentForm'
-import { ConfirmOrder } from './ConfirmOrder'
+import { OrderConfirmation } from './OrderConfirmation'
 
 export {
   CheckoutAPI,
@@ -23,5 +23,5 @@ export {
   SetShipping,
   SetPayment,
   PaymentForm,
-  ConfirmOrder,
+  OrderConfirmation,
 }

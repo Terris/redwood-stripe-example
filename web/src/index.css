@@ -17,7 +17,7 @@ a,
 nav button { text-decoration: none; color: #5b68a5; border: none; background: transparent; }
 a:hover,
 nav button:hover { text-decoration: underline; background: transparent }
-label { cursor: pointer; }
+label { cursor: pointer; font-size: 0.8rem; font-weight: 700; }
 input,
 .stripe-input { display: block; width: 100%; padding: 0.5rem; border: 1px solid #c3c3c3; border-radius: 3px; }
 input[type="checkbox"] { width: auto; display: inline-block; margin-right: 1rem; }
@@ -26,9 +26,11 @@ input:focus,
 button { padding: 0.5rem 1rem; cursor:pointer; border: none; background: #5b68a5; color: #fff; border-radius: 3px; }
 button:hover { background: #7e92ef; }
 button:focus { outline:none }
-.btn-red { background: #7a819e; }
-.btn-red:hover { background: #95a2d6; }
+.btn-subdued { background: #7a819e; }
+.btn-subdued:hover { background: #95a2d6; }
 .btn-feedback { animation: pulse 1s 1; cursor: wait; }
+.btn-link { background: none; display: inline; color: #5b68a5; padding: 0 }
+.btn-link:hover { background: none; text-decoration: underline;}
 .input-error { border-color: red; }
 .field-error { font-size: 0.8rem; }
 .form-error,.label-error,.field-error,.text-error { color: red; }
@@ -100,11 +102,13 @@ button:focus { outline:none }
 .cart-footer .cart-total { padding: 0 1rem; text-align: right; font-size: 1.25rem; width: 75%; }
 .cart-item .cart-product { width: 75%; }
 @media screen and (min-width: 800px) {
-  .checkout { display: flex; justify-content: space-between; align-items: top; }
+  .checkout { display: flex; justify-content: space-between; }
   .checkout-flow { width: 66.666666%; }
   .checkout-summary { width: 33.333333% }
 }
 .checkout-summary { align-self: flex-start; margin: 1rem; background: #f5f5f7; border-radius: 6px; padding: 0.25rem 0.5rem; }
+.checkout-summary hr { border-color: #e3e3e6 }
+.checkout-summary .checkout-summary-title { padding-bottom: 0;}
 .checkout-summary .checkout-summary-item { display: flex; justify-content: space-between; flex-wrap: wrap; padding: 1rem 0; }
 .checkout-summary .checkout-summary-item div { padding: 0 1rem; }
 .checkout-summary .checkout-summary-item .checkout-summary-item-qty { font-weight: 700; padding-right: 0.5rem; }
@@ -121,7 +125,7 @@ button:focus { outline:none }
 
 @keyframes pulse {
   0% {
-    background: #5b68a5;
+    background: #95a2d6;
   }
   50% {
     background:#4cdc9b;
@@ -138,3 +142,7 @@ button:focus { outline:none }
     transform: rotate(360deg);
   }
 }
+
+/* UTILS */
+
+.text-small { font-size: 0.8rem; }

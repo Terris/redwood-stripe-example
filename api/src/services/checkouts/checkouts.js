@@ -1,29 +1,21 @@
 import { context } from '@redwoodjs/api/dist/globalContext'
 
-import { createSetupIntent } from 'src/services/paymentIntents/paymentIntents'
 import { userByAuthId, reconcileUsersCustomer } from 'src/services/users/users'
 import {
-  invoice as getInvoice,
+  customer,
+  createAnonCustomer,
+  setCustomerShipping,
+} from 'src/services/customers/customers'
+import { createSetupIntent } from 'src/services/setupIntents/setupIntents'
+import { paymentMethod } from 'src/services/paymentMethods/paymentMethods'
+import {
   createInvoiceWithItems,
   finalizeInvoice,
   payInvoice,
+  mergeInvoiceProducts,
 } from 'src/services/invoices/invoices'
-import { customer, createAnonCustomer } from 'src/services/customers/customers'
 
-export const checkout = async ({ input }) => {
-  const invoice = input.invoiceId
-    ? await getInvoice({ id: input.invoiceId })
-    : await createInvoiceWithItems({
-        input: {
-          cartItems: input.cartItems,
-          customerId: input.customer.id,
-        },
-      })
-  return {
-    invoice,
-  }
-}
-
+// SET CUSTOMER
 export const setCustomer = async ({ input }) => {
   const customer =
     input.customerSource === 'ANON'
@@ -32,14 +24,30 @@ export const setCustomer = async ({ input }) => {
   return { customer }
 }
 
-export const finalizeWithPayment = async ({ input }) => {
-  // setup intent
-  const setupIntent = await createSetupIntent({ input })
+// SET SHIPPING
+export const setShipping = async ({ customerId, input }) => {
+  const customer = await setCustomerShipping({ id: customerId, input })
+  return { customer }
+}
+
+// SET INTENT
+export const setIntent = async ({ customerId }) => {
+  const setupIntent = await createSetupIntent({ customerId })
+  return { setupIntent }
+}
+
+// SET PAYMENT
+export const setPayment = async ({ paymentMethodId }) => {
+  const method = await paymentMethod({ id: paymentMethodId })
+  return { paymentMethod: method }
+}
+
+// PLACE ORDER
+export const placeOrder = async ({ input }) => {
   // create invoice with items
   const invoice = await createInvoiceWithItems({
     cartItems: input.cart.cartItems,
     customerId: input.customerId,
-    setupIntent,
   })
   // finalize invoice
   const finalizedInvoice = await finalizeInvoice({ invoiceId: invoice.id })
@@ -48,10 +56,13 @@ export const finalizeWithPayment = async ({ input }) => {
     invoiceId: finalizedInvoice.id,
     paymentMethodId: input.paymentMethodId,
   })
-  const checkout = {
+  // merge invoice products
+  const invoiceWithProducts = await mergeInvoiceProducts({
     invoice: paidInvoice,
+  })
+  return {
+    invoice: invoiceWithProducts,
   }
-  return checkout
 }
 
 // PRIVATE

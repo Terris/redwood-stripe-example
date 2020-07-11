@@ -7,7 +7,7 @@ import {
   SetCustomer,
   SetShipping,
   SetPayment,
-  ConfirmOrder,
+  OrderConfirmation,
 } from 'src/components/Checkout'
 
 import { Loader } from '../UI'
@@ -28,8 +28,8 @@ export const CheckoutFlow = () => {
         <SetShipping />
       ) : checkout.phase === PHASE.SET_PAYMENT ? (
         <SetPayment />
-      ) : checkout.phase === PHASE.CONFIRM_ORDER ? (
-        <ConfirmOrder />
+      ) : checkout.phase === PHASE.ORDER_CONFIRMATION ? (
+        <OrderConfirmation />
       ) : (
         <Default />
       )}

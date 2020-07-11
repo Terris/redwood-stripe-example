@@ -3,11 +3,12 @@ import gql from 'graphql-tag'
 export const schema = gql`
   type Invoice {
     id: String!
+    amountPaid: Int
     customer: String!
-    amount_due: Int
-    status: String
+    customerShipping: Shipping
     lines: [LineItem!]
-    paymentIntent: PaymentIntent
+    paymentIntent: SetupIntent
+    status: String
   }
 
   type LineItem {

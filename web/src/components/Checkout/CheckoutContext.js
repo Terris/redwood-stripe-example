@@ -8,17 +8,17 @@ import { CheckoutReducer, CheckoutAPI } from 'src/components/Checkout'
 export const PHASE = {
   SET_CUSTOMER: 'SET_CUSTOMER',
   SET_SHIPPING: 'SET_SHIPPING',
+  // SET_INTENT: 'SET_INTENT', // programmatic phase only
   SET_PAYMENT_METHOD: 'SET_PAYMENT',
-  CONFIRM_ORDER: 'CONFIRM_ORDER',
+  ORDER_CONFIRMATION: 'ORDER_CONFIRMATION',
 }
 
 // Initial State
 export const initialState = {
   phase: PHASE.SET_CUSTOMER,
   customer: null,
-  shipping: null,
   paymentMethod: null,
-  paymentIntent: null,
+  setupIntent: null,
   invoice: null,
   loading: false,
   error: null,
@@ -34,7 +34,7 @@ export const useCheckout = () => useContext(CheckoutContext)
 export const CheckoutProvider = ({ children }) => {
   const [state, dispatch] = useReducer(CheckoutReducer, initialState)
   const { currentUser } = useAuth()
-  const { cart } = useCart()
+  const { cart, clearCart } = useCart()
   const API = CheckoutAPI()
 
   // ACTIONS
@@ -69,17 +69,28 @@ export const CheckoutProvider = ({ children }) => {
   const setShipping = async ({ input }) => {
     setLoading(true)
     const res = await API.setShipping({
-      variables: { id: state.customer.id, input },
+      variables: { customerId: state.customer.id, input },
     })
     dispatch({
       type: 'SET_SHIPPING',
-      payload: res.data.setShipping.shipping,
+      payload: res.data.setShipping.customer,
     })
   }
 
-  const finalizeWithPayment = async ({ paymentMethodId }) => {
+  const setIntent = async () => {
     setLoading(true)
-    const res = await API.finalizeWithPayment({
+    const res = await API.setIntent({
+      variables: { customerId: state.customer.id },
+    })
+    dispatch({
+      type: 'SET_INTENT',
+      payload: res.data.setIntent.setupIntent,
+    })
+  }
+
+  const placeOrder = async ({ paymentMethodId }) => {
+    setLoading(true)
+    const res = await API.placeOrder({
       variables: {
         input: {
           customerId: state.customer.id,
@@ -88,14 +99,13 @@ export const CheckoutProvider = ({ children }) => {
         },
       },
     })
-    // if succeeded
-    // else
-    dispatch({
-      type: 'FINALIZE_WITH_PAYMENT',
-      payload: {
-        paymentMethodId,
-      },
-    })
+    if (res.data.placeOrder.invoice.status === 'paid') {
+      clearCart()
+      dispatch({
+        type: 'PLACE_ORDER',
+        payload: res.data.placeOrder.invoice,
+      })
+    }
   }
 
   const setPhase = (phase) => {
@@ -112,7 +122,8 @@ export const CheckoutProvider = ({ children }) => {
         initCheckout,
         setCustomer,
         setShipping,
-        finalizeWithPayment,
+        setIntent,
+        placeOrder,
         setPhase,
       }}
     >

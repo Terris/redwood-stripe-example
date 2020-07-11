@@ -1,7 +1,7 @@
 import gql from 'graphql-tag'
 
 export const schema = gql`
-  type PaymentIntent {
+  type SetupIntent {
     clientSecret: String!
     status: String!
   }

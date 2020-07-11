@@ -1,4 +1,4 @@
-import { useMutation } from '@apollo/react-hooks'
+import { useMutation, useLazyQuery } from '@apollo/react-hooks'
 
 // MUTATIONS
 const SET_CUSTOMER = gql`
@@ -23,29 +23,67 @@ const SET_CUSTOMER = gql`
 `
 
 const SET_SHIPPING = gql`
-  mutation setShippingMutation($id: String!, $input: SetShippingInput!) {
-    setShipping(id: $id, input: $input) {
-      id
-      shipping {
-        name
-        address {
-          line1
-          line2
-          city
-          state
-          postalCode
+  mutation setShippingMutation(
+    $customerId: String!
+    $input: SetShippingInput!
+  ) {
+    setShipping(customerId: $customerId, input: $input) {
+      customer {
+        id
+        email
+        shipping {
+          name
+          address {
+            line1
+            line2
+            city
+            state
+            postalCode
+          }
         }
       }
     }
   }
 `
 
-const FINALIZE_WITH_PAYMENT = gql`
-  mutation finalizeWithPaymentMutation($input: FinalizeWithPaymentInput!) {
-    finalizeWithPayment(input: $input) {
+const SET_INTENT = gql`
+  mutation setIntentMutation($customerId: String!) {
+    setIntent(customerId: $customerId) {
+      setupIntent {
+        status
+        clientSecret
+      }
+    }
+  }
+`
+
+const PLACE_ORDER = gql`
+  mutation placeOrderMutation($input: PlaceOrderInput!) {
+    placeOrder(input: $input) {
       invoice {
         id
         status
+        amountPaid
+        customerShipping {
+          name
+          address {
+            line1
+            line2
+            city
+            state
+            postalCode
+          }
+        }
+        lines {
+          qty
+          product {
+            id
+            name
+            description
+            images
+            unitAmount
+          }
+        }
       }
     }
   }
@@ -55,11 +93,13 @@ const FINALIZE_WITH_PAYMENT = gql`
 export const CheckoutAPI = () => {
   const [setCustomer] = useMutation(SET_CUSTOMER)
   const [setShipping] = useMutation(SET_SHIPPING)
-  const [finalizeWithPayment] = useMutation(FINALIZE_WITH_PAYMENT)
+  const [setIntent] = useMutation(SET_INTENT)
+  const [placeOrder] = useMutation(PLACE_ORDER)
 
   return {
     setCustomer,
     setShipping,
-    finalizeWithPayment,
+    setIntent,
+    placeOrder,
   }
 }

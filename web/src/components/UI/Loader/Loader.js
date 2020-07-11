@@ -1,4 +1,4 @@
-export const Loader = ({ message, inline, type }) => {
+export const Loader = ({ message, type }) => {
   const typeClasses = {
     INLINE: 'ui-loader-inline',
     BLOCK: 'ui-loader-block',

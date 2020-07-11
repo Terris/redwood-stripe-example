@@ -21,7 +21,7 @@ export const Cart = () => {
         <CartTotal label="Subtotal:" />
         <div className="cart-footer-actions">
           <button onClick={() => navigate(routes.checkout())}>Checkout</button>{' '}
-          <button onClick={() => clearCartItems()} className="btn-red">
+          <button onClick={() => clearCartItems()} className="btn-subdued">
             Clear Cart
           </button>
         </div>

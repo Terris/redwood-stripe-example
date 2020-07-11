@@ -21,19 +21,44 @@ export const finalizeInvoice = async ({ invoiceId }) => {
 }
 
 export const payInvoice = async ({ invoiceId, paymentMethodId }) => {
-  return await stripe.invoices.pay(invoiceId, {
+  const invoice = await stripe.invoices.pay(invoiceId, {
     payment_method: paymentMethodId,
+    off_session: false,
   })
+  return castInvoice(invoice)
+}
+
+export const mergeInvoiceProducts = async ({ invoice }) => {
+  // should receive pre-casted invoice
+  const newLines = []
+  for (let line of invoice.lines) {
+    const lineProduct = await product({ id: line.productId })
+    newLines.push({
+      ...line,
+      lineProduct,
+    })
+  }
+  invoice.lines = newLines
+  return invoice
 }
 
 // PRIVATE
 
 const castInvoice = (invoice) => ({
   ...invoice,
+  amountPaid: invoice.amountPaid,
+  customerShipping: {
+    ...invoice.customer_shipping,
+    address: {
+      ...invoice.customer_shipping.address,
+      postalCode: invoice.customer_shipping.address.postal_code,
+    },
+  },
   lines: invoice.lines.data.map((line) => ({
     id: line.id,
     amount: line.amount,
     productId: line.price.product,
+    product: line.product,
     qty: line.quantity,
   })),
 })

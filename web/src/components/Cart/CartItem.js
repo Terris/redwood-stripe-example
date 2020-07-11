@@ -27,7 +27,10 @@ export const CartItem = ({ item }) => {
             onChange={(e) => onChange(e.currentTarget.value)}
           />
         </div>
-        <button onClick={() => deleteItem({ id: item.id })} className="btn-red">
+        <button
+          onClick={() => deleteItem({ id: item.id })}
+          className="btn-subdued"
+        >
           Remove
         </button>
       </div>

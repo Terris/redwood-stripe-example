@@ -1,18 +1,24 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js'
 import { Form, Label, Submit } from '@redwoodjs/web'
 
 import { CARD_ELEMENT_OPTIONS } from 'src/lib/stripe'
 import { useCheckout, PHASE } from 'src/components/Checkout'
 
+import { Loader } from '../UI'
+
 export const PaymentForm = () => {
   const stripe = useStripe()
   const elements = useElements()
-  const { finalizeWithPayment, setPhase } = useCheckout()
+  const { checkout, setIntent, placeOrder, setPhase } = useCheckout()
   const [state, setState] = useState({
     loading: false,
     error: null,
   })
+
+  useEffect(() => {
+    setIntent()
+  }, [])
 
   const onSubmit = async () => {
     if (!stripe || !elements) {
@@ -26,29 +32,41 @@ export const PaymentForm = () => {
     setState({ ...state, error: null, loading: true })
     const cardElement = elements.getElement(CardElement)
     // create stripe payment method
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: 'card',
-      card: cardElement,
-    })
+    const { error, setupIntent } = await stripe.confirmCardSetup(
+      checkout.setupIntent.clientSecret,
+      {
+        payment_method: {
+          card: cardElement,
+        },
+      }
+    )
     if (error) {
       setState({ ...state, error: error.message, loading: false })
+    } else if (setupIntent.status === 'requires_action') {
+      setState({ ...state, loading: true })
     } else {
-      finalizeWithPayment({ paymentMethodId: paymentMethod.id })
       setState({ ...state, loading: false })
+      placeOrder({ paymentMethodId: setupIntent.payment_method })
     }
   }
 
   return (
-    <Form onSubmit={onSubmit}>
+    <Form onSubmit={onSubmit} className="has-block-loader">
+      {state.loading && <Loader type="BLOCK" />}
       {state.error && <p className="form-error">{state.error}</p>}
       <h4 style={{ paddingBottom: '0' }}>Payment Method</h4>
       <div className="field">
         <Label>Card</Label>
         <CardElement options={CARD_ELEMENT_OPTIONS} />
       </div>
+      <p className="text-small">
+        By clicking &ldquo;Next&rdquo; below you authorize BodaciousBots to send
+        instructions to the financial institution that issued your card to take
+        payment from your account.
+      </p>
       <div className="field">
         <button
-          className="btn btn-red"
+          className="btn btn-subdued"
           type="button"
           style={{ marginRight: '1rem' }}
           onClick={() => setPhase(PHASE.SET_SHIPPING)}
@@ -56,7 +74,7 @@ export const PaymentForm = () => {
           Back to Shipping Method
         </button>
         <Submit className="btn" disabled={state.loading}>
-          Confirm Order and Pay
+          Submit Order and Pay
         </Submit>
       </div>
     </Form>
