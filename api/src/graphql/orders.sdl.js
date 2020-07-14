@@ -7,6 +7,7 @@ export const schema = gql`
   }
 
   type Query {
+    orders: [Order!]!
     order(id: String!): Order!
   }
 `

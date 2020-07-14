@@ -131,7 +131,7 @@ button:focus { outline:none; }
 .order-receipt-header { display: flex; }
 .order-receipt-number { margin: 0 auto; }
 .order-line-items { padding: 1rem; }
-.footer { padding: 3rem 0; font-size: 0.8rem; color: #ccc; }
+.footer { padding: 6rem 0; font-size: 0.8rem; color: #ccc; }
 .footer a { opacity: 0.35; transition: opacity 0.2s ease; color: #000; }
 .footer a:hover { opacity: 1;}
 .footer img { margin-right: 0.5rem; }

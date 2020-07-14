@@ -45,6 +45,7 @@ const Routes = () => {
           page={AdminProductsPage}
           name="adminProducts"
         />
+        <Route path="/admin/orders" page={AdminOrdersPage} name="adminOrders" />
       </Private>
       <Route
         path="/confirm-email"

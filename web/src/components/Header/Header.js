@@ -14,8 +14,9 @@ const PrimaryNav = () => (
 
 const AdminNav = () => (
   <nav className="nav-admin">
-    <Link to={routes.adminUsers()}>Admin Users</Link>
-    <Link to={routes.adminProducts()}>Admin Products</Link>
+    <Link to={routes.adminUsers()}>Users</Link>
+    <Link to={routes.adminProducts()}>Products</Link>
+    <Link to={routes.adminOrders()}>Orders</Link>
   </nav>
 )
 
