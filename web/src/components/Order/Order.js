@@ -28,8 +28,12 @@ export const Order = () => {
               <br />
               {data.order.invoice.customerShipping.address.line1}
               <br />
-              {data.order.invoice.customerShipping.address.line2}
-              <br />
+              {data.order.invoice.customerShipping.address.line2 && (
+                <>
+                  {data.order.invoice.customerShipping.address.line2}
+                  <br />
+                </>
+              )}
               {data.order.invoice.customerShipping.address.city},
               {data.order.invoice.customerShipping.address.state}
               {'  '}
