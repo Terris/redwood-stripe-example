@@ -59,6 +59,7 @@ export const PaymentForm = () => {
         <Label>Card</Label>
         <CardElement options={CARD_ELEMENT_OPTIONS} />
       </div>
+      <p>Test card: 4242 4242 4242 4242 : 04/24 : 242 : 42424</p>
       <p className="text-small">
         By clicking &ldquo;Next&rdquo; below you authorize BodaciousBots to send
         instructions to the financial institution that issued your card to take
