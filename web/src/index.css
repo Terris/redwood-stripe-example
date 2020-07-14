@@ -8,7 +8,7 @@
 }
 html, input, textarea, button { -webkit-font-smoothing: antialiased; font-family: sans-serif; font-size: 16px; line-height: 1.4; color: #444 }
 body { margin: 0; padding: 0.5rem 1rem; text-rendering: optimizeLegibility; max-width: 1440px; margin: 0 auto; }
-img  { width: 100% }
+img  { width: 100%; vertical-align: text-bottom; }
 svg  { max-height: 100% }
 h1,h2,h3,h4,p,ul,ol,figure,.field {padding: 1rem;}
 strong, .strong { font-weight: 700; }
@@ -20,18 +20,18 @@ th.number-cell,
 td.number-cell { text-align: right; }
 th { background: #f7f7f7; }
 a,
-nav button { text-decoration: none; color: #5b68a5; border: none; background: transparent; }
+nav button { text-decoration: none; color: #5b68a5; border: none; background: transparent; transition: opacity 0.2s ease; }
 a:hover,
-nav button:hover { text-decoration: underline; background: transparent }
+nav button:hover { background: transparent; opacity: 0.65; }
 label { cursor: pointer; font-size: 0.8rem; font-weight: 700; }
 input,
 .stripe-input { display: block; width: 100%; padding: 0.5rem; border: 1px solid #c3c3c3; border-radius: 3px; }
 input[type="checkbox"] { width: auto; display: inline-block; margin-right: 1rem; }
 input:focus,
 .stripe-input-focus { outline: none; border-color: #5b68a5; }
-button { padding: 0.5rem 1rem; cursor:pointer; border: none; background: #5b68a5; color: #fff; border-radius: 3px; }
+button { padding: 0.5rem 1rem; cursor:pointer; border: none; background: #5b68a5; color: #fff; border-radius: 3px; transition: background-color 0.2s ease; }
 button:hover { background: #7e92ef; }
-button:focus { outline:none }
+button:focus { outline:none; }
 .btn-subdued { background: #7a819e; }
 .btn-subdued:hover { background: #95a2d6; }
 .btn-feedback { animation: pulse 1s 1; cursor: wait; }
@@ -128,11 +128,13 @@ button:focus { outline:none }
 .set-customer-options .options-item:first-child { border-right: 1px solid #ccc; }
 .set-customer-options .options-item.options-item-signin { padding: 1rem 2rem;}
 .set-customer-options .options-item.options-item-guest { display: flex; flex-direction: column; align-items: center; justify-content: center; }
-
 .order-receipt-header { display: flex; }
 .order-receipt-number { margin: 0 auto; }
 .order-line-items { padding: 1rem; }
-
+.footer { padding: 3rem 0; font-size: 0.8rem; color: #ccc; }
+.footer a { opacity: 0.35; transition: opacity 0.2s ease; color: #000; }
+.footer a:hover { opacity: 1;}
+.footer img { margin-right: 0.5rem; }
 
 @keyframes pulse {
   0% {
