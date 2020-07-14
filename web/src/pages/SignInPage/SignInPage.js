@@ -5,7 +5,9 @@ import { useSignIn, SignInForm } from 'src/components/SignIn'
 
 const SignInPage = () => {
   const { onSubmit, loading, error } = useSignIn({
-    onComplete: () => navigate(routes.home()),
+    onComplete: () => {
+      navigate(routes.home())
+    },
   })
 
   return (

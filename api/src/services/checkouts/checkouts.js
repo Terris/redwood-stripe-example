@@ -12,7 +12,6 @@ import {
   createInvoiceWithItems,
   finalizeInvoice,
   payInvoice,
-  mergeInvoiceProducts,
 } from 'src/services/invoices/invoices'
 
 // SET CUSTOMER

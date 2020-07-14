@@ -7,8 +7,15 @@ import {
   Submit,
 } from '@redwoodjs/web'
 
+import { Loader } from '../UI'
+
 export const SignInForm = ({ onSubmit, loading, error }) => (
-  <Form onSubmit={onSubmit} validation={{ mode: 'onBlur' }}>
+  <Form
+    onSubmit={onSubmit}
+    validation={{ mode: 'onBlur' }}
+    className="has-block-loader"
+  >
+    {loading && <Loader type="BLOCK" />}
     {error && <p className="form-error">{error}</p>}
     <div className="field">
       <Label name="email" errorClassName="label-error">

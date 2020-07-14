@@ -35,7 +35,7 @@ export const mergeInvoiceProducts = async ({ invoice }) => {
     const lineProduct = await product({ id: line.productId })
     newLines.push({
       ...line,
-      lineProduct,
+      product: lineProduct,
     })
   }
   invoice.lines = newLines

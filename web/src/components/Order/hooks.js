@@ -6,12 +6,29 @@ const ORDER_QUERY = gql`
       id
       invoice {
         id
-        status
+        number
+        total
+        customerShipping {
+          name
+          address {
+            line1
+            line2
+            city
+            state
+            postalCode
+          }
+        }
         lines {
           id
           amount
           qty
-          productId
+          price
+          product {
+            name
+            description
+            images
+            unitAmount
+          }
         }
       }
     }
@@ -19,8 +36,8 @@ const ORDER_QUERY = gql`
 `
 
 export const useOrder = ({ id }) => {
-  const { loading, error, data: order } = useQuery(ORDER_QUERY, {
+  const { loading, error, data } = useQuery(ORDER_QUERY, {
     variables: { id },
   })
-  return { loading, error, order }
+  return { loading, error, data }
 }

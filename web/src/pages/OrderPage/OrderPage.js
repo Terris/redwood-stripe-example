@@ -4,7 +4,7 @@ import { GlobalLayout } from 'src/layouts'
 const OrdersPage = () => {
   return (
     <GlobalLayout>
-      <h1>Order</h1>
+      <h1>Order Receipt</h1>
       <Order />
     </GlobalLayout>
   )
