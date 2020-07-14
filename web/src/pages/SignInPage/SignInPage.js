@@ -21,7 +21,7 @@ const SignInPage = () => {
       <p>
         <strong>email:</strong> admin@example.com
         <br />
-        <strong>pass:</strong> password
+        <strong>pass:</strong> foobarbaz8910
       </p>
     </GlobalLayout>
   )
