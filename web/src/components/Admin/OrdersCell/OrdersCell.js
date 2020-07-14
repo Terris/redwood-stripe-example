@@ -16,7 +16,7 @@ export const QUERY = gql`
 `
 
 export const beforeQuery = (props) => {
-  return { variables: props, fetchPolicy: 'network-only' }
+  return { variables: props }
 }
 
 export const Loading = () => <Loader />
