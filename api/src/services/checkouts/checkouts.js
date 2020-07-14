@@ -56,12 +56,8 @@ export const placeOrder = async ({ input }) => {
     invoiceId: finalizedInvoice.id,
     paymentMethodId: input.paymentMethodId,
   })
-  // merge invoice products
-  const invoiceWithProducts = await mergeInvoiceProducts({
-    invoice: paidInvoice,
-  })
   return {
-    invoice: invoiceWithProducts,
+    invoice: paidInvoice,
   }
 }
 

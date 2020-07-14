@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react'
-
 import { GlobalLayout } from 'src/layouts'
 import { usePermission } from 'src/hooks'
 

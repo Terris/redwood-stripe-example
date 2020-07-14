@@ -1,4 +1,4 @@
-import { useMutation, useLazyQuery } from '@apollo/react-hooks'
+import { useMutation } from '@apollo/react-hooks'
 
 // MUTATIONS
 const SET_CUSTOMER = gql`
@@ -63,27 +63,6 @@ const PLACE_ORDER = gql`
       invoice {
         id
         status
-        amountPaid
-        customerShipping {
-          name
-          address {
-            line1
-            line2
-            city
-            state
-            postalCode
-          }
-        }
-        lines {
-          qty
-          product {
-            id
-            name
-            description
-            images
-            unitAmount
-          }
-        }
       }
     }
   }

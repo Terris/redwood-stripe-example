@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { routes, Link } from '@redwoodjs/router'
+import { Redirect, routes, Link } from '@redwoodjs/router'
 
 import {
   useCheckout,
@@ -7,7 +7,6 @@ import {
   SetCustomer,
   SetShipping,
   SetPayment,
-  OrderConfirmation,
 } from 'src/components/Checkout'
 
 import { Loader } from '../UI'
@@ -29,7 +28,7 @@ export const CheckoutFlow = () => {
       ) : checkout.phase === PHASE.SET_PAYMENT ? (
         <SetPayment />
       ) : checkout.phase === PHASE.ORDER_CONFIRMATION ? (
-        <OrderConfirmation />
+        <Redirect to={routes.order({ id: checkout.invoice.id })} />
       ) : (
         <Default />
       )}

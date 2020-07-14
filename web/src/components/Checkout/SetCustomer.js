@@ -22,7 +22,12 @@ export const SetCustomer = () => {
           <SignInForm onSubmit={onSubmit} loading={loading} error={error} />
         </div>
         <div className="options-item options-item-guest">
-          <button>Continue as Guest</button>
+          <button
+            type="button"
+            onClick={() => setCustomer({ customerSource: 'ANON' })}
+          >
+            Continue as Guest
+          </button>
         </div>
       </div>
     </div>
