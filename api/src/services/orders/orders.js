@@ -1,4 +1,4 @@
-import { invoice, mergeInvoiceProducts } from 'src/services/Invoices/Invoices'
+import { invoice, mergeInvoiceProducts } from 'src/services/invoices/invoices'
 
 export const order = async ({ id }) => {
   const orderInvoice = await invoice({ id })
