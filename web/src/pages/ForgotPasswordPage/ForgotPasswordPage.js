@@ -19,7 +19,6 @@ const ForgotPasswordPage = () => {
         navigate(routes.resetPassword())
       })
       .catch((error) => {
-        console.dir(error)
         setFormError(error.message)
         setFormLoading(false)
       })
