@@ -67,10 +67,12 @@
   dependencies:
     apollo-env "^0.6.5"
 
-"@apollographql/graphql-playground-html@1.6.24":
-  version "1.6.24"
-  resolved "https://registry.yarnpkg.com/@apollographql/graphql-playground-html/-/graphql-playground-html-1.6.24.tgz#3ce939cb127fb8aaa3ffc1e90dff9b8af9f2e3dc"
-  integrity sha512-8GqG48m1XqyXh4mIZrtB5xOhUwSsh1WsrrsaZQOEYYql3YN9DEu9OOSg0ILzXHZo/h2Q74777YE4YzlArQzQEQ==
+"@apollographql/graphql-playground-html@1.6.26":
+  version "1.6.26"
+  resolved "https://registry.yarnpkg.com/@apollographql/graphql-playground-html/-/graphql-playground-html-1.6.26.tgz#2f7b610392e2a872722912fc342b43cf8d641cb3"
+  integrity sha512-XAwXOIab51QyhBxnxySdK3nuMEUohhDsHQ5Rbco/V1vjlP75zZ0ZLHD9dTpXTN8uxKxopb2lUvJTq+M4g2Q0HQ==
+  dependencies:
+    xss "^1.0.6"
 
 "@babel/cli@^7.8.4":
   version "7.10.1"
@@ -2475,14 +2477,14 @@
     prop-types "^15.6.1"
     react-lifecycles-compat "^3.0.4"
 
-"@redwoodjs/api@^0.13.1-canary.14":
-  version "0.13.1-canary.14"
-  resolved "https://registry.yarnpkg.com/@redwoodjs/api/-/api-0.13.1-canary.14.tgz#e1e9ed2bd82f996ed35eb853ca349e28e4be4c15"
-  integrity sha512-T8Pp1EIKSc4pEzL90DADXLQ048/4EvIMjly/HZ6F3oR8F0INpnRU2RBWogzuMOL48PAi7D1L03YXjortxR0aaw==
+"@redwoodjs/api@^0.14.0":
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/@redwoodjs/api/-/api-0.14.0.tgz#6d8d703fd976563de40d5337352e49324b70a12b"
+  integrity sha512-qyIUYN3YoCcPz3qPkutbAAEZkvgc7fmg9Nj4x32pPToSmPwDdFfLRM0vN8gPdHSgJGa1Mol3PsFKTj1wdiZXuw==
   dependencies:
     "@prisma/client" "^2.1.1"
-    "@redwoodjs/internal" "^0.13.1-canary.14+a6f6b49f"
-    apollo-server-lambda "2.14.2"
+    "@redwoodjs/internal" "^0.14.0"
+    apollo-server-lambda "2.16.0"
     babel-plugin-macros "^2.8.0"
     core-js "3.6.4"
     glob "^7.1.6"
@@ -2496,19 +2498,19 @@
     lodash.omitby "^4.6.0"
     merge-graphql-schemas "^1.7.6"
 
-"@redwoodjs/auth@^0.13.1-canary.14":
-  version "0.13.1-canary.14"
-  resolved "https://registry.yarnpkg.com/@redwoodjs/auth/-/auth-0.13.1-canary.14.tgz#439af0577df50ec9d22b0fb0be11b5a700f498c7"
-  integrity sha512-CQG1APtRjr3NtHX7ju+eOl4FaJjBHVs+5GKW95Df+/58mLYZLywkL4x+87fgulfsItngHRqb53EGoKX4w/QsXA==
+"@redwoodjs/auth@^0.14.0":
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/@redwoodjs/auth/-/auth-0.14.0.tgz#2fb7ec3704066798fd17889617daafb8ef1392f7"
+  integrity sha512-kIqi1tQdUiqi9hhnPDKy2ul9yObkbQ8H6SvLVeAoHZG2ieEolzuXoxDQT0XMt3iIHed1f8Rtn3zif5qyW3jUJQ==
 
-"@redwoodjs/cli@^0.13.1-canary.14+a6f6b49f":
-  version "0.13.1-canary.14"
-  resolved "https://registry.yarnpkg.com/@redwoodjs/cli/-/cli-0.13.1-canary.14.tgz#9d0e79270daeb18433f237bb59cd328c27b6bef2"
-  integrity sha512-O/n+G91lCE8E+AeKzdHcaAyIrIPVb8erREWm5QbKHMMQmR9N3GQchTt4BG/usG894CRN1UMjVTV2SmjZuFv3ag==
+"@redwoodjs/cli@^0.14.0":
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/@redwoodjs/cli/-/cli-0.14.0.tgz#315fd13ae8b8c48d0b59133f172ed8b3d2a64b7f"
+  integrity sha512-k83Tq3BYAmE+YxO0VrRtfE8N91rxDfTiOAvSWz89uhAlPPrwWikIed0B0cqVufTmpcbkn4j6n/pmbaN5ZnIuYA==
   dependencies:
     "@prisma/sdk" "^2.1.1"
-    "@redwoodjs/internal" "^0.13.1-canary.14+a6f6b49f"
-    "@redwoodjs/structure" "^0.13.1-canary.14+a6f6b49f"
+    "@redwoodjs/internal" "^0.14.0"
+    "@redwoodjs/structure" "^0.14.0"
     camelcase "^5.3.1"
     chalk "^3.0.0"
     concurrently "^5.1.0"
@@ -2521,7 +2523,7 @@
     humanize-string "^2.1.0"
     listr "^0.14.3"
     listr-verbose-renderer "^0.6.0"
-    lodash "^4.17.15"
+    lodash "^4.17.19"
     param-case "^3.0.3"
     pascalcase "^1.0.0"
     pluralize "^8.0.0"
@@ -2529,10 +2531,10 @@
     terminal-link "^2.1.1"
     yargs "^15.3.1"
 
-"@redwoodjs/core@^0.13.1-canary.14":
-  version "0.13.1-canary.14"
-  resolved "https://registry.yarnpkg.com/@redwoodjs/core/-/core-0.13.1-canary.14.tgz#dfd78d56260c4e5cbc59d22811f40d937b8ac4c1"
-  integrity sha512-bgn/Xkn2Ek37+nkaOtVSadVdLrK/C7EwOA0s0xfgCXJpj1vZcrT12bve4mJ5J5lpG9n7VB1UX0fLu4fEA53C6Q==
+"@redwoodjs/core@^0.14.0":
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/@redwoodjs/core/-/core-0.14.0.tgz#3f2d0a4ab35ce21c8ad17e776bdfd50b23dde9d6"
+  integrity sha512-BY1QJPyRh6GsdwrR1WwxszzYslnLS1h9DMHckRmp9ssgbocjBq+osojfpjyWZBGMCe/7BykbeD+LSW2UFUrb6A==
   dependencies:
     "@babel/cli" "^7.8.4"
     "@babel/core" "^7.9.0"
@@ -2544,11 +2546,11 @@
     "@babel/preset-typescript" "^7.9.0"
     "@babel/runtime-corejs3" "^7.9.2"
     "@prisma/cli" "^2.1.1"
-    "@redwoodjs/cli" "^0.13.1-canary.14+a6f6b49f"
-    "@redwoodjs/dev-server" "^0.13.1-canary.14+a6f6b49f"
-    "@redwoodjs/eslint-config" "^0.13.1-canary.14+a6f6b49f"
-    "@redwoodjs/internal" "^0.13.1-canary.14+a6f6b49f"
-    "@redwoodjs/testing" "^0.13.1-canary.14+a6f6b49f"
+    "@redwoodjs/cli" "^0.14.0"
+    "@redwoodjs/dev-server" "^0.14.0"
+    "@redwoodjs/eslint-config" "^0.14.0"
+    "@redwoodjs/internal" "^0.14.0"
+    "@redwoodjs/testing" "^0.14.0"
     "@storybook/react" "^5.3.19"
     "@testing-library/jest-dom" "^5.8.0"
     "@types/jest" "^25.1.4"
@@ -2586,13 +2588,13 @@
     webpack-dev-server "^3.10.3"
     webpack-merge "^4.2.2"
 
-"@redwoodjs/dev-server@^0.13.1-canary.14+a6f6b49f":
-  version "0.13.1-canary.14"
-  resolved "https://registry.yarnpkg.com/@redwoodjs/dev-server/-/dev-server-0.13.1-canary.14.tgz#63ceb859c29c25676f0295e507e8c2fda1a05e2b"
-  integrity sha512-BDrO0nqJ5jyDobPhuRl7mQjeJReODJ7Cs/eI2LnnwMU8xLgHX1qksnRo0nCWbmaKb3aw6CjdkvgN7G0gwzp19w==
+"@redwoodjs/dev-server@^0.14.0":
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/@redwoodjs/dev-server/-/dev-server-0.14.0.tgz#2bd64c8381b1c7c976bf66441951c8f6c7be89a7"
+  integrity sha512-NTKiQNYnhlYmdVaQ75w/Q++at1tnN58dwYtH08JI+VDV3ol+YO+4LMJG6rNmkl+ShJjZSsR6s7Zq/xjXFF1BJA==
   dependencies:
     "@babel/register" "^7.9.0"
-    "@redwoodjs/internal" "^0.13.1-canary.14+a6f6b49f"
+    "@redwoodjs/internal" "^0.14.0"
     body-parser "^1.19.0"
     chokidar "^3.3.1"
     express "^4.17.1"
@@ -2603,12 +2605,12 @@
     youch "^2.0.10"
     youch-terminal "^1.0.0"
 
-"@redwoodjs/eslint-config@^0.13.1-canary.14+a6f6b49f":
-  version "0.13.1-canary.14"
-  resolved "https://registry.yarnpkg.com/@redwoodjs/eslint-config/-/eslint-config-0.13.1-canary.14.tgz#0affe85f48fef4995db1213a2b16cc54303857b4"
-  integrity sha512-ni35ox2h41J0jgxU8Mp4nqY3ZCws9stj3s0Ix3WSPjanjdCRmeKj8LVxjj7P3lg9ApndUkSweoe6WE/sjiQVKw==
+"@redwoodjs/eslint-config@^0.14.0":
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/@redwoodjs/eslint-config/-/eslint-config-0.14.0.tgz#462f541aa69c1d7ba085cc0731725d9ffa7d36b4"
+  integrity sha512-ovQXRaEr+JAKClM7JFr2UbiIHFFWv4GRzhWVqQRerpSGoa0it68VxQtmUzcavbkYSwS0huIn8ua01EVjtfriZg==
   dependencies:
-    "@redwoodjs/eslint-plugin-redwood" "^0.13.1-canary.14+a6f6b49f"
+    "@redwoodjs/eslint-plugin-redwood" "^0.14.0"
     "@typescript-eslint/eslint-plugin" "^2.27.0"
     "@typescript-eslint/parser" "^2.27.0"
     babel-eslint "^10.1.0"
@@ -2624,15 +2626,15 @@
     eslint-plugin-react-hooks "^3.0.0"
     prettier "^2.0.5"
 
-"@redwoodjs/eslint-plugin-redwood@^0.13.1-canary.14+a6f6b49f":
-  version "0.13.1-canary.14"
-  resolved "https://registry.yarnpkg.com/@redwoodjs/eslint-plugin-redwood/-/eslint-plugin-redwood-0.13.1-canary.14.tgz#02fe6d79e13e3a63ec9a724196ae7bba760a0798"
-  integrity sha512-T1KoTtl4frlfmInMy15WolM5R3dhTbxNBJ/d8fkR2RG2GrNB6MrhdsSCgnisvhwYkDDg9el/Um8Hxrdu2YQSWg==
+"@redwoodjs/eslint-plugin-redwood@^0.14.0":
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/@redwoodjs/eslint-plugin-redwood/-/eslint-plugin-redwood-0.14.0.tgz#8cd49e151bd2e1621b1c7a72f6624c407082f25a"
+  integrity sha512-gyHEkW9322StO69k/2a8lmRrVZgVkdTDm7gxpfv0dzaGmng/UpCfpPv/ezTfrBP7ij7Cgd4LXufVYdstXojlDA==
 
-"@redwoodjs/internal@^0.13.1-canary.14+a6f6b49f":
-  version "0.13.1-canary.14"
-  resolved "https://registry.yarnpkg.com/@redwoodjs/internal/-/internal-0.13.1-canary.14.tgz#4d5c1407236569d801507fe9b13479bdfa35bc4f"
-  integrity sha512-xkXFSLuM2JeGhnAUfOBiZ8y1LRE6UdNZSaV20oFGDIao3RA7DXeRp18TWef6pYQ2hCDCTg53ewOhX0o0Ihm5Ow==
+"@redwoodjs/internal@^0.14.0":
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/@redwoodjs/internal/-/internal-0.14.0.tgz#f8c05fae203b30ee04cc54f029e9a0ffe729e406"
+  integrity sha512-HYwH8+IJcUPVGV6J04ENDG9HMykGPmidC+QEe5lFT8meAL2wRQWOpg8tjd0/wHL2f/mMEPEcOw2FjNXaRSZu0A==
   dependencies:
     deepmerge "^4.2.2"
     findup-sync "^4.0.0"
@@ -2648,17 +2650,17 @@
     findup-sync "^4.0.0"
     toml "^3.0.0"
 
-"@redwoodjs/router@^0.13.1-canary.14":
-  version "0.13.1-canary.14"
-  resolved "https://registry.yarnpkg.com/@redwoodjs/router/-/router-0.13.1-canary.14.tgz#86a800350a625f5a4d05e1e57f1093404d7dbc9e"
-  integrity sha512-7VMd6fzeI0nF9VS5SWVGlpzHj0jEzwvFb5X0ZxZSrOZkVk9J+iCLDPTRLkt7I7SNQuLltSWzhcwcpFMrHnPL5g==
+"@redwoodjs/router@^0.14.0":
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/@redwoodjs/router/-/router-0.14.0.tgz#89a1e7d8f23ba40f2a0fc2c670b856acd0323bcc"
+  integrity sha512-dxf7BxJUdGkwEpylKnyoQrp6VQYmG7/7eRj7cJTlWjBBW2I4liapDyk4so00Quxkl5lv6DbPWkns60pjbndorQ==
   dependencies:
     core-js "3.6.4"
 
-"@redwoodjs/structure@^0.13.1-canary.14+a6f6b49f":
-  version "0.13.1-canary.14"
-  resolved "https://registry.yarnpkg.com/@redwoodjs/structure/-/structure-0.13.1-canary.14.tgz#ca0f4d703291c4558068a94a5e696194f335621b"
-  integrity sha512-Oh+yijSearLWgcjnS/nN8l74HAXsu8OBM0GbTqNHAHP8m4KDgmmhVJRb3e9rJi99B80LRf03/JTclKxr3HGqLQ==
+"@redwoodjs/structure@^0.14.0":
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/@redwoodjs/structure/-/structure-0.14.0.tgz#273a64c94c45b49e1d91dc6711b6f003cdf94d24"
+  integrity sha512-GQPZHqLJXv6wz6n296D19wTX8v+Z+IMNyMbQS/cQgmPH7kOM9Rgxfvr4avf/tiY8sTUXbEwsm9ehcWe6i0k/Tg==
   dependencies:
     "@prisma/sdk" "^2.1.1"
     "@redwoodjs/internal" "^0.8.2"
@@ -2668,7 +2670,7 @@
     findup-sync "^4.0.0"
     graphql "^15.1.0"
     lazy-get-decorator "^2.2.0"
-    lodash "^4.17.15"
+    lodash "^4.17.19"
     lodash-decorators "^6.0.1"
     lru-cache "^5.1.1"
     proxyquire "^2.1.3"
@@ -2677,22 +2679,23 @@
     vscode-languageserver "^6.1.1"
     vscode-languageserver-textdocument "^1.0.1"
     vscode-languageserver-types "^3.15.1"
+    yargs-parser "^18.1.3"
 
-"@redwoodjs/testing@^0.13.1-canary.14+a6f6b49f":
-  version "0.13.1-canary.14"
-  resolved "https://registry.yarnpkg.com/@redwoodjs/testing/-/testing-0.13.1-canary.14.tgz#ca2b4b3e34e9b0c67c5e67ec84e226486e9d6003"
-  integrity sha512-lSuFpQJToCWBlQEP/XIq1y7l0fsfw4O/3XNwNQTZTW08GJchREDfrL2NQgmr6YxGP7RPjQ12wocP+CDCbjNfzw==
+"@redwoodjs/testing@^0.14.0":
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/@redwoodjs/testing/-/testing-0.14.0.tgz#f312e95a25653de1c5f365da34cae2f7b0eedc9a"
+  integrity sha512-rjorCs+4Duftq4pTSv7j1hU+oY9K0HLr7HsEE9OQh7hUXtyqc7zLhcWwDz6Qrmp5uHwUWJJf3XkXv21btmjyzw==
   dependencies:
-    "@redwoodjs/internal" "^0.13.1-canary.14+a6f6b49f"
-    "@redwoodjs/web" "^0.13.1-canary.14+a6f6b49f"
+    "@redwoodjs/internal" "^0.14.0"
+    "@redwoodjs/web" "^0.14.0"
     "@testing-library/react" "^10.0.4"
     "@types/react" "16.9.38"
     msw "^0.19.0"
 
-"@redwoodjs/web@^0.13.1-canary.14", "@redwoodjs/web@^0.13.1-canary.14+a6f6b49f":
-  version "0.13.1-canary.14"
-  resolved "https://registry.yarnpkg.com/@redwoodjs/web/-/web-0.13.1-canary.14.tgz#7f40d2c5e094bcc4dedaab5627325954c5f98ff8"
-  integrity sha512-YZ7ii6xr4yve211uOu4ngFEtYfFmTRft4jXk21CdRdwK8TBgXGenxMQvCBLnF4BkCzfoq4kny9aTqXHCl/VMkw==
+"@redwoodjs/web@^0.14.0":
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/@redwoodjs/web/-/web-0.14.0.tgz#ffd3daabba06230c13fed2622dc123676b4ba1c9"
+  integrity sha512-8hLhSqE2ga8WmvxAmfIPBOD/yRNuK5o2V/8VRGzY4ckn8VJuLWM+p6KWWAJPt0lOuOmyIpx2B+S2Ab7xKtrB2w==
   dependencies:
     "@apollo/react-components" "^3.1.3"
     "@apollo/react-hooks" "^3.1.3"
@@ -4146,13 +4149,13 @@ apollo-boost@0.4.7:
     ts-invariant "^0.4.0"
     tslib "^1.10.0"
 
-apollo-cache-control@^0.11.0:
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/apollo-cache-control/-/apollo-cache-control-0.11.0.tgz#7075492d04c5424e7c6769380b503e8f75b39d61"
-  integrity sha512-dmRnQ9AXGw2SHahVGLzB/p4UW/taFBAJxifxubp8hqY5p9qdlSu4MPRq8zvV2ULMYf50rBtZyC4C+dZLqmHuHQ==
+apollo-cache-control@^0.11.1:
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/apollo-cache-control/-/apollo-cache-control-0.11.1.tgz#3bce0924ae7322a8b9f7ca1e2fb036d1fc9f1df5"
+  integrity sha512-6iHa8TkcKt4rx5SKRzDNjUIpCQX+7/FlZwD7vRh9JDnM4VH8SWhpj8fUR3CiEY8Kuc4ChXnOY8bCcMju5KPnIQ==
   dependencies:
-    apollo-server-env "^2.4.4"
-    apollo-server-plugin-base "^0.9.0"
+    apollo-server-env "^2.4.5"
+    apollo-server-plugin-base "^0.9.1"
 
 apollo-cache-inmemory@^1.6.5:
   version "1.6.6"
@@ -4187,33 +4190,33 @@ apollo-client@^2.6.7, apollo-client@^2.6.8:
     tslib "^1.10.0"
     zen-observable "^0.8.0"
 
-apollo-datasource@^0.7.1:
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/apollo-datasource/-/apollo-datasource-0.7.1.tgz#0b06da999ace50b7f5fe509f2a03f7de97974334"
-  integrity sha512-h++/jQAY7GA+4TBM+7ezvctFmmGNLrAPf51KsagZj+NkT9qvxp585rdsuatynVbSl59toPK2EuVmc6ilmQHf+g==
+apollo-datasource@^0.7.2:
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/apollo-datasource/-/apollo-datasource-0.7.2.tgz#1662ee93453a9b89af6f73ce561bde46b41ebf31"
+  integrity sha512-ibnW+s4BMp4K2AgzLEtvzkjg7dJgCaw9M5b5N0YKNmeRZRnl/I/qBTQae648FsRKgMwTbRQIvBhQ0URUFAqFOw==
   dependencies:
-    apollo-server-caching "^0.5.1"
-    apollo-server-env "^2.4.4"
+    apollo-server-caching "^0.5.2"
+    apollo-server-env "^2.4.5"
 
-apollo-engine-reporting-protobuf@^0.5.1:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/apollo-engine-reporting-protobuf/-/apollo-engine-reporting-protobuf-0.5.1.tgz#b6e66e6e382f9bcdc2ac8ed168b047eb1470c1a8"
-  integrity sha512-TSfr9iAaInV8dhXkesdcmqsthRkVcJkzznmiM+1Ob/GScK7r6hBYCjVDt2613EHAg9SUzTOltIKlGD+N+GJRUw==
+apollo-engine-reporting-protobuf@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/apollo-engine-reporting-protobuf/-/apollo-engine-reporting-protobuf-0.5.2.tgz#b01812508a1c583328a8dc603769bc63b8895e7e"
+  integrity sha512-4wm9FR3B7UvJxcK/69rOiS5CAJPEYKufeRWb257ZLfX7NGFTMqvbc1hu4q8Ch7swB26rTpkzfsftLED9DqH9qg==
   dependencies:
     "@apollo/protobufjs" "^1.0.3"
 
-apollo-engine-reporting@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/apollo-engine-reporting/-/apollo-engine-reporting-2.0.0.tgz#af007b4a8a481fa97baef0eac51a7824f1ec3310"
-  integrity sha512-FvNwORsh3nxEfvQqd2xbd468a0q/R3kYar/Bk6YQdBX5qwqUhqmOcOSxLFk8Zb77HpwHij5CPpPWJb53TU1zcA==
+apollo-engine-reporting@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/apollo-engine-reporting/-/apollo-engine-reporting-2.3.0.tgz#3bb59f81aaf6b967ed098896a4a60a053b4eed5a"
+  integrity sha512-SbcPLFuUZcRqDEZ6mSs8uHM9Ftr8yyt2IEu0JA8c3LNBmYXSLM7MHqFe80SVcosYSTBgtMz8mLJO8orhYoSYZw==
   dependencies:
-    apollo-engine-reporting-protobuf "^0.5.1"
-    apollo-graphql "^0.4.0"
-    apollo-server-caching "^0.5.1"
-    apollo-server-env "^2.4.4"
-    apollo-server-errors "^2.4.1"
-    apollo-server-plugin-base "^0.9.0"
-    apollo-server-types "^0.5.0"
+    apollo-engine-reporting-protobuf "^0.5.2"
+    apollo-graphql "^0.5.0"
+    apollo-server-caching "^0.5.2"
+    apollo-server-env "^2.4.5"
+    apollo-server-errors "^2.4.2"
+    apollo-server-plugin-base "^0.9.1"
+    apollo-server-types "^0.5.1"
     async-retry "^1.2.1"
     uuid "^8.0.0"
 
@@ -4227,10 +4230,10 @@ apollo-env@^0.6.5:
     node-fetch "^2.2.0"
     sha.js "^2.4.11"
 
-apollo-graphql@^0.4.0:
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/apollo-graphql/-/apollo-graphql-0.4.4.tgz#25f456b28a4419bb6a42071f8a56e19e15bb80be"
-  integrity sha512-i012iRKT5nfsOaNMx4MTwHw2jrlyaF1zikpejxsGHsKIf3OngGvGh3pyw20bEmwj413OrNQpRxvvIz5A7W/8xw==
+apollo-graphql@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/apollo-graphql/-/apollo-graphql-0.5.0.tgz#7e9152093211b58352aa6504d8d39ec7241d6872"
+  integrity sha512-YSdF/BKPbsnQpxWpmCE53pBJX44aaoif31Y22I/qKpB6ZSGzYijV5YBoCL5Q15H2oA/v/02Oazh9lbp4ek3eig==
   dependencies:
     apollo-env "^0.6.5"
     lodash.sortby "^4.7.0"
@@ -4272,33 +4275,33 @@ apollo-link@^1.0.0, apollo-link@^1.0.6, apollo-link@^1.2.12, apollo-link@^1.2.13
     tslib "^1.9.3"
     zen-observable-ts "^0.8.21"
 
-apollo-server-caching@^0.5.1:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/apollo-server-caching/-/apollo-server-caching-0.5.1.tgz#5cd0536ad5473abb667cc82b59bc56b96fb35db6"
-  integrity sha512-L7LHZ3k9Ao5OSf2WStvQhxdsNVplRQi7kCAPfqf9Z3GBEnQ2uaL0EgO0hSmtVHfXTbk5CTRziMT1Pe87bXrFIw==
+apollo-server-caching@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/apollo-server-caching/-/apollo-server-caching-0.5.2.tgz#bef5d5e0d48473a454927a66b7bb947a0b6eb13e"
+  integrity sha512-HUcP3TlgRsuGgeTOn8QMbkdx0hLPXyEJehZIPrcof0ATz7j7aTPA4at7gaiFHCo8gk07DaWYGB3PFgjboXRcWQ==
   dependencies:
     lru-cache "^5.0.0"
 
-apollo-server-core@^2.14.2:
-  version "2.14.2"
-  resolved "https://registry.yarnpkg.com/apollo-server-core/-/apollo-server-core-2.14.2.tgz#4ab055b96b8be7821a726c81e8aa412deb7f3644"
-  integrity sha512-8G6Aoz+k+ecuQco1KNLFbMrxhe/8uR4AOaOYEvT/N5m/6lrkPYzvBAxbpRIub5AxEwpBPcIrI452rR3PD9DItA==
+apollo-server-core@^2.16.0:
+  version "2.16.0"
+  resolved "https://registry.yarnpkg.com/apollo-server-core/-/apollo-server-core-2.16.0.tgz#56b367db49f97b7da03b29cef89b63d9ed14ee0c"
+  integrity sha512-mnvg2cPvsQtjFXIqIhEAbPqGyiSXDSbiBgNQ8rY8g7r2eRMhHKZePqGF03gP1/w87yVaSDRAZBDk6o+jiBXjVQ==
   dependencies:
     "@apollographql/apollo-tools" "^0.4.3"
-    "@apollographql/graphql-playground-html" "1.6.24"
+    "@apollographql/graphql-playground-html" "1.6.26"
     "@types/graphql-upload" "^8.0.0"
     "@types/ws" "^7.0.0"
-    apollo-cache-control "^0.11.0"
-    apollo-datasource "^0.7.1"
-    apollo-engine-reporting "^2.0.0"
-    apollo-server-caching "^0.5.1"
-    apollo-server-env "^2.4.4"
-    apollo-server-errors "^2.4.1"
-    apollo-server-plugin-base "^0.9.0"
-    apollo-server-types "^0.5.0"
-    apollo-tracing "^0.11.0"
+    apollo-cache-control "^0.11.1"
+    apollo-datasource "^0.7.2"
+    apollo-engine-reporting "^2.3.0"
+    apollo-server-caching "^0.5.2"
+    apollo-server-env "^2.4.5"
+    apollo-server-errors "^2.4.2"
+    apollo-server-plugin-base "^0.9.1"
+    apollo-server-types "^0.5.1"
+    apollo-tracing "^0.11.1"
     fast-json-stable-stringify "^2.0.0"
-    graphql-extensions "^0.12.2"
+    graphql-extensions "^0.12.4"
     graphql-tag "^2.9.2"
     graphql-tools "^4.0.0"
     graphql-upload "^8.0.2"
@@ -4307,54 +4310,54 @@ apollo-server-core@^2.14.2:
     subscriptions-transport-ws "^0.9.11"
     ws "^6.0.0"
 
-apollo-server-env@^2.4.4:
-  version "2.4.4"
-  resolved "https://registry.yarnpkg.com/apollo-server-env/-/apollo-server-env-2.4.4.tgz#12d2d0896dcb184478cba066c7a683ab18689ca1"
-  integrity sha512-c2oddDS3lwAl6QNCIKCLEzt/dF9M3/tjjYRVdxOVN20TidybI7rAbnT4QOzf4tORnGXtiznEAvr/Kc9ahhKADg==
+apollo-server-env@^2.4.5:
+  version "2.4.5"
+  resolved "https://registry.yarnpkg.com/apollo-server-env/-/apollo-server-env-2.4.5.tgz#73730b4f0439094a2272a9d0caa4079d4b661d5f"
+  integrity sha512-nfNhmGPzbq3xCEWT8eRpoHXIPNcNy3QcEoBlzVMjeglrBGryLG2LXwBSPnVmTRRrzUYugX0ULBtgE3rBFNoUgA==
   dependencies:
     node-fetch "^2.1.2"
     util.promisify "^1.0.0"
 
-apollo-server-errors@^2.4.1:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/apollo-server-errors/-/apollo-server-errors-2.4.1.tgz#16ad49de6c9134bfb2b7dede9842e73bb239dbe2"
-  integrity sha512-7oEd6pUxqyWYUbQ9TA8tM0NU/3aGtXSEibo6+txUkuHe7QaxfZ2wHRp+pfT1LC1K3RXYjKj61/C2xEO19s3Kdg==
+apollo-server-errors@^2.4.2:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/apollo-server-errors/-/apollo-server-errors-2.4.2.tgz#1128738a1d14da989f58420896d70524784eabe5"
+  integrity sha512-FeGxW3Batn6sUtX3OVVUm7o56EgjxDlmgpTLNyWcLb0j6P8mw9oLNyAm3B+deHA4KNdNHO5BmHS2g1SJYjqPCQ==
 
-apollo-server-lambda@2.14.2:
-  version "2.14.2"
-  resolved "https://registry.yarnpkg.com/apollo-server-lambda/-/apollo-server-lambda-2.14.2.tgz#a1f4d372475ac31c7baeab9d503d3045a4f02095"
-  integrity sha512-nx/NPVZRPhqoOw1Fi4zSQmNS7r8vLw9l11V880qm1f8mMes1AZzCJdn/pSZEgt7nMKS4YmOkeSDvaj/9XvqqYw==
+apollo-server-lambda@2.16.0:
+  version "2.16.0"
+  resolved "https://registry.yarnpkg.com/apollo-server-lambda/-/apollo-server-lambda-2.16.0.tgz#35ef5eb10e7f625d528d1fbdf9f75946c67047be"
+  integrity sha512-PkmDNI9DJ5RC20wxr7pHHoceQC/o3KD1AEJmY13ZFa6Y43yJrB7afnz9DonpNeHEZG1AYb972cXfozALDBdV+w==
   dependencies:
-    "@apollographql/graphql-playground-html" "1.6.24"
+    "@apollographql/graphql-playground-html" "1.6.26"
     "@types/aws-lambda" "^8.10.31"
-    apollo-server-core "^2.14.2"
-    apollo-server-env "^2.4.4"
-    apollo-server-types "^0.5.0"
+    apollo-server-core "^2.16.0"
+    apollo-server-env "^2.4.5"
+    apollo-server-types "^0.5.1"
     graphql-tools "^4.0.0"
 
-apollo-server-plugin-base@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/apollo-server-plugin-base/-/apollo-server-plugin-base-0.9.0.tgz#777f720a1ee827a66b8c159073ca30645f8bc625"
-  integrity sha512-LWcPrsy2+xqwlNseh/QaGa/MPNopS8c4qGgh0g0cAn0lZBRrJ9Yab7dq+iQ6vdUBwIhUWYN6s9dwUWCZw2SL8g==
+apollo-server-plugin-base@^0.9.1:
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/apollo-server-plugin-base/-/apollo-server-plugin-base-0.9.1.tgz#a62ae9ab4e89790fd4cc5d123bb616da34e8e5fb"
+  integrity sha512-kvrX4Z3FdpjrZdHkyl5iY2A1Wvp4b6KQp00DeZqss7GyyKNUBKr80/7RQgBLEw7EWM7WB19j459xM/TjvW0FKQ==
   dependencies:
-    apollo-server-types "^0.5.0"
+    apollo-server-types "^0.5.1"
 
-apollo-server-types@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/apollo-server-types/-/apollo-server-types-0.5.0.tgz#51f39c5fa610ece8b07f1fbcf63c47d4ac150340"
-  integrity sha512-zhtsqqqfdeoJQAfc41Sy6WnnBVxKNgZ34BKXf/Q+kXmw7rbZ/B5SG3SJMvj1iFsbzZxILmWdUsE9aD20lEr0bg==
+apollo-server-types@^0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/apollo-server-types/-/apollo-server-types-0.5.1.tgz#091c09652894d6532db9ba873574443adabf85b9"
+  integrity sha512-my2cPw+DAb2qVnIuBcsRKGyS28uIc2vjFxa1NpRoJZe9gK0BWUBk7wzXnIzWy3HZ5Er11e/40MPTUesNfMYNVA==
   dependencies:
-    apollo-engine-reporting-protobuf "^0.5.1"
-    apollo-server-caching "^0.5.1"
-    apollo-server-env "^2.4.4"
+    apollo-engine-reporting-protobuf "^0.5.2"
+    apollo-server-caching "^0.5.2"
+    apollo-server-env "^2.4.5"
 
-apollo-tracing@^0.11.0:
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/apollo-tracing/-/apollo-tracing-0.11.0.tgz#8821eb60692f77c06660fb6bc147446f600aecfe"
-  integrity sha512-I9IFb/8lkBW8ZwOAi4LEojfT7dMfUSkpnV8LHQI8Rcj0HtzL9HObQ3woBmzyGHdGHLFuD/6/VHyFD67SesSrJg==
+apollo-tracing@^0.11.1:
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/apollo-tracing/-/apollo-tracing-0.11.1.tgz#3e3a4ce4b21e57dcc57b10bbd539db243b752606"
+  integrity sha512-l7g+uILw7v32GA46IRXIx5XXbZhFI96BhSqrGK9yyvfq+NMcvVZrj3kIhRImPGhAjMdV+5biA/jztabElAbDjg==
   dependencies:
-    apollo-server-env "^2.4.4"
-    apollo-server-plugin-base "^0.9.0"
+    apollo-server-env "^2.4.5"
+    apollo-server-plugin-base "^0.9.1"
 
 apollo-upload-client@^13.0.0:
   version "13.0.0"
@@ -5942,7 +5945,7 @@ comma-separated-tokens@^1.0.0:
   resolved "https://registry.yarnpkg.com/comma-separated-tokens/-/comma-separated-tokens-1.0.8.tgz#632b80b6117867a158f1080ad498b2fbe7e3f5ea"
   integrity sha512-GHuDRO12Sypu2cV70d1dkA2EUmXHgntrzbpvOB+Qy+49ypNfGgFQIC2fhhXbnyrJRynDCAARsT7Ou0M6hirpfw==
 
-commander@^2.11.0, commander@^2.18.0, commander@^2.19.0, commander@^2.20.0:
+commander@^2.11.0, commander@^2.18.0, commander@^2.19.0, commander@^2.20.0, commander@^2.20.3:
   version "2.20.3"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
   integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
@@ -6404,6 +6407,11 @@ cssesc@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/cssesc/-/cssesc-3.0.0.tgz#37741919903b868565e1c09ea747445cd18983ee"
   integrity sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==
+
+cssfilter@0.0.10:
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/cssfilter/-/cssfilter-0.0.10.tgz#c6d2672632a2e5c83e013e6864a42ce8defd20ae"
+  integrity sha1-xtJnJjKi5cg+AT5oZKQs6N79IK4=
 
 csso@^4.0.2:
   version "4.0.3"
@@ -8374,14 +8382,14 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.4.tgz#2256bde14d3632958c465ebc96dc467ca07a29fb"
   integrity sha512-WjKPNJF79dtJAVniUlGGWHYGz2jWxT6VhN/4m1NdkbZ2nOsEF+cI1Edgql5zCRhs/VsQYRvrXctxktVXZUkixw==
 
-graphql-extensions@^0.12.2:
-  version "0.12.2"
-  resolved "https://registry.yarnpkg.com/graphql-extensions/-/graphql-extensions-0.12.2.tgz#f22210e812939b7caa2127589f30e6a1c671540f"
-  integrity sha512-vFaZua5aLiCOOzxfY5qzHZ6S52BCqW7VVOwzvV52Wb5edRm3dn6u+1MR9yYyEqUHSf8LvdhEojYlOkKiaQ4ghA==
+graphql-extensions@^0.12.4:
+  version "0.12.4"
+  resolved "https://registry.yarnpkg.com/graphql-extensions/-/graphql-extensions-0.12.4.tgz#c0aa49a20f983a2da641526d1e505996bd2b4188"
+  integrity sha512-GnR4LiWk3s2bGOqIh6V1JgnSXw2RCH4NOgbCFEWvB6JqWHXTlXnLZ8bRSkCiD4pltv7RHUPWqN/sGh8R6Ae/ag==
   dependencies:
     "@apollographql/apollo-tools" "^0.4.3"
-    apollo-server-env "^2.4.4"
-    apollo-server-types "^0.5.0"
+    apollo-server-env "^2.4.5"
+    apollo-server-types "^0.5.1"
 
 graphql-iso-date@^3.6.1:
   version "3.6.1"
@@ -15163,6 +15171,14 @@ xregexp@^4.3.0:
   dependencies:
     "@babel/runtime-corejs3" "^7.8.3"
 
+xss@^1.0.6:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/xss/-/xss-1.0.7.tgz#a554cbd5e909324bd6893fb47fff441ad54e2a95"
+  integrity sha512-A9v7tblGvxu8TWXQC9rlpW96a+LN1lyw6wyhpTmmGW+FwRMactchBR3ROKSi33UPCUcUHSu8s9YP6F+K3Mw//w==
+  dependencies:
+    commander "^2.20.3"
+    cssfilter "0.0.10"
+
 xtend@^4.0.0, xtend@~4.0.1:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.2.tgz#bb72779f5fa465186b1f438f674fa347fdb5db54"
@@ -15201,7 +15217,7 @@ yargs-parser@^13.1.0, yargs-parser@^13.1.2:
     camelcase "^5.0.0"
     decamelize "^1.2.0"
 
-yargs-parser@^18.1.1:
+yargs-parser@^18.1.1, yargs-parser@^18.1.3:
   version "18.1.3"
   resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-18.1.3.tgz#be68c4975c6b2abf469236b0c870362fab09a7b0"
   integrity sha512-o50j0JeToy/4K6OZcaQmW6lyXXKhq7csREXcDwk2omFPJEwUNOVtJKvmDr9EI1fAJZUyZcRF7kxGBWmRXudrCQ==

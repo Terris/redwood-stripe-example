@@ -6,9 +6,9 @@
     "defaults"
   ],
   "dependencies": {
-    "@redwoodjs/auth": "^0.13.1-canary.14",
-    "@redwoodjs/router": "^0.13.1-canary.14",
-    "@redwoodjs/web": "^0.13.1-canary.14",
+    "@redwoodjs/auth": "^0.14.0",
+    "@redwoodjs/router": "^0.14.0",
+    "@redwoodjs/web": "^0.14.0",
     "@stripe/react-stripe-js": "^1.1.2",
     "@stripe/stripe-js": "^1.7.0",
     "gotrue-js": "^0.9.25",

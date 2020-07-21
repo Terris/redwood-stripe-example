@@ -1,5 +1,4 @@
 import { AuthenticationError } from '@redwoodjs/api'
-import { context } from '@redwoodjs/api/dist/globalContext'
 
 export const getCurrentUser = async (decoded) => {
   return decoded
